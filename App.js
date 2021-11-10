@@ -17,6 +17,7 @@ import MainTabScreen from "./App/navigation/MainTabScreen";
 export default function App() {
   return (
     <>
+    <Welcome/>
     <NavigationContainer>
       <MainTabScreen/>
     </NavigationContainer>
