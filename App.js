@@ -1,38 +1,18 @@
-import React from 'react';
-import { StyleSheet} from 'react-native';
+import { StyleSheet, Alert} from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import React, {useState, useEffect} from 'react';
-import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import {GestureHandlerRootView} from 'react-native-gesture-handler';
-import {Alert} from 'react-native';
 
 import ListCity from './App/screens/listCity/ListCity';
 import City from './App/screens/city/City';
 import AddCity from './App/screens/addCity/AddCity';
+import Welcome from "./App/screens/Welcome";
+
+
 
 import MainTabScreen from "./App/navigation/MainTabScreen";
 
-
-export default function App() {
-  return (
-    <>
-    <Welcome/>
-    <NavigationContainer>
-      <MainTabScreen/>
-    </NavigationContainer>
-    </>
-  );
-}
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#FFF',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
 const Stack = createNativeStackNavigator();
 
 export default function App() {
@@ -77,18 +57,17 @@ export default function App() {
   return (
   <GestureHandlerRootView style={{flex: 1}}>
     <NavigationContainer>
-      <Stack.Navigator>
-        <Stack.Screen name="Mis Ciudades" component={ListCity} />
-        <Stack.Screen name="Mi Ciudad">
-            {(props) => <City resultado={resultado}/>}
-        </Stack.Screen>
-        <Stack.Screen name="Agregar Ciudad">
-            {(props) => <AddCity busqueda={busqueda} guardarBusqueda={guardarBusqueda} guardarConsultar={guardarConsultar}/>}
-        </Stack.Screen>
-        
-      </Stack.Navigator>
+      <MainTabScreen />
     </NavigationContainer>
   </GestureHandlerRootView>
   );    
 };
 
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: '#FFF',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+});

@@ -19,9 +19,7 @@ const ListCity = ({navigation}) => {
             onPress={() => navigation.navigate('Agregar Ciudad')}>
             <MaterialCommunityIcons name="plus" size={32} color="white" />
             </TouchableOpacity>
-        </View>
-
-        
+        </View>        
     );
 };
 

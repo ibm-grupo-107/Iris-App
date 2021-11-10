@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState, useEffect} from "react";
 
 //Importar el bottomNavigations
 import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs';
@@ -9,16 +9,54 @@ import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityI
 
 //Importar rutas de los Screens
 import About from "../screens/About";
-import AddCity from "../screens/AddCity";
-import City from "../screens/City";
+import AddCity from "../screens/addCity/AddCity";
+import City from "../screens/city/City";
 import Home from "../screens/Home";
-import ListCity from "../screens/ListCity"
+import ListCity from "../screens/listCity/ListCity"
 
 
 const Tab = createMaterialBottomTabNavigator();
 
 
 const MainTabScreen = () =>{
+
+  const [busqueda, guardarBusqueda] = useState({
+    ciudad: '',
+    pais: '',
+  });
+
+  const  [consultar, guardarConsultar] = useState(false);
+  const [resultado, guardarResultado] = useState({});
+
+  const {ciudad, pais} = busqueda;
+
+  useEffect(() => {
+    const consultarClima = async () => {
+      if(consultar) {
+        const appId = '319fa4c56018832ed2e37833430f4cca'; 
+        const url = `http://api.openweathermap.org/data/2.5/weather?q=${ciudad},${pais}&appid=${appId}`;
+      
+        try {
+            const respuesta = await fetch(url);
+            const resultado = await respuesta.json();
+            guardarResultado(resultado);
+            guardarConsultar(false);
+        } catch (error) {
+           mostrarAlerta();
+        }
+      }
+    }
+    consultarClima();
+  }, [consultar]);
+
+  const mostrarAlerta = () => {
+      Alert.alert(
+          'Error',
+          'Ciudad inválida',
+          [{text: 'OK'}]
+      )
+}
+
     return (
         <Tab.Navigator
           initialRouteName="Home"
@@ -36,9 +74,7 @@ const MainTabScreen = () =>{
               ),
             }}
           />
-          <Tab.Screen
-            name="City"
-            component={City}
+          <Tab.Screen name="City"
             options={{
               tabBarLabel: 'Ciudad',
               tabBarColor: "lightsalmon",
@@ -46,18 +82,21 @@ const MainTabScreen = () =>{
                 <MaterialCommunityIcons name="heart" color={color} size={26} />
               ),
             }}
-          />
-          <Tab.Screen
-            name="AddCity"
-            component={AddCity}
-            options={{
-              tabBarLabel: 'Agregar Ciudad',
-              tabBarColor: "mediumaquamarine",
-              tabBarIcon: ({ color }) => (
-                <MaterialCommunityIcons name="map-marker-plus" color={color} size={26} />
-              ),
-            }}
-          />
+                >
+                {(props) => <City resultado={resultado}/>}
+          </Tab.Screen>
+
+          <Tab.Screen name="Agregar Ciudad"
+                options={{
+                  tabBarLabel: 'Agregar Ciudad',
+                  tabBarColor: "mediumaquamarine",
+                  tabBarIcon: ({ color }) => (
+                    <MaterialCommunityIcons name="map-marker-plus" color={color} size={26} />
+                  ),
+                }}
+                >
+                {(props) => <AddCity busqueda={busqueda} guardarBusqueda={guardarBusqueda} guardarConsultar={guardarConsultar}/>}
+          </Tab.Screen>
            <Tab.Screen
             name="ListCity"
             component={ListCity}
