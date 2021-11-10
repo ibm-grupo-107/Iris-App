@@ -10,7 +10,6 @@ import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityI
 //Importar rutas de los Screens
 import About from "../screens/About";
 import AddCity from "../screens/addCity/AddCity";
-import City from "../screens/city/City";
 import Home from "../screens/Home";
 import ListCity from "../screens/listCity/ListCity"
 
@@ -74,17 +73,6 @@ const MainTabScreen = () =>{
               ),
             }}
           />
-          <Tab.Screen name="City"
-            options={{
-              tabBarLabel: 'Ciudad',
-              tabBarColor: "lightsalmon",
-              tabBarIcon: ({ color }) => (
-                <MaterialCommunityIcons name="heart" color={color} size={26} />
-              ),
-            }}
-                >
-                {(props) => <City resultado={resultado}/>}
-          </Tab.Screen>
 
           <Tab.Screen name="Agregar Ciudad"
                 options={{
@@ -104,7 +92,7 @@ const MainTabScreen = () =>{
               tabBarLabel: 'Mis ciudades',
               tabBarColor: "skyblue",
               tabBarIcon: ({ color }) => (
-                <MaterialCommunityIcons name="home-city" color={color} size={26} />
+                <MaterialCommunityIcons name="cards-heart" color={color} size={26} />
               ),
             }}
           />

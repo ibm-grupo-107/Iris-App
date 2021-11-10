@@ -1,5 +1,5 @@
 import React from 'react';
-import {StyleSheet, View, TouchableOpacity} from 'react-native';
+import {StyleSheet, View, TouchableOpacity, Text} from 'react-native';
 import { MaterialCommunityIcons } from '@expo/vector-icons'; 
 import { Header } from 'react-native-elements';
 import { StatusBar } from 'expo-status-bar';
@@ -18,7 +18,7 @@ const ListCity = ({navigation}) => {
                 <TouchableOpacity
                 activeOpacity={0.5}
                 style={styles.btnIr}
-                onPress={() => navigation.navigate('Mi Ciudad')}>
+                onPress={() => navigation.navigate('City')}>
                 <MaterialCommunityIcons name="arrow-expand-all" size={34} color="#8a2be2" />
                 </TouchableOpacity>
                 <Text style={styles.ciudades}>Ciudad</Text>
