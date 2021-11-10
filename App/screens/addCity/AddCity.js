@@ -1,6 +1,8 @@
 import React, {useState} from 'react';
 import {TextInput, Alert, Animated, Text, View, StyleSheet, TouchableWithoutFeedback} from 'react-native';
 import { Picker } from '@react-native-picker/picker';
+import { Header } from 'react-native-elements';
+import { StatusBar } from 'expo-status-bar';
 
 const AddCity = ({busqueda, guardarBusqueda, guardarConsultar}) => {
 
@@ -47,6 +49,15 @@ const AddCity = ({busqueda, guardarBusqueda, guardarConsultar}) => {
     }
 
     return (
+
+        <>
+        <Header
+            placement="center"
+            backgroundColor= "mediumaquamarine"
+            centerComponent={{ text: 'Agregar Ciudad', style: { color: '#fff', fontSize:20 } }}
+            />
+        <StatusBar style="dark" backgroundColor= "#FFF" />
+
         <View style={styles.formulario}>
             <View style={styles.contenido}>
             <View style={styles.contenido}>
@@ -79,6 +90,7 @@ const AddCity = ({busqueda, guardarBusqueda, guardarConsultar}) => {
                 </TouchableWithoutFeedback>
             </View>
         </View>
+        </>
     );
 };
 
