@@ -11,8 +11,11 @@ import { createStackNavigator } from '@react-navigation/stack';
 
 import Welcome from "./App/screens/Welcome"
 
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> 27e2dcadc0ae9c7bc354aadd34da2f3a51b33723
 const AppStack= createStackNavigator();
 
 
@@ -64,6 +67,56 @@ export default function App() {
     ); 
   } 
   
+<<<<<<< HEAD
+=======
+  const [isFirstLaunch, setIsFirstLaunch] = React.useState(null);
+
+  // uso de AsyncStorage para chequear si ya fue lanzada la app.
+  useEffect(()=>{
+    AsyncStorage.getItem("alreadyLaunched").then(value => {
+      if(value == null){
+        AsyncStorage.setItem("alreadyLaunched","true");
+        setIsFirstLaunch(true);
+      } else{
+        setIsFirstLaunch(false);
+      }
+    })
+  }, []);
+
+  // Si es la primera vez que se inicia la App: cargar Welcome + Slider
+  if ( isFirstLaunch === true){
+      return(
+        <>
+         {/*  <Welcome/>   */}
+          <StatusBar style="dark" backgroundColor= "#FFF" />
+          <NavigationContainer>
+            <AppStack.Navigator>
+              <AppStack.Screen name = "OnBoarding" component={OnBoardingScreen}
+              options={{header: () => null}}
+              />
+              <AppStack.Screen name = "Main" component = {MainTabScreen}
+              options={{header: () => null}}
+              />
+            </AppStack.Navigator>
+          </NavigationContainer>
+        </>
+      )
+  
+  //Si ya se inició antes la app: cargar Welcome + menú principal
+  }else{
+    return (
+      <>
+      {/* <Welcome/> */}
+      <GestureHandlerRootView style={{flex: 1}}>
+        <NavigationContainer>
+           <MainTabScreen />
+        </NavigationContainer>
+      </GestureHandlerRootView>
+      </>
+    );  
+  } 
+
+>>>>>>> 27e2dcadc0ae9c7bc354aadd34da2f3a51b33723
 };
 
 const styles = StyleSheet.create({
