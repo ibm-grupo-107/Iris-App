@@ -1,87 +1,79 @@
 import React from 'react';
-import {Text, View, StyleSheet, Image, Systrace} from 'react-native';
-import { Header } from 'react-native-elements';
-import { StatusBar } from 'expo-status-bar';
+import {Text, View, StyleSheet, TouchableHighlight} from 'react-native';
+import { useNavigation } from '@react-navigation/core';
 
-const City = ({resultado}) => {
 
-    const {name, main} = resultado;
+const City = ({item, eliminarCiudad}) => {
 
-    if(!name) return null;
+    const navigation = useNavigation();
 
-    const kelvin = 273.15;
+
+    const dialogoEliminar = ciudad => {
+        eliminarCiudad(ciudad);
+    };
 
     return (
-
-        <>
-            <Header
-                placement="center"
-                backgroundColor= "lightsalmon"
-                centerComponent={{ text: 'Ciudad Actual', style: { color: '#fff', fontSize:20 } }}
-                />
-            <StatusBar style="dark" backgroundColor= "#FFF" />
-            <View style={styles.clima}>
-                <Text style={styles.titulo}> Temperatura actual en {name} </Text>
-                <Image
-                            style={{width: 100, height: 90}}
-                            source={{uri: `http://openweathermap.org/img/w/${resultado.weather[0].icon}.png`}}
-                        />
-                <Text style={[styles.texto, styles.actual]}> { parseInt( main.temp - kelvin ) }
-                        <Text style={styles.temperatura}>
-                            &#x2103;
-                        </Text>
-                        
-                </Text>
-
-                <View style={styles.temperaturas}>
-                    <Text style={styles.texto}> Min {' '}
-                        <Text style={styles.temperatura}>
-                            { parseInt(main.temp_min - kelvin) } &#x2103;
-                        </Text>
-                    </Text>
-                    <Text style={styles.texto}> Max {' '}
-                        <Text style={styles.temperatura}>
-                            { parseInt(main.temp_max - kelvin) } &#x2103;
-                        </Text>
-                    </Text>
-                </View>
+        <View style={styles.clima}>
+            <View>
+                <Text 
+                /* value={ciudad}
+                onChangeText={ciudad => guardarBusqueda({...busqueda, ciudad})} */
+                style={styles.label}>Ciudad: </Text>
+                <Text style={styles.texto}>{item.ciudad}</Text>
             </View>
-       </>
+            <View>
+                <Text 
+                /* value={pais}
+                onChangeText={pais => guardarBusqueda({...busqueda, pais})} */
+                style={styles.label}>Pais: </Text>
+                <Text style={styles.texto}>{item.pais}</Text>
+            </View>
+            <View>
+                <TouchableHighlight  onPress={() => navigation.navigate('Clima Actual')} style={styles.bntVerClima}>
+                    <Text style={styles.textoBtn}>Ver Clima </Text>
+                  </TouchableHighlight>
+                  <TouchableHighlight onPress={ () => dialogoEliminar(item.ciudad)} style={styles.bntEliminar}>
+                    <Text style={styles.textoBtn}>Eliminar &times; </Text>
+                  </TouchableHighlight>
+                </View>
+        </View>
     );
 };
 
 const styles = StyleSheet.create({
     clima: {
-        backgroundColor: '#ffb6c1',
-        flex: 1,
-        alignItems: 'center'
+        backgroundColor: "#fff",
+        borderBottomColor: "#e1e1e1",
+        borderStyle: 'solid',
+        borderBottomWidth: 1,
+        paddingVertical: 10,
+        paddingHorizontal: 10,
+    },
+    label: {
+        fontWeight: 'bold',
+        fontSize: 18,
+        marginTop: 10,
+        marginHorizontal: 10,
     },
     texto: {
-        marginTop: 10,
-        color: '#000',
-        fontSize: 28,
-        fontWeight: 'bold',
-        textAlign: 'center',        
+        fontSize: 18,
+        marginHorizontal: 10,
     },
-    actual: {
-        fontSize: 80,
-        marginRight: 0,
-        fontWeight: 'bold',
-    },
-    temperatura: {
-        fontSize: 24,
-        fontWeight: 'normal',
-    },
-    temperaturas: {
-        marginTop: 20,
-        justifyContent: 'center',
-    },
-    titulo: {
-        textAlign: 'center',
-        fontSize: 32,
-        color: `#ff1493`,
-        marginBottom: 20,
-    },
-})
+    bntEliminar: {
+        padding: 10,
+        backgroundColor: "red",
+        marginHorizontal: 10,
+  
+      },
+      bntVerClima: {
+        padding: 10,
+        backgroundColor: "yellow",
+        marginHorizontal: 10,
+      },
+      textoBtn: {
+          fontWeight: 'bold',
+          textAlign: 'center',
+      },
+});
 
 export default City;

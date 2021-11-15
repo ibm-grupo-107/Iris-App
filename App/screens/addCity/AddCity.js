@@ -1,32 +1,75 @@
-import React, {useState} from 'react';
-import {TextInput, Alert, Animated, Text, View, StyleSheet, TouchableWithoutFeedback} from 'react-native';
+import React, {useState, useEffect} from 'react';
+import {TextInput,Animated, Text, View, StyleSheet, TouchableWithoutFeedback, Alert} from 'react-native';
 import { Picker } from '@react-native-picker/picker';
 import { Header } from 'react-native-elements';
 import { StatusBar } from 'expo-status-bar';
+import shortid from 'shortid';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
-const AddCity = ({busqueda, guardarBusqueda, guardarConsultar}) => {
+const AddCity = ({localizaciones, setLocalizacion}) => {
 
-    const {ciudad, pais} = busqueda;
+  const [ciudad, guardarCiudad] = useState('');
+  const [pais, guardarPais] = useState('');
 
-    const [animacionboton] = useState(new Animated.Value(1));
-
-    const consultarClima = () => {
-        if(ciudad.trim() === '' || pais.trim() === '') {
-            mostrarAlerta();
+  //crear ciudad
+  const crearCiudad = () => {
+    //Validar FALTA VER QUE NO SE AGREGUEN DUPLICADOS
+        if(pais.trim() === '' || ciudad.trim() === '') {
+        mostrarAlerta();
             return;
         }
 
-        //consultar la API
-        guardarConsultar(true)
+        const localizacion = {ciudad, pais};
+
+        localizacion.id = shortid.generate();
+
+        //agregar al state
+        const localizacionesNuevo = [...localizaciones, localizacion];
+        setLocalizacion(localizacionesNuevo);
+
+        //pasar las localizaciones al storage
+        guardarLocalizacionesStorage(JSON.stringify(localizacionesNuevo));
+    
     }
 
-    const mostrarAlerta = () => {
-        Alert.alert(
-            'Error',
-            'Agrega una ciudad y pais',
-            [{text: 'Entendido'}]
-        )
+    //muestra la alerta si falla la validación
+    const mostrarAlerta = () => { 
+    Alert.alert(
+        'Error', //titulo
+        'Todos los campos son obligatorios', //mensaje
+        [{
+            text: 'OK' // arreglo de botones
+        }]
+    );
     }
+
+    //Guardar las localizaciones en storage
+    const guardarLocalizacionesStorage = async (localizacionesJSON) => {
+        try {
+          await AsyncStorage.setItem('localizaciones', localizacionesJSON);
+        } catch (error) {
+          console.log(error);
+        }
+      }
+
+     useEffect(() => {
+        const obtenerLocalizacionesStorage = async () => {
+            try {
+              const localizacionesStorage = await AsyncStorage.getItem('localizaciones');
+                if(localizacionesStorage) {
+                    setLocalizacion(JSON.parse(localizacionesStorage))
+                }
+            } catch (error) {
+              console.log(error);
+            }
+        }
+        obtenerLocalizacionesStorage();
+      }, []);
+
+      
+
+  //animaciones boton
+  const [animacionboton] = useState(new Animated.Value(1));
 
     const animacionEntrada = () => {
         Animated.spring(animacionboton, {
@@ -63,7 +106,7 @@ const AddCity = ({busqueda, guardarBusqueda, guardarConsultar}) => {
             <View style={styles.contenido}>
                 <Picker
                     selectedValue={pais}
-                    onValueChange= {pais => guardarBusqueda({...busqueda, pais})}
+                    onValueChange={texto => guardarPais(texto)}
                     itemStyle={{height: 120, backgroundColor: '#FFF'}}
                 >
                     <Picker.Item label="-- Seleccione un país --" value="" />
@@ -72,7 +115,7 @@ const AddCity = ({busqueda, guardarBusqueda, guardarConsultar}) => {
             </View>
 
                 <TextInput 
-                    onChangeText={ciudad => guardarBusqueda({...busqueda, ciudad})}
+                    onChangeText={texto => guardarCiudad(texto)}
                     value={ciudad}
                     style={styles.input}
                     placeholder="Ciudad"
@@ -82,10 +125,10 @@ const AddCity = ({busqueda, guardarBusqueda, guardarConsultar}) => {
                 <TouchableWithoutFeedback
                     onPressIn={() => animacionEntrada()}
                     onPressOut={() => animacionSalida()}
-                    onPress={() => consultarClima()}
+                    onPress={() => crearCiudad() }
                 >
                     <Animated.View style={[styles.btnBuscar, estiloAnimacion]}>
-                        <Text style={styles.textoBuscar}>Buscar Clima</Text>
+                        <Text style={styles.textoBuscar}>Añadir Ciudad</Text>
                     </Animated.View>
                 </TouchableWithoutFeedback>
             </View>
@@ -98,7 +141,7 @@ const styles = StyleSheet.create({
     formulario: {
         flex: 1,
         backgroundColor: '#ffb6c1',
-        justifyContent: 'center',
+        justifyContent: 'flex-start',
     },
     contenido: {
         marginHorizontal: '2.5%',

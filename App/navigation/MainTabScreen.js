@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from "react";
+import React, {useEffect, useState} from "react";
 
 //Importar el bottomNavigations
 import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs';
@@ -12,6 +12,8 @@ import About from "../screens/About";
 import AddCity from "../screens/addCity/AddCity";
 import Home from "../screens/Home";
 import ListCity from "../screens/listCity/ListCity"
+import Details from "../screens/details/Details";
+
 
 
 const Tab = createMaterialBottomTabNavigator();
@@ -19,42 +21,8 @@ const Tab = createMaterialBottomTabNavigator();
 
 const MainTabScreen = () =>{
 
-  const [busqueda, guardarBusqueda] = useState({
-    ciudad: '',
-    pais: '',
-  });
+  const [localizaciones, setLocalizacion] = useState([]);
 
-  const  [consultar, guardarConsultar] = useState(false);
-  const [resultado, guardarResultado] = useState({});
-
-  const {ciudad, pais} = busqueda;
-
-  useEffect(() => {
-    const consultarClima = async () => {
-      if(consultar) {
-        const appId = '319fa4c56018832ed2e37833430f4cca'; 
-        const url = `http://api.openweathermap.org/data/2.5/weather?q=${ciudad},${pais}&appid=${appId}`;
-      
-        try {
-            const respuesta = await fetch(url);
-            const resultado = await respuesta.json();
-            guardarResultado(resultado);
-            guardarConsultar(false);
-        } catch (error) {
-           mostrarAlerta();
-        }
-      }
-    }
-    consultarClima();
-  }, [consultar]);
-
-  const mostrarAlerta = () => {
-      Alert.alert(
-          'Error',
-          'Ciudad inválida',
-          [{text: 'OK'}]
-      )
-}
 
     return (
         <Tab.Navigator
@@ -83,16 +51,28 @@ const MainTabScreen = () =>{
                   ),
                 }}
                 >
-                {(props) => <AddCity busqueda={busqueda} guardarBusqueda={guardarBusqueda} guardarConsultar={guardarConsultar}/>}
+                {(props) => <AddCity localizaciones={localizaciones} setLocalizacion={setLocalizacion} />}
           </Tab.Screen>
-           <Tab.Screen
-            name="ListCity"
-            component={ListCity}
+
+          <Tab.Screen name="ListCity"
+                options={{
+                  tabBarLabel: 'Mis Ciudades',
+                  tabBarColor: "mediumaquamarine",
+                  tabBarIcon: ({ color }) => (
+                    <MaterialCommunityIcons name="cards-heart" color={color} size={26} />
+                  ),
+                }}
+                >
+                {(props) => <ListCity localizaciones={localizaciones} setLocalizacion={setLocalizacion} />}
+          </Tab.Screen>
+          <Tab.Screen
+            name="Clima Actual"
+            component={Details}
             options={{
-              tabBarLabel: 'Mis ciudades',
-              tabBarColor: "skyblue",
+              tabBarLabel: 'Clima',
+              tabBarColor: "lightcoral",
               tabBarIcon: ({ color }) => (
-                <MaterialCommunityIcons name="cards-heart" color={color} size={26} />
+                <MaterialCommunityIcons name="weather-cloudy" size={26} color={color} />
               ),
             }}
           />
