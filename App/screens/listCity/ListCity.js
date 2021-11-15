@@ -4,7 +4,7 @@ import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { Header } from 'react-native-elements';
 import { StatusBar } from 'expo-status-bar';
 import { useNavigation } from '@react-navigation/core';
-import City from '../city/City';
+import City from '../../components/city/City';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 
