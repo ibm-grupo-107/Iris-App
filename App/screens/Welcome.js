@@ -10,7 +10,8 @@ const Welcome = () => {
         'Reey-Regular': require('../../assets/fonts/Reey-Regular.otf')
     });
 
-    
+    const [animated, setAnimated] = useState(false);
+
     const [ animacion2 ] = useState( new Animated.Value(1));
     const [ animacion1 ] = useState( new Animated.Value(0));
     
@@ -44,7 +45,7 @@ const Welcome = () => {
                 duration: 2000,
                 useNativeDriver: true,
             }),
-        ]).start();
+        ]).start(()=> setAnimated(true));
     }, []);
 
 
@@ -54,6 +55,7 @@ const Welcome = () => {
         ]
      }
 
+     if(!animated)
      if (!fontsLoaded) {
         return <AppLoading />;
       } else {
@@ -75,7 +77,7 @@ const Welcome = () => {
 
      }
     
-
+     return <Text></Text>
    
 }
 
@@ -90,6 +92,8 @@ const styles = StyleSheet.create({
        
         marginTop: 350,
         flex: 1,
+        width:"auto",
+        height:"auto",
         justifyContent: 'center',
         alignItems: 'center',
         

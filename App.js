@@ -2,7 +2,6 @@ import { StyleSheet} from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import React, {useEffect} from 'react';
 import {GestureHandlerRootView} from 'react-native-gesture-handler'
-import OnBoardingScreen from "./App/screens/OnBoardingScreen";
 import { StatusBar } from 'expo-status-bar';
 
 import AsyncStorage from '@react-native-async-storage/async-storage';
@@ -10,6 +9,7 @@ import MainTabScreen from "./App/navigation/MainTabScreen";
 import { createStackNavigator } from '@react-navigation/stack';
 
 import Welcome from "./App/screens/Welcome"
+import OnBoardingScreen from "./App/screens/OnBoardingScreen";
 
 const AppStack= createStackNavigator();
 
@@ -34,7 +34,7 @@ export default function App() {
   if ( isFirstLaunch === true){
       return(
         <>
-         {/*  <Welcome/>   */}
+          <Welcome/> ;  
           <StatusBar style="dark" backgroundColor= "#FFF" />
           <NavigationContainer>
             <AppStack.Navigator>
@@ -53,7 +53,7 @@ export default function App() {
   }else{
     return (
       <>
-      {/* <Welcome/> */}
+      <Welcome/>
       <GestureHandlerRootView style={{flex: 1}}>
         <NavigationContainer>
            <MainTabScreen />
