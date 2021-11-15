@@ -57,7 +57,7 @@ const MainTabScreen = () =>{
           <Tab.Screen name="ListCity"
                 options={{
                   tabBarLabel: 'Mis Ciudades',
-                  tabBarColor: "mediumaquamarine",
+                  tabBarColor: "skyblue",
                   tabBarIcon: ({ color }) => (
                     <MaterialCommunityIcons name="cards-heart" color={color} size={26} />
                   ),
@@ -70,7 +70,7 @@ const MainTabScreen = () =>{
             component={Details}
             options={{
               tabBarLabel: 'Clima',
-              tabBarColor: "lightcoral",
+              tabBarColor: "lightsalmon",
               tabBarIcon: ({ color }) => (
                 <MaterialCommunityIcons name="weather-cloudy" size={26} color={color} />
               ),
