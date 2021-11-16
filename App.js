@@ -16,7 +16,7 @@ const AppStack= createStackNavigator();
 
 export default function App() {
   
-  const [isFirstLaunch, setIsFirstLaunch] = React.useState(null);
+  const [isFirstLaunch, setIsFirstLaunch] = React.useState(false);
 
   // uso de AsyncStorage para chequear si ya fue lanzada la app.
   useEffect(()=>{
@@ -31,10 +31,10 @@ export default function App() {
   }, []);
 
   // Si es la primera vez que se inicia la App: cargar Welcome + Slider
-  if ( isFirstLaunch === true){
+  if ( !isFirstLaunch){
       return(
         <>
-          <Welcome/> ;  
+           <Welcome/> 
           <StatusBar style="dark" backgroundColor= "#FFF" />
           <NavigationContainer>
             <AppStack.Navigator>
