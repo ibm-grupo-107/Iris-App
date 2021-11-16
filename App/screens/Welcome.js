@@ -92,14 +92,16 @@ const styles = StyleSheet.create({
      container: {
         
         flex: 1,
+        width: "100%",
+        height: "100%",
         alignItems: 'center',
-        justifyContent: 'space-around',
+        justifyContent: 'center',
         
     },
     circulo:{
     
        marginLeft:80,
-       marginBottom:30, 
+       marginBottom:60, 
        borderRadius: 100,
        width: 200,
        height: 200,
