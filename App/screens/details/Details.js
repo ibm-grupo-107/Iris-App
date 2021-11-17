@@ -1,11 +1,14 @@
 import React from 'react';
-import {StyleSheet} from 'react-native';
+import {StyleSheet, View, Text, Image} from 'react-native';
 import { Header } from 'react-native-elements';
 import { StatusBar } from 'expo-status-bar';
 
-const Details = ({}) => {
 
-    return (
+const Details = ({resultado}) => {
+
+    console.log(resultado);
+
+    return (        
 
         <>
             <Header
@@ -14,6 +17,10 @@ const Details = ({}) => {
                 centerComponent={{ text: 'Ciudad Actual', style: { color: '#fff', fontSize:20 } }}
                 />
             <StatusBar style="dark" backgroundColor= "#FFF" />
+            
+           <Text>Desde detalles.js</Text>
+
+           
        </>
     );
 };

@@ -30,6 +30,8 @@ const ListCity = ({localizaciones, setLocalizacion}) => {
         guardarLocalizacionesStorage(JSON.stringify(ciudadesFiltradas));
       }
 
+     
+
       return (
           <>
               <Header
@@ -41,7 +43,7 @@ const ListCity = ({localizaciones, setLocalizacion}) => {
               <View style={styles.contenedor}>
                   <FlatList
                       data={localizaciones}
-                      renderItem={ ({item}) => <City item={item} eliminarCiudad={eliminarCiudad}  /> }
+                      renderItem={ ({item}) => <City item={item} eliminarCiudad={eliminarCiudad} /> }
                       keyExtractor={ localizacion => localizacion.id }
                   />
                   <TouchableOpacity

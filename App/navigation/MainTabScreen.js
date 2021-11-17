@@ -20,9 +20,10 @@ const Tab = createMaterialBottomTabNavigator();
 
 
 const MainTabScreen = () =>{
+  
 
-  const [localizaciones, setLocalizacion] = useState([]);
 
+    const [localizaciones, setLocalizacion] = useState([]);
 
     return (
         <Tab.Navigator
@@ -65,17 +66,17 @@ const MainTabScreen = () =>{
                 >
                 {(props) => <ListCity localizaciones={localizaciones} setLocalizacion={setLocalizacion} />}
           </Tab.Screen>
-          <Tab.Screen
-            name="Clima Actual"
-            component={Details}
-            options={{
-              tabBarLabel: 'Clima',
-              tabBarColor: "lightsalmon",
-              tabBarIcon: ({ color }) => (
-                <MaterialCommunityIcons name="weather-cloudy" size={26} color={color} />
-              ),
-            }}
-          />
+          <Tab.Screen name="Details"
+                options={{
+                  tabBarLabel: 'Clima',
+                  tabBarColor: "lightsalmon",
+                  tabBarIcon: ({ color }) => (
+                    <MaterialCommunityIcons name="weather-cloudy" size={26} color={color} />
+                  ),
+                }}
+                >
+                {(props) => <Details/>}
+          </Tab.Screen>
            <Tab.Screen
             name="About"
             component={About}
