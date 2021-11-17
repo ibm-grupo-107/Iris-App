@@ -5,6 +5,7 @@ import { StatusBar } from 'expo-status-bar';
 
 
 const Details = ({resultado}) => {
+    
 
     console.log(resultado);
 

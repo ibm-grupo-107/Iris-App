@@ -1,7 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import {Text, View, StyleSheet, TouchableHighlight, Alert} from 'react-native';
 import { useNavigation } from '@react-navigation/core';
-import Details from '../../screens/details/Details';
 
 
 const City = ({item, eliminarCiudad}) => {
@@ -12,16 +11,13 @@ const City = ({item, eliminarCiudad}) => {
         eliminarCiudad(ciudad);
     };
 
-    //para la API
-    const [busqueda, guardarBusqueda] = useState({
-        ciudad: '',
-        pais: '',
-      });
-
-    const {ciudad, pais} = busqueda;
+    //Consultar la API
     
     const  [consultar, guardarConsultar] = useState(false);
     const [resultado, guardarResultado] = useState({});
+
+   
+    
 
     useEffect(() => {
         const consultarClima = async () => {
@@ -56,7 +52,7 @@ const City = ({item, eliminarCiudad}) => {
     const mostrarAlerta = () => {
         Alert.alert(
             'Error',
-            'no existe',
+            'La ciudad no existe',
             [{text: 'Entendido'}]
         )
     }

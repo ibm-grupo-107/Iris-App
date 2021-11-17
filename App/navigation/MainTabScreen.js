@@ -21,9 +21,7 @@ const Tab = createMaterialBottomTabNavigator();
 
 const MainTabScreen = () =>{
   
-
-
-    const [localizaciones, setLocalizacion] = useState([]);
+    const [localizaciones, setLocalizacion] = useState([]);    
 
     return (
         <Tab.Navigator
@@ -43,6 +41,18 @@ const MainTabScreen = () =>{
             }}
           />
 
+          <Tab.Screen name="ListCity"
+                options={{
+                  tabBarLabel: 'Mis Ciudades',
+                  tabBarColor: "skyblue",
+                  tabBarIcon: ({ color }) => (
+                    <MaterialCommunityIcons name="cards-heart" color={color} size={26} />
+                  ),
+                }}
+                >
+                {(props) => <ListCity localizaciones={localizaciones} setLocalizacion={setLocalizacion} />}
+          </Tab.Screen>
+
           <Tab.Screen name="Agregar Ciudad"
                 options={{
                   tabBarLabel: 'Agregar Ciudad',
@@ -55,17 +65,6 @@ const MainTabScreen = () =>{
                 {(props) => <AddCity localizaciones={localizaciones} setLocalizacion={setLocalizacion} />}
           </Tab.Screen>
 
-          <Tab.Screen name="ListCity"
-                options={{
-                  tabBarLabel: 'Mis Ciudades',
-                  tabBarColor: "skyblue",
-                  tabBarIcon: ({ color }) => (
-                    <MaterialCommunityIcons name="cards-heart" color={color} size={26} />
-                  ),
-                }}
-                >
-                {(props) => <ListCity localizaciones={localizaciones} setLocalizacion={setLocalizacion} />}
-          </Tab.Screen>
           <Tab.Screen name="Details"
                 options={{
                   tabBarLabel: 'Clima',

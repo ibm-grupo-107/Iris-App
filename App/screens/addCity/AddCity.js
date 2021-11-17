@@ -5,8 +5,12 @@ import { Header } from 'react-native-elements';
 import { StatusBar } from 'expo-status-bar';
 import shortid from 'shortid';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { useNavigation } from '@react-navigation/core';
+
 
 const AddCity = ({localizaciones, setLocalizacion}) => {
+
+  const navigation = useNavigation();
 
   const [ciudad, guardarCiudad] = useState('');
   const [pais, guardarPais] = useState('');
@@ -29,7 +33,9 @@ const AddCity = ({localizaciones, setLocalizacion}) => {
 
         //pasar las localizaciones al storage
         guardarLocalizacionesStorage(JSON.stringify(localizacionesNuevo));
-    
+
+        navigation.navigate('ListCity'); 
+
     }
 
     //muestra la alerta si falla la validación
@@ -38,10 +44,20 @@ const AddCity = ({localizaciones, setLocalizacion}) => {
         'Error', //titulo
         'Todos los campos son obligatorios', //mensaje
         [{
-            text: 'OK' // arreglo de botones
+            text: 'OK' //boton
         }]
     );
     }
+
+    const mostrarAlerta2 = () => { 
+        Alert.alert(
+            'Error', //titulo
+            'La ciudad ya existe', //mensaje
+            [{
+                text: 'OK' //boton
+            }]
+        );
+        }
 
     //Guardar las localizaciones en storage
     const guardarLocalizacionesStorage = async (localizacionesJSON) => {
