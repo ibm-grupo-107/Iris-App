@@ -12,7 +12,7 @@ import About from "../screens/About";
 import AddCity from "../screens/addCity/AddCity";
 import Home from "../screens/Home";
 import ListCity from "../screens/listCity/ListCity"
-import Details from "../screens/details/Details";
+//import Details from "../screens/details/Details";
 
 
 
@@ -25,7 +25,7 @@ const MainTabScreen = () =>{
 
     return (
         <Tab.Navigator
-          initialRouteName="Home"
+          initialRouteName="Agregar Ciudad"
           activeColor="#fff"
           barStyle={{ backgroundColor: 'tomato'}}
         >
@@ -65,7 +65,7 @@ const MainTabScreen = () =>{
                 {(props) => <AddCity localizaciones={localizaciones} setLocalizacion={setLocalizacion} />}
           </Tab.Screen>
 
-          <Tab.Screen name="Details"
+          {/* <Tab.Screen name="Details"
                 options={{
                   tabBarLabel: 'Clima',
                   tabBarColor: "lightsalmon",
@@ -75,7 +75,7 @@ const MainTabScreen = () =>{
                 }}
                 >
                 {(props) => <Details/>}
-          </Tab.Screen>
+          </Tab.Screen> */}
            <Tab.Screen
             name="About"
             component={About}

@@ -1,13 +1,14 @@
 import React, { useEffect, useState } from 'react';
-import { StyleSheet, Animated, Image, View, Text} from 'react-native';
+import { StyleSheet, Animated, Image, View, Text, Dimensions} from 'react-native';
 import AppLoading from 'expo-app-loading';
 import { useFonts } from 'expo-font';
 
+const width = Dimensions.get("window").width;
 
 const Welcome = () => {
 
     let [ fontsLoaded ] = useFonts({
-        'Reey-Regular': require('../../assets/fonts/Reey-Regular.otf')
+        'Reey-Regular': require('../../assets/fonts/Dominique.otf')
     });
 
     const [animated, setAnimated] = useState(false);
@@ -26,7 +27,7 @@ const Welcome = () => {
             }),
             Animated.spring( animacion2, {
                 toValue: 1,
-                duration: 1000,
+                duration: 2500,
                 useNativeDriver: true,
             }),
             Animated.timing(animacion1, {
@@ -61,7 +62,7 @@ const Welcome = () => {
       } else {
          return ( 
             <Animated.View  style={ styles.container, {opacity: animacion1 }}>
-               <Animated.Text style={{fontFamily:'Reey-Regular', fontSize: 70, marginLeft: 35 }} >IRIS</Animated.Text>
+               <Animated.Text style={{fontFamily:'Reey-Regular', fontSize: 70, textAlign: 'center', marginTop: 100}} >IRIS</Animated.Text>
                 
                 <Animated.Image 
                     style={[
@@ -86,8 +87,10 @@ const styles = StyleSheet.create({
         
         fontFamily:'Reey-Regular',
         fontSize: 29,
-        marginLeft: 89,
+        textAlign: 'center',
         marginBottom: 50,
+        width: width,
+
     },
      container: {
         
@@ -96,17 +99,14 @@ const styles = StyleSheet.create({
         height: "100%",
         alignItems: 'center',
         justifyContent: 'center',
-        
     },
     circulo:{
-    
-       marginLeft:80,
-       marginBottom:60, 
-       borderRadius: 100,
-       width: 200,
-       height: 200,
-       justifyContent: 'center',
-       alignItems: 'center',
+        marginVertical: 60,
+        marginHorizontal:100, 
+        borderRadius: 100,
+        width: 200,
+        height: 200,
+      
     },
 })
  

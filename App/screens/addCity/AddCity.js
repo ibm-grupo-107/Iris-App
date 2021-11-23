@@ -7,6 +7,10 @@ import shortid from 'shortid';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useNavigation } from '@react-navigation/core';
 
+//import Map from "../../components/Map"
+
+
+let localizacionesGuardadas = [];
 
 const AddCity = ({localizaciones, setLocalizacion}) => {
 
@@ -14,31 +18,55 @@ const AddCity = ({localizaciones, setLocalizacion}) => {
 
   const [ciudad, guardarCiudad] = useState('');
   const [pais, guardarPais] = useState('');
+  const [region, guardarRegion] = useState("");
+
 
   //crear ciudad
   const crearCiudad = () => {
-    //Validar FALTA VER QUE NO SE AGREGUEN DUPLICADOS
+
         if(pais.trim() === '' || ciudad.trim() === '') {
         mostrarAlerta();
             return;
         }
 
-        const localizacion = {ciudad, pais};
+        const localizacion = {ciudad, pais, region};
 
         localizacion.id = shortid.generate();
 
-        //agregar al state
-        const localizacionesNuevo = [...localizaciones, localizacion];
-        setLocalizacion(localizacionesNuevo);
+        //agregar al state si no se repite la ciudad y región
+        if(!seRepite()){
+             const localizacionesNuevo = [...localizaciones, localizacion];
+            setLocalizacion(localizacionesNuevo);
 
-        //pasar las localizaciones al storage
-        guardarLocalizacionesStorage(JSON.stringify(localizacionesNuevo));
+             //pasar las localizaciones al storage
+            guardarLocalizacionesStorage(JSON.stringify(localizacionesNuevo));
+            navigation.navigate('ListCity'); 
 
-        navigation.navigate('ListCity'); 
-
+            localizacionesGuardadas.push(localizacionesNuevo)
+            //
+        }
+        
+       
+        
     }
+    //Si se repite la ciudad:
+    if(!localizacionesGuardadas)return null
+     const seRepite = () => { 
+        let seRepite=false;
+        localizacionesGuardadas.forEach(element => {
+            element.forEach(el => {
+                if(el["ciudad"] === ciudad && el["region"] ==region){
+                    seRepite = true;
+                    mostrarAlerta2();
+                }
+            });
+        }); 
+        return seRepite
+    } 
+
 
     //muestra la alerta si falla la validación
+    
     const mostrarAlerta = () => { 
     Alert.alert(
         'Error', //titulo
@@ -48,6 +76,8 @@ const AddCity = ({localizaciones, setLocalizacion}) => {
         }]
     );
     }
+
+    //muestra la alerta si la ciudad ya existe
 
     const mostrarAlerta2 = () => { 
         Alert.alert(
@@ -60,9 +90,13 @@ const AddCity = ({localizaciones, setLocalizacion}) => {
         }
 
     //Guardar las localizaciones en storage
+    
     const guardarLocalizacionesStorage = async (localizacionesJSON) => {
         try {
-          await AsyncStorage.setItem('localizaciones', localizacionesJSON);
+            if(!seRepite()){
+                await AsyncStorage.setItem('localizaciones', localizacionesJSON);
+           }
+
         } catch (error) {
           console.log(error);
         }
@@ -128,6 +162,39 @@ const AddCity = ({localizaciones, setLocalizacion}) => {
                     <Picker.Item label="-- Seleccione un país --" value="" />
                     <Picker.Item label="Argentina" value="AR" />
                 </Picker>
+                <Picker
+                    selectedValue={region}
+                    onValueChange={texto => guardarRegion(texto)}
+                    itemStyle={{height: 120, backgroundColor: '#FFF'}}
+                >
+                    <Picker.Item label="-- Seleccione una region --" value="" />
+                    <Picker.Item label="Buenos Aires" value="Buenos Aires" />
+                    <Picker.Item label="Capital Federal" value="Capital Federal" />
+                    <Picker.Item label="Catamarca" value="Catamarca" />
+                    <Picker.Item label="Chaco" value="Chaco" />
+                    <Picker.Item label="Chubut" value="Chubut" />
+                    <Picker.Item label="Córdoba" value="Córdoba" />
+                    <Picker.Item label="Corrientes" value="Corrientes" />
+                    <Picker.Item label="Entre Ríos" value="Entre Ríos" />
+                    <Picker.Item label="Formosa" value="Formosa" />
+                    <Picker.Item label="Jujuy" value="Jujuy" />
+                    <Picker.Item label="La Pampa" value="La Pampa" />
+                    <Picker.Item label="La Rioja" value="La Rioja" />
+                    <Picker.Item label="Mendoza" value="Mendoza" />
+                    <Picker.Item label="Misiones" value="Misiones" />
+                    <Picker.Item label="Neuquén" value="Neuquén" />
+                    <Picker.Item label="Partido de la costa" value="Partido de la costa" />
+                    <Picker.Item label="Río Negro" value="Río Negro" />
+                    <Picker.Item label="Salta" value="Salta" />
+                    <Picker.Item label="San Juan" value="San Juan" />
+                    <Picker.Item label="San Luis" value="San Luis" />
+                    <Picker.Item label="Santa Cruz" value="Santa Cruz" />
+                    <Picker.Item label="Santa Fe" value="Santa Fe" />
+                    <Picker.Item label="Santiago del Estero" value="Santiago del Estero" />
+                    <Picker.Item label="Tierra del Fuego" value="Tierra del Fuego" />
+                    <Picker.Item label="Tucumán" value="Tucumán" />
+
+                </Picker>
             </View>
 
                 <TextInput 
@@ -147,6 +214,8 @@ const AddCity = ({localizaciones, setLocalizacion}) => {
                         <Text style={styles.textoBuscar}>Añadir Ciudad</Text>
                     </Animated.View>
                 </TouchableWithoutFeedback>
+
+                
             </View>
         </View>
         </>
@@ -156,7 +225,7 @@ const AddCity = ({localizaciones, setLocalizacion}) => {
 const styles = StyleSheet.create({
     formulario: {
         flex: 1,
-        backgroundColor: '#ffb6c1',
+        backgroundColor: 'honeydew',
         justifyContent: 'flex-start',
     },
     contenido: {
@@ -169,11 +238,13 @@ const styles = StyleSheet.create({
         fontSize: 20,
         marginBottom: 20,
         textAlign: 'center',
+        borderColor:"#ff1493",
+        borderWidth:4,
     },
     btnBuscar: {
         marginHorizontal: '2.5%',
         marginTop: 50,
-        backgroundColor: '#ff1493',
+        backgroundColor: "#ff1493",
         padding: 10,
         justifyContent: 'center',
     },

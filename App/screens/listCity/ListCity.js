@@ -20,17 +20,20 @@ const ListCity = ({localizaciones, setLocalizacion}) => {
           console.log(error);
         }
     }
+    //console.log(localizaciones)
+    if(!localizaciones)return null
 
       //funcion para eliminar las ciudades
-      const eliminarCiudad = ciudad => {
-
-        const ciudadesFiltradas = localizaciones.filter(localizacion => localizacion.ciudad !== ciudad);
-
+      const eliminarCiudad = (ciudad) => {
+        const ciudadesFiltradas = localizaciones.filter(localizacion => 
+            (localizacion.ciudad !== ciudad)
+       
+        )  
         setLocalizacion(ciudadesFiltradas);
+        //console.log(ciudadesFiltradas);
         guardarLocalizacionesStorage(JSON.stringify(ciudadesFiltradas));
       }
 
-     
 
       return (
           <>
@@ -60,7 +63,7 @@ const ListCity = ({localizaciones, setLocalizacion}) => {
   
   const styles = StyleSheet.create({
       contenedor: {
-          backgroundColor: '#ffb6c1',
+          backgroundColor: 'aliceblue',
           flex: 1,
           flexDirection: 'row',
           justifyContent: 'center',    
