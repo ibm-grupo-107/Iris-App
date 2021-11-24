@@ -19,6 +19,7 @@ import ListCity from "../screens/listCity/ListCity"
 const Tab = createMaterialBottomTabNavigator();
 
 let localizacionesGuardadas = [];
+
 const MainTabScreen = () =>{
 
   
