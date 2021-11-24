@@ -165,6 +165,7 @@ const styles = StyleSheet.create({
         borderBottomWidth: 1,
         paddingVertical: 10,
         paddingHorizontal: 10,
+        borderBottomWidth: 20,
     },
     label: {
         fontWeight: 'bold',
@@ -180,6 +181,7 @@ const styles = StyleSheet.create({
         padding: 10,
         backgroundColor: "lightgray",
         marginHorizontal: 10,
+        marginBottom:15,
   
       },
       bntVerClima: {

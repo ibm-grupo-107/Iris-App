@@ -152,8 +152,9 @@ const AddCity = ({localizaciones, setLocalizacion}) => {
         <StatusBar style="dark" backgroundColor= "#FFF" />
 
         <View style={styles.formulario}>
+            
             <View style={styles.contenido}>
-            <View style={styles.contenido}>
+                <Text style={styles.textoAñadir}>País: </Text>
                 <Picker
                     selectedValue={pais}
                     onValueChange={texto => guardarPais(texto)}
@@ -162,6 +163,8 @@ const AddCity = ({localizaciones, setLocalizacion}) => {
                     <Picker.Item label="-- Seleccione un país --" value="" />
                     <Picker.Item label="Argentina" value="AR" />
                 </Picker>
+
+                <Text style={styles.textoAñadir}>Región:</Text>
                 <Picker
                     selectedValue={region}
                     onValueChange={texto => guardarRegion(texto)}
@@ -210,14 +213,16 @@ const AddCity = ({localizaciones, setLocalizacion}) => {
                     onPressOut={() => animacionSalida()}
                     onPress={() => crearCiudad() }
                 >
+                    <View style={styles.containerBuscar}>
                     <Animated.View style={[styles.btnBuscar, estiloAnimacion]}>
                         <Text style={styles.textoBuscar}>Añadir Ciudad</Text>
                     </Animated.View>
+                    </View>
                 </TouchableWithoutFeedback>
 
                 
             </View>
-        </View>
+
         </>
     );
 };
@@ -229,24 +234,31 @@ const styles = StyleSheet.create({
         justifyContent: 'flex-start',
     },
     contenido: {
-        marginHorizontal: '2.5%',
+        marginHorizontal: '10%',
     },
     input: {
         padding: 10,
         height: 50,
         backgroundColor: '#FFF',
         fontSize: 20,
-        marginBottom: 20,
+        marginBottom: 10,
+        marginTop:40,
         textAlign: 'center',
         borderColor:"#ff1493",
         borderWidth:4,
+        marginHorizontal: '10%',
+        borderRadius: 5
     },
     btnBuscar: {
-        marginHorizontal: '2.5%',
+     
         marginTop: 50,
         backgroundColor: "#ff1493",
         padding: 10,
         justifyContent: 'center',
+        borderRadius: 50,
+        width: "50%",
+
+
     },
     textoBuscar: {
         color: '#FFF',
@@ -254,7 +266,21 @@ const styles = StyleSheet.create({
         fontSize: 18,
         fontWeight: 'bold',
         textTransform: 'uppercase',
+    
     },
+    textoAñadir:{
+        marginTop:30,
+        color: '#000000',
+        fontSize: 18,
+        marginLeft:8,
+        fontWeight: 'bold',
+        textTransform: 'uppercase',
+    },
+    containerBuscar:{
+        justifyContent: 'center',
+        alignItems: 'center',
+    }
+
 });
 
 export default AddCity;

@@ -70,17 +70,17 @@ const styles = StyleSheet.create({
     texto: {
         marginTop: 10,
         color: '#000',
-        fontSize: 28,
+        fontSize: 20,
         fontWeight: 'bold',
         textAlign: 'center',        
     },
     actual: {
-        fontSize: 80,
+        fontSize: 70,
         marginRight: 0,
         fontWeight: 'bold',
     },
     temperatura: {
-        fontSize: 24,
+        fontSize: 15,
         fontWeight: 'normal',
     },
     temperaturas: {
