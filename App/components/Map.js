@@ -5,12 +5,12 @@ import MapView from "react-native-maps"
 
 //const height = Dimensions.get("window").height;
 
-const Map = ({resultado, ciudad, pais, region}) => {
+const Map = ({ciudad, pais, region}) => {
 
     //En caso de que no llegue el dato, que no cargue.
-    if(!resultado)return null
+   /*  if(!resultado)return null
     const {coord} = resultado;
-    if(!coord) return null
+    if(!coord) return null */
 
     const [resultadoLat, guardarResultadoLat] = useState(0);
     const [resultadoLong, guardarResultadoLong] = useState(0); 
@@ -132,9 +132,10 @@ const Map = ({resultado, ciudad, pais, region}) => {
 
 const styles = StyleSheet.create({
     map:{
-        height: 280,
+        height: 350,
+        width: 370,
         marginHorizontal: 10,
-    
+        marginTop: 30,
     }
 })
 

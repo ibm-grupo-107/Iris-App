@@ -7,7 +7,7 @@ import shortid from 'shortid';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useNavigation } from '@react-navigation/core';
 
-//import Map from "../../components/Map"
+import Map from "../../components/Map"
 
 
 
@@ -71,7 +71,6 @@ const AddCity = ({localizaciones, setLocalizacion, localizacionesGuardadas}) => 
             navigation.navigate('ListCity'); 
 
             localizacionesGuardadas.push(localizacionesNuevo)
-            //
         }
         
        
@@ -92,27 +91,24 @@ const AddCity = ({localizaciones, setLocalizacion, localizacionesGuardadas}) => 
         return seRepite
     } 
 
-
-    //muestra la alerta si falla la validación
-    
-    const mostrarAlerta = () => { 
-    Alert.alert(
-        'Error', //titulo
-        'Todos los campos son obligatorios', //mensaje
-        [{
-            text: 'OK' //boton
-        }]
-    );
+    const mostrarAlerta = () => {
+        Alert.alert(
+            'Error',
+            'La ciudad no existe',
+            [{text: 'Entendido'}]
+        )
     }
+
+
 
     //muestra la alerta si la ciudad ya existe
 
     const mostrarAlerta2 = () => { 
         Alert.alert(
-            'Error', //titulo
-            'La ciudad ya existe', //mensaje
+            'Error', 
+            'La ciudad ya existe', 
             [{
-                text: 'OK' //boton
+                text: 'OK' 
             }]
         );
         }
@@ -215,8 +211,11 @@ const AddCity = ({localizaciones, setLocalizacion, localizacionesGuardadas}) => 
                         <Text style={styles.textoBuscar}>Añadir Ciudad</Text>
                     </Animated.View>
                 </TouchableWithoutFeedback>
-
-                
+                <Map
+                ciudad = {ciudad}
+                pais ={pais}
+                region={region}
+                />
             </View>
         </View>
         </>
