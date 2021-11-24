@@ -10,9 +10,9 @@ import { useNavigation } from '@react-navigation/core';
 //import Map from "../../components/Map"
 
 
-let localizacionesGuardadas = [];
 
-const AddCity = ({localizaciones, setLocalizacion}) => {
+
+const AddCity = ({localizaciones, setLocalizacion, localizacionesGuardadas}) => {
 
   const navigation = useNavigation();
 
@@ -20,12 +20,40 @@ const AddCity = ({localizaciones, setLocalizacion}) => {
   const [pais, guardarPais] = useState('');
   const [region, guardarRegion] = useState("");
 
+  //Guardar las localizaciones en storage
+    
+    const guardarLocalizacionesStorage = async (localizacionesJSON) => {
+        try {
+            if(!seRepite()){
+                await AsyncStorage.setItem('localizaciones', localizacionesJSON);
+           }
+
+        } catch (error) {
+          console.log(error);
+        }
+      }
+
+     useEffect(() => {
+        const obtenerLocalizacionesStorage = async () => {
+            try {
+              const localizacionesStorage = await AsyncStorage.getItem('localizaciones');
+                if(localizacionesStorage) {
+                    setLocalizacion(JSON.parse(localizacionesStorage));
+                    localizacionesGuardadas.push(JSON.parse(localizacionesStorage));
+                }
+            } catch (error) {
+              console.log(error);
+            }
+        }
+        obtenerLocalizacionesStorage();
+      }, []);
+
 
   //crear ciudad
   const crearCiudad = () => {
 
-        if(pais.trim() === '' || ciudad.trim() === '') {
-        mostrarAlerta();
+        if(pais.trim() === '' || ciudad.trim() === '' && !seRepite()) {
+        mostrarAlerta2();
             return;
         }
 
@@ -35,7 +63,7 @@ const AddCity = ({localizaciones, setLocalizacion}) => {
 
         //agregar al state si no se repite la ciudad y región
         if(!seRepite()){
-             const localizacionesNuevo = [...localizaciones, localizacion];
+            const localizacionesNuevo = [...localizaciones, localizacion];
             setLocalizacion(localizacionesNuevo);
 
              //pasar las localizaciones al storage
@@ -88,33 +116,6 @@ const AddCity = ({localizaciones, setLocalizacion}) => {
             }]
         );
         }
-
-    //Guardar las localizaciones en storage
-    
-    const guardarLocalizacionesStorage = async (localizacionesJSON) => {
-        try {
-            if(!seRepite()){
-                await AsyncStorage.setItem('localizaciones', localizacionesJSON);
-           }
-
-        } catch (error) {
-          console.log(error);
-        }
-      }
-
-     useEffect(() => {
-        const obtenerLocalizacionesStorage = async () => {
-            try {
-              const localizacionesStorage = await AsyncStorage.getItem('localizaciones');
-                if(localizacionesStorage) {
-                    setLocalizacion(JSON.parse(localizacionesStorage))
-                }
-            } catch (error) {
-              console.log(error);
-            }
-        }
-        obtenerLocalizacionesStorage();
-      }, []);
 
       
 

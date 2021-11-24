@@ -8,12 +8,12 @@ import City from '../../components/city/City';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 
-const ListCity = ({localizaciones, setLocalizacion}) => {
+const ListCity = ({localizaciones, setLocalizacion, localizacionesGuardadas}) => {
 
-      const navigation = useNavigation();
+    const navigation = useNavigation();
 
       //Guardar las localizaciones en storage
-      const guardarLocalizacionesStorage = async (localizacionesJSON) => {
+    const guardarLocalizacionesStorage = async (localizacionesJSON) => {
         try {
           await AsyncStorage.setItem('localizaciones', localizacionesJSON);
         } catch (error) {
@@ -30,6 +30,7 @@ const ListCity = ({localizaciones, setLocalizacion}) => {
        
         )  
         setLocalizacion(ciudadesFiltradas);
+        localizacionesGuardadas.pop(ciudadesFiltradas);
         //console.log(ciudadesFiltradas);
         guardarLocalizacionesStorage(JSON.stringify(ciudadesFiltradas));
       }

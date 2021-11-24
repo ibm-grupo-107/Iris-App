@@ -18,8 +18,9 @@ import ListCity from "../screens/listCity/ListCity"
 
 const Tab = createMaterialBottomTabNavigator();
 
-
+let localizacionesGuardadas = [];
 const MainTabScreen = () =>{
+
   
     const [localizaciones, setLocalizacion] = useState([]);    
 
@@ -50,7 +51,7 @@ const MainTabScreen = () =>{
                   ),
                 }}
                 >
-                {(props) => <ListCity localizaciones={localizaciones} setLocalizacion={setLocalizacion} />}
+                {(props) => <ListCity localizaciones={localizaciones} setLocalizacion={setLocalizacion} localizacionesGuardadas={localizacionesGuardadas}/>}
           </Tab.Screen>
 
           <Tab.Screen name="Agregar Ciudad"
@@ -62,7 +63,7 @@ const MainTabScreen = () =>{
                   ),
                 }}
                 >
-                {(props) => <AddCity localizaciones={localizaciones} setLocalizacion={setLocalizacion} />}
+                {(props) => <AddCity localizaciones={localizaciones} setLocalizacion={setLocalizacion} localizacionesGuardadas={localizacionesGuardadas}/>}
           </Tab.Screen>
 
           {/* <Tab.Screen name="Details"
