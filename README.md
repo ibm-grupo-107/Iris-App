@@ -82,7 +82,7 @@ Una vez que tenemos listo el QR y ya nos logueamos en la [app de expo](https://e
 **_Grupo 107:_**
 
 -   **Martina Pereyra**  -  https://www.linkedin.com/in/martina-pereyra-714557212/
--   **Priscila Mansilla**  -  link a linkedin
+-   **Priscila Mansilla**  -  https://www.linkedin.com/in/priscilamansilla
 -   **Emilio Parodi**  -  link a linkedin
 -  **Maria Lucia Futestii**  -  link a linkedin
 

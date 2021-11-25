@@ -49,7 +49,7 @@ const Map = ({ciudad, pais, region}) => {
             //const appId = be0d211016ca458197faa98f26cb1963
             //Api Martina:
             //const appId = '61666ed49345480b91961b57aa9b1e30'; 
-            const appId = "ee003e9a0d334667a3b7815661343e02";
+            const appId = "be0d211016ca458197faa98f26cb1963";
             const url = `https://api.opencagedata.com/geocode/v1/json?q=${ciudad},${region},${pais}&key=${appId}`;
            
             /* const response = await fetch(`http://api.openweathermap.org/data/2.5/weather?q=${item.ciudad},${item.pais}&appid=${appId}`);
