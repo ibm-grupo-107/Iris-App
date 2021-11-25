@@ -58,8 +58,13 @@ const AddCity = ({localizaciones, setLocalizacion, localizacionesGuardadas}) => 
   //crear ciudad
   const crearCiudad = () => {
     
+<<<<<<< HEAD
         if(pais.trim() === '' || ciudad.trim() === '' && region.trim() === "") {
             mostrarAlerta();
+=======
+        if(pais.trim() === '' || ciudad.trim() === '' ) {
+            mostrarAlerta2();
+>>>>>>> master
                 return;
         }
 
