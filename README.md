@@ -12,6 +12,14 @@ A continuación, te contamos un poco sobre Iris:
 
 Bueno, la idea del mismo surge de 
 
+### Persona Canvas :girl:
+Este es nuestro modelo de persona canvas al cual está enfocado proyecto:
+![persona canvas](https://i.ibb.co/mXxfFhN/persona-Canvas.png)
+
+### Paper prototyping :iphone:
+Y este es nuestro prototipo:
+
+
 ## Comenzando  🚀
 
 _Estas instrucciones te permitirán obtener una copia de la app en funcionamiento en tu compu para lo que necesites, ya sea probarla, realizar cambios que te gusten, proponer ideas, estamos abiertos a todas tus sugerencias!:sunglasses:_
@@ -75,6 +83,9 @@ Una vez que tenemos listo el QR y ya nos logueamos en la [app de expo](https://e
 ## Construido con  🛠️
 
 -   [React Native](https://reactnative.dev/)  - Lenguaje de programación y Toolkit.
+- [Moqups](https://app.moqups.com/) - Prototipo y Modelo Persona Canvas.
+- [OpenCageData](https://opencagedata.com/) - Api Maps.
+- [OpenWeatherMap](https://openweathermap.org/) - Api Clima. 
 
 
 ## Autores  ✒️
@@ -84,12 +95,12 @@ Una vez que tenemos listo el QR y ya nos logueamos en la [app de expo](https://e
 -   **Martina Pereyra**  -  https://www.linkedin.com/in/martina-pereyra-714557212/
 -   **Priscila Mansilla**  -  https://www.linkedin.com/in/priscilamansilla
 -   **Emilio Parodi**  -  link a linkedin
--  **Maria Lucia Futestii**  -  link a linkedin
+-  **Maria Lucia Futesti**  - https://www.linkedin.com/in/maria-lucia-futestti-98a459103
 
 
-## Expresiones de Gratitud  🎁
+## Agradecimientos  🎁
 
-Queremos agradecer enormemente a IBM, Argencon y a Codo a Codo por permitirnos esta oportunidad de aprender haciendo y poder mostrar los resultados obtenidos, porque creemos que así se aprende realmente, construyendo y compartiendo con personas que colaboren en tu crecimiento.
+Queremos agradecer enormemente tanto a IBM como a Codo a Codo por permitirnos esta oportunidad de aprender haciendo y poder mostrar los resultados obtenidos, porque creemos que así es como se realmente se aprende, construyendo y compartiendo con personas que colaboren en tu crecimiento.
 
 ----------
 

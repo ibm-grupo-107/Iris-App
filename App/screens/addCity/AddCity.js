@@ -174,7 +174,6 @@ const AddCity = ({localizaciones, setLocalizacion, localizacionesGuardadas}) => 
         transform: [{scale: animacionboton }]
     }
 
-
     return (
 
         <ScrollView style={styles.container} >

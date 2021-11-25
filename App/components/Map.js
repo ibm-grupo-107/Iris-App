@@ -6,7 +6,7 @@ import MapView from "react-native-maps"
 import Loading from "../components/Loading"
 //const height = Dimensions.get("window").height;
 
-const Map = ({ciudad, pais, region}) => {
+const Map = ({ciudad, pais, region}) => {  
 
     //En caso de que no llegue el dato, que no cargue.
    /*  if(!resultado)return null
@@ -61,7 +61,7 @@ const Map = ({ciudad, pais, region}) => {
                 const data = await respuesta.json();
                 const lat = data["results"][0].geometry.lat;
                 const long = data["results"][0].geometry.lng;
-                //console.log(data);
+                console.log(data);
                 guardarResultadoLat(lat);
                 guardarResultadoLong(long); 
 
@@ -82,7 +82,6 @@ const Map = ({ciudad, pais, region}) => {
         )
         return <Loading isVisible={false}/>
     }
-
 
    
    /*  let longYLat = 0;
