@@ -11,8 +11,8 @@ const City = ({item, eliminarCiudad}) => {
 
     //const navigation = useNavigation();
 
-    const dialogoEliminar = (ciudad,region) => {
-        eliminarCiudad(ciudad,region);
+    const dialogoEliminar = (ciudad) => {
+        eliminarCiudad(ciudad);
     };
 
     //Consultar la API
@@ -110,7 +110,7 @@ const City = ({item, eliminarCiudad}) => {
                       <TouchableHighlight  onPress={() => {mostrarClima()}} /* navigation.navigate('Details', item)}} */ style={styles.bntVerClima}>
                             <Text style={styles.textoBtn}> {!mostrar ? "VerClima" : "Cerrar"}</Text>
                         </TouchableHighlight>
-                        <TouchableHighlight onPress={ () => dialogoEliminar(item.ciudad, item.region)} style={styles.bntEliminar}>
+                        <TouchableHighlight onPress={ () => dialogoEliminar(item.ciudad)} style={styles.bntEliminar}>
                                 <Text style={styles.textoBtn}>Eliminar &times; </Text>
                             </TouchableHighlight>
 
