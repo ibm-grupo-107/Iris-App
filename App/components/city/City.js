@@ -2,7 +2,9 @@ import React, {useEffect, useState} from 'react';
 import {Text, View, StyleSheet, TouchableHighlight, Alert} from 'react-native';
 //import { useNavigation } from '@react-navigation/core';
 import Details from "../../screens/details/Details"
-import Map from "../Map"
+//import Map from "../Map"
+
+
 
 
 const City = ({item, eliminarCiudad}) => {
@@ -102,12 +104,6 @@ const City = ({item, eliminarCiudad}) => {
                         <Details
                             resultado ={resultado}
                          />
-                        <Map
-                            resultado ={resultado}
-                            ciudad = {item.ciudad}
-                            pais ={item.pais}
-                            region={item.region}
-                        />
                         <TouchableHighlight  onPress={() => {consultarClima()}} /* navigation.navigate('Details', item)}} */ style={styles.bntActualizar}>
                         <Text style={styles.textoBtn}>Actualizar </Text>
                       </TouchableHighlight>

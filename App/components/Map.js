@@ -55,6 +55,7 @@ const Map = ({ciudad, pais, region}) => {
                 const data = await respuesta.json();
                 const lat = data["results"][0].geometry.lat;
                 const long = data["results"][0].geometry.lng;
+                //console.log(data);
                 guardarResultadoLat(lat);
                 guardarResultadoLong(long); 
 
@@ -132,10 +133,10 @@ const Map = ({ciudad, pais, region}) => {
 
 const styles = StyleSheet.create({
     map:{
-        height: 350,
+        height: 220,
         width: 370,
         marginHorizontal: 10,
-        marginTop: 30,
+        marginTop: 15,
     }
 })
 

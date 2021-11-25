@@ -4,6 +4,7 @@ import { Header } from 'react-native-elements';
 import AppLoading from "expo-app-loading";
 import {useFonts} from "expo-font"
 import { StatusBar } from 'expo-status-bar';
+import { useNavigation } from '@react-navigation/core';
 
 
 
@@ -30,6 +31,8 @@ import {
 
 
 export default function Home(){
+
+    const navigation = useNavigation();
 
     let [fontsLoaded, error] = useFonts({
         Raleway_100Thin,
@@ -72,31 +75,49 @@ export default function Home(){
         >
         <View style={styles.scrollItem}>
             <Text style = {styles.text2 }>Paso 1:</Text>
-            <Text style = {styles.text3}>Buscar Ciudad:</Text>
+            <Text style = {styles.text3}>Buscar Ciudad: </Text>
             <Image style={styles.img} source={require("../../assets/agregar.png")}/>
-            <TouchableWithoutFeedback>
+            <TouchableWithoutFeedback
+                 onPress={() => navigation.navigate('Agregar Ciudad') }
+            >
                     <View style={styles.btnBuscar} >
-                    <Text style={styles.btnTexto}>Agregar</Text>
+                    <Text style={styles.btnTexto}>Ir a "Agregar Ciudad"</Text>
                     </View>
                 </TouchableWithoutFeedback>
         </View>
             <View style={styles.scrollItem}>
             <Text style = {styles.text2 }>Paso 2:</Text>
             <Text style = {styles.text3}>Guardar ciudad:</Text>
-            <Image style={styles.img} source={require("../../assets/verClima.png")}/>
-            <TouchableWithoutFeedback>
+            <Image style={styles.img} source={require("../../assets/verMapa.png")}/>
+            <TouchableWithoutFeedback
+                onPress={() => navigation.navigate('Agregar Ciudad') }
+            >
                     <View style={styles.btnBuscar} >
-                    <Text style={styles.btnTexto} >Ver Lista de Ciudades</Text>
+                    <Text style={styles.btnTexto} >Ir a "Agregar Ciudad"</Text>
+                    </View>
+                </TouchableWithoutFeedback>
+        </View>
+        <View style={styles.scrollItem}>
+            <Text style = {styles.text2 }>Paso 1:</Text>
+            <Text style = {styles.text3}>Consultar clima:</Text>
+            <Image style={styles.img} source={require("../../assets/verClima.png")}/>
+            <TouchableWithoutFeedback
+                onPress={() => navigation.navigate('ListCity') }
+            >
+                    <View style={styles.btnBuscar} >
+                    <Text style={styles.btnTexto}>Ir a "Mis Ciudades"</Text>
                     </View>
                 </TouchableWithoutFeedback>
         </View>
             <View style={styles.scrollItem}>
-            <Text style = {styles.text2 }> Paso 3:</Text>
-            <Text style = {styles.text3}>consultar clima:</Text>
+            <Text style = {styles.text2 }> Paso 4:</Text>
+            <Text style = {styles.text3}>Ver clima:</Text>
             <Image style={styles.img} source={require("../../assets/mostrarClima.png")}/>
-            <TouchableWithoutFeedback>
+            <TouchableWithoutFeedback
+                onPress={() => navigation.navigate('ListCity') }
+            >
                     <View style={styles.btnBuscar} >
-                    <Text style={styles.btnTexto}>Ver clima de ciudades</Text>
+                    <Text style={styles.btnTexto}>Ir a "Mis ciudades"</Text>
                     </View>
                 </TouchableWithoutFeedback>
         </View>
@@ -123,7 +144,7 @@ const styles = StyleSheet.create({
     },
     text2:{
         fontSize: 20,
-        marginTop:20,
+        marginTop:10,
         fontWeight: "bold",
         textAlign:"center",
         fontFamily: "Raleway_200ExtraLight",
@@ -131,23 +152,25 @@ const styles = StyleSheet.create({
     },
     text3:{
         textAlign:"center",
+        marginTop:10,
     },
     img:{
         marginTop:10,
     },
     btnBuscar: {
         marginHorizontal: '2.5%',
-        marginTop: 10,
+        marginTop: 25,
         backgroundColor: "#ff1493",
         padding: 10,
         justifyContent: 'center',
         marginBottom:30,
-        width: "70%",
+        width: "65%",
         borderRadius: 20,
     },
     btnTexto:{
         color:"#FFF",
         textAlign:"center",
+        fontWeight: "bold",
     },
     pasos: {
         width:180,

@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import {TextInput,Animated, Text, View, StyleSheet, TouchableWithoutFeedback, Alert} from 'react-native';
+import {TextInput,Animated, Text, View, StyleSheet, TouchableWithoutFeedback, Alert, ScrollView} from 'react-native';
 import { Picker } from '@react-native-picker/picker';
 import { Header } from 'react-native-elements';
 import { StatusBar } from 'expo-status-bar';
@@ -19,6 +19,12 @@ const AddCity = ({localizaciones, setLocalizacion, localizacionesGuardadas}) => 
   const [ciudad, guardarCiudad] = useState('');
   const [pais, guardarPais] = useState('');
   const [region, guardarRegion] = useState("");
+
+
+
+  // Desplegable mapa
+  const[mostrar, guardarMostrar]= useState(false)
+
 
   //Guardar las localizaciones en storage
     
@@ -51,11 +57,13 @@ const AddCity = ({localizaciones, setLocalizacion, localizacionesGuardadas}) => 
 
   //crear ciudad
   const crearCiudad = () => {
-
+    
         if(pais.trim() === '' || ciudad.trim() === '' && !seRepite()) {
-        mostrarAlerta2();
-            return;
-        }
+            mostrarAlerta2();
+                return;
+            }
+    
+    
 
         const localizacion = {ciudad, pais, region};
 
@@ -100,7 +108,6 @@ const AddCity = ({localizaciones, setLocalizacion, localizacionesGuardadas}) => 
     }
 
 
-
     //muestra la alerta si la ciudad ya existe
 
     const mostrarAlerta2 = () => { 
@@ -112,6 +119,21 @@ const AddCity = ({localizaciones, setLocalizacion, localizacionesGuardadas}) => 
             }]
         );
         }
+
+    //Muestra u oculta info del mapa
+
+    const mostrarMapa = () =>{
+        guardarMostrar(!mostrar);
+        //consultarClima()
+    }
+
+    //Lleva a listCity, agrega ciudad y cierra el mapa en AddCity
+    const cerrarMapa = () =>{
+        guardarMostrar(!mostrar);
+        crearCiudad()
+        return
+        //consultarClima()
+    }
 
       
 
@@ -138,99 +160,215 @@ const AddCity = ({localizaciones, setLocalizacion, localizacionesGuardadas}) => 
         transform: [{scale: animacionboton }]
     }
 
+
+
+
+
     return (
 
-        <>
-        <Header
-            placement="center"
-            backgroundColor= "mediumaquamarine"
-            centerComponent={{ text: 'Agregar Ciudad', style: { color: '#fff', fontSize:20 } }}
-            />
-        <StatusBar style="dark" backgroundColor= "#FFF" />
-
-        <View style={styles.formulario}>
-            
-            <View style={styles.contenido}>
-                <Text style={styles.textoAñadir}>País: </Text>
-                <Picker
-                    selectedValue={pais}
-                    onValueChange={texto => guardarPais(texto)}
-                    itemStyle={{height: 120, backgroundColor: '#FFF'}}
-                >
-                    <Picker.Item label="-- Seleccione un país --" value="" />
-                    <Picker.Item label="Argentina" value="AR" />
-                </Picker>
-
-                <Text style={styles.textoAñadir}>Región:</Text>
-                <Picker
-                    selectedValue={region}
-                    onValueChange={texto => guardarRegion(texto)}
-                    itemStyle={{height: 120, backgroundColor: '#FFF'}}
-                >
-                    <Picker.Item label="-- Seleccione una region --" value="" />
-                    <Picker.Item label="Buenos Aires" value="Buenos Aires" />
-                    <Picker.Item label="Capital Federal" value="Capital Federal" />
-                    <Picker.Item label="Catamarca" value="Catamarca" />
-                    <Picker.Item label="Chaco" value="Chaco" />
-                    <Picker.Item label="Chubut" value="Chubut" />
-                    <Picker.Item label="Córdoba" value="Córdoba" />
-                    <Picker.Item label="Corrientes" value="Corrientes" />
-                    <Picker.Item label="Entre Ríos" value="Entre Ríos" />
-                    <Picker.Item label="Formosa" value="Formosa" />
-                    <Picker.Item label="Jujuy" value="Jujuy" />
-                    <Picker.Item label="La Pampa" value="La Pampa" />
-                    <Picker.Item label="La Rioja" value="La Rioja" />
-                    <Picker.Item label="Mendoza" value="Mendoza" />
-                    <Picker.Item label="Misiones" value="Misiones" />
-                    <Picker.Item label="Neuquén" value="Neuquén" />
-                    <Picker.Item label="Partido de la costa" value="Partido de la costa" />
-                    <Picker.Item label="Río Negro" value="Río Negro" />
-                    <Picker.Item label="Salta" value="Salta" />
-                    <Picker.Item label="San Juan" value="San Juan" />
-                    <Picker.Item label="San Luis" value="San Luis" />
-                    <Picker.Item label="Santa Cruz" value="Santa Cruz" />
-                    <Picker.Item label="Santa Fe" value="Santa Fe" />
-                    <Picker.Item label="Santiago del Estero" value="Santiago del Estero" />
-                    <Picker.Item label="Tierra del Fuego" value="Tierra del Fuego" />
-                    <Picker.Item label="Tucumán" value="Tucumán" />
-
-                </Picker>
-            </View>
-
-                <TextInput 
-                    onChangeText={texto => guardarCiudad(texto)}
-                    value={ciudad}
-                    style={styles.input}
-                    placeholder="Ciudad"
-                    placeholderTextColor="#666"
-                />
-            
-                <TouchableWithoutFeedback
-                    onPressIn={() => animacionEntrada()}
-                    onPressOut={() => animacionSalida()}
-                    onPress={() => crearCiudad() }
-                >
-                    <View style={styles.containerBuscar}>
-                    <Animated.View style={[styles.btnBuscar, estiloAnimacion]}>
-                        <Text style={styles.textoBuscar}>Añadir Ciudad</Text>
-                    </Animated.View>
+        <ScrollView style={styles.container} >
+            {mostrar 
+                ?( 
+                    <>
+                    <Header
+                        placement="center"
+                        backgroundColor= "mediumaquamarine"
+                        centerComponent={{ text: 'Agregar Ciudad', style: { color: '#fff', fontSize:20 } }}
+                    />
+                <StatusBar style="dark" backgroundColor= "#FFF" />
+        
+                <View style={styles.formulario}>
+                    
+                    <View style={styles.contenido}>
+                        <Text style={styles.textoAñadir}>País: </Text>
+                        <Picker
+                            selectedValue={pais}
+                            onValueChange={texto => guardarPais(texto)}
+                            itemStyle={{height: 120, backgroundColor: '#FFF'}}
+                        >
+                            <Picker.Item label="-- Seleccione un país --" value="" />
+                            <Picker.Item label="Argentina" value="AR" />
+                        </Picker>
+        
+                        <Text style={styles.textoAñadir}>Región:</Text>
+                        <Picker
+                            selectedValue={region}
+                            onValueChange={texto => guardarRegion(texto)}
+                            itemStyle={{height: 120, backgroundColor: '#FFF'}}
+                        >
+                            <Picker.Item label="-- Seleccione una region --" value="" />
+                            <Picker.Item label="Buenos Aires" value="Buenos Aires" />
+                            <Picker.Item label="Capital Federal" value="Capital Federal" />
+                            <Picker.Item label="Catamarca" value="Catamarca" />
+                            <Picker.Item label="Chaco" value="Chaco" />
+                            <Picker.Item label="Chubut" value="Chubut" />
+                            <Picker.Item label="Córdoba" value="Córdoba" />
+                            <Picker.Item label="Corrientes" value="Corrientes" />
+                            <Picker.Item label="Entre Ríos" value="Entre Ríos" />
+                            <Picker.Item label="Formosa" value="Formosa" />
+                            <Picker.Item label="Jujuy" value="Jujuy" />
+                            <Picker.Item label="La Pampa" value="La Pampa" />
+                            <Picker.Item label="La Rioja" value="La Rioja" />
+                            <Picker.Item label="Mendoza" value="Mendoza" />
+                            <Picker.Item label="Misiones" value="Misiones" />
+                            <Picker.Item label="Neuquén" value="Neuquén" />
+                            <Picker.Item label="Partido de la costa" value="Partido de la costa" />
+                            <Picker.Item label="Río Negro" value="Río Negro" />
+                            <Picker.Item label="Salta" value="Salta" />
+                            <Picker.Item label="San Juan" value="San Juan" />
+                            <Picker.Item label="San Luis" value="San Luis" />
+                            <Picker.Item label="Santa Cruz" value="Santa Cruz" />
+                            <Picker.Item label="Santa Fe" value="Santa Fe" />
+                            <Picker.Item label="Santiago del Estero" value="Santiago del Estero" />
+                            <Picker.Item label="Tierra del Fuego" value="Tierra del Fuego" />
+                            <Picker.Item label="Tucumán" value="Tucumán" />
+        
+                        </Picker>
                     </View>
-                </TouchableWithoutFeedback>
-                <Map
-                ciudad = {ciudad}
-                pais ={pais}
-                region={region}
-                />
-            </View>
-
-        </>
+        
+                        <TextInput 
+                            onChangeText={texto => guardarCiudad(texto)}
+                            value={ciudad}
+                            style={styles.input}
+                            placeholder="Ciudad"
+                            placeholderTextColor="#666"
+                        />
+                        <View style={styles.mapa}>
+                            <Map
+                            ciudad = {ciudad}
+                            pais ={pais}
+                            region={region}
+                            />
+                        </View>
+        
+                        <TouchableWithoutFeedback
+                            onPress={() => {mostrarMapa()}}
+                            onPressIn={() => animacionEntrada()}
+                            onPressOut={() => animacionSalida()}
+                            onPress={() => cerrarMapa() }
+                        >
+                            <View style={styles.containerBuscar}>
+                                <Animated.View style={[styles.btnBuscar, estiloAnimacion]}>
+                                    <Text style={styles.textoBuscar}> Añadir</Text>
+                                </Animated.View>
+                            </View>
+                        </TouchableWithoutFeedback>
+                    
+            
+                    </View>
+                    </>
+            )
+            
+            :(
+                <>
+                    <Header
+                        placement="center"
+                        backgroundColor= "mediumaquamarine"
+                        centerComponent={{ text: 'Agregar Ciudad', style: { color: '#fff', fontSize:20 } }}
+                    />
+                <StatusBar style="dark" backgroundColor= "#FFF" />
+        
+                <View style={styles.formulario}>
+                    
+                    <View style={styles.contenido}>
+                        <Text style={styles.textoAñadir}>País: </Text>
+                        <Picker
+                            selectedValue={pais}
+                            onValueChange={texto => guardarPais(texto)}
+                            itemStyle={{height: 120, backgroundColor: '#FFF'}}
+                        >
+                            <Picker.Item label="-- Seleccione un país --" value="" />
+                            <Picker.Item label="Argentina" value="AR" />
+                        </Picker>
+        
+                        <Text style={styles.textoAñadir}>Región:</Text>
+                        <Picker
+                            selectedValue={region}
+                            onValueChange={texto => guardarRegion(texto)}
+                            itemStyle={{height: 120, backgroundColor: '#FFF'}}
+                        >
+                            <Picker.Item label="-- Seleccione una region --" value="" />
+                            <Picker.Item label="Buenos Aires" value="Buenos Aires" />
+                            <Picker.Item label="Capital Federal" value="Capital Federal" />
+                            <Picker.Item label="Catamarca" value="Catamarca" />
+                            <Picker.Item label="Chaco" value="Chaco" />
+                            <Picker.Item label="Chubut" value="Chubut" />
+                            <Picker.Item label="Córdoba" value="Córdoba" />
+                            <Picker.Item label="Corrientes" value="Corrientes" />
+                            <Picker.Item label="Entre Ríos" value="Entre Ríos" />
+                            <Picker.Item label="Formosa" value="Formosa" />
+                            <Picker.Item label="Jujuy" value="Jujuy" />
+                            <Picker.Item label="La Pampa" value="La Pampa" />
+                            <Picker.Item label="La Rioja" value="La Rioja" />
+                            <Picker.Item label="Mendoza" value="Mendoza" />
+                            <Picker.Item label="Misiones" value="Misiones" />
+                            <Picker.Item label="Neuquén" value="Neuquén" />
+                            <Picker.Item label="Partido de la costa" value="Partido de la costa" />
+                            <Picker.Item label="Río Negro" value="Río Negro" />
+                            <Picker.Item label="Salta" value="Salta" />
+                            <Picker.Item label="San Juan" value="San Juan" />
+                            <Picker.Item label="San Luis" value="San Luis" />
+                            <Picker.Item label="Santa Cruz" value="Santa Cruz" />
+                            <Picker.Item label="Santa Fe" value="Santa Fe" />
+                            <Picker.Item label="Santiago del Estero" value="Santiago del Estero" />
+                            <Picker.Item label="Tierra del Fuego" value="Tierra del Fuego" />
+                            <Picker.Item label="Tucumán" value="Tucumán" />
+        
+                        </Picker>
+                    </View>
+        
+                        <TextInput 
+                            onChangeText={texto => guardarCiudad(texto)}
+                            value={ciudad}
+                            style={styles.input}
+                            placeholder="Ciudad"
+                            placeholderTextColor="#666"
+                        />
+                        {/* <View style={styles.mapa}>
+                            <Map
+                            ciudad = {ciudad}
+                            pais ={pais}
+                            region={region}
+                            />
+                        </View> */}
+        
+                        <TouchableWithoutFeedback
+                            onPress={() => {mostrarMapa()}}
+                            onPressIn={() => animacionEntrada()}
+                            onPressOut={() => animacionSalida()}
+                            //onPress={() => crearCiudad() }
+                        >
+                            <View style={styles.containerBuscar}>
+                                <Animated.View style={[styles.btnBuscar, estiloAnimacion]}>
+                                    <Text style={styles.textoBuscar} > Ver Mapa</Text>
+                                </Animated.View>
+                            </View>
+                        </TouchableWithoutFeedback>
+                    
+            
+                    </View>
+                    </>
+            )
+        
+        
+        
+            }
+        </ScrollView>
     );
+
+
+
+
 };
 
+
+
 const styles = StyleSheet.create({
+    container: {
+        backgroundColor: 'honeydew',
+    },
     formulario: {
         flex: 1,
-        backgroundColor: 'honeydew',
         justifyContent: 'flex-start',
     },
     contenido: {
@@ -241,7 +379,7 @@ const styles = StyleSheet.create({
         height: 40,
         backgroundColor: '#FFF',
         fontSize: 18,
-        marginBottom: 10,
+        marginBottom: 5,
         marginTop:15,
         textAlign: 'center',
         borderColor:"#ff1493",
@@ -251,7 +389,7 @@ const styles = StyleSheet.create({
     },
     btnBuscar: {
      
-        marginTop: 50,
+        marginTop: 15,
         backgroundColor: "#ff1493",
         padding: 10,
         justifyContent: 'center',
@@ -277,6 +415,10 @@ const styles = StyleSheet.create({
         textTransform: 'uppercase',
     },
     containerBuscar:{
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
+    mapa:{
         justifyContent: 'center',
         alignItems: 'center',
     }

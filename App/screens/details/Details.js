@@ -2,23 +2,24 @@ import React from 'react';
 import {StyleSheet, View, Text, Image} from 'react-native';
 //import { Header } from 'react-native-elements';
 import { StatusBar } from 'expo-status-bar';
+import Loading from "../../components/Loading"
 
 
 const Details = ({resultado}) => {
     
     //Sólo carga si llegan los datos
-    if(!resultado)return null
+    if(!resultado)return null //<Loading isVisible={true} text={"Cargando Clima..."}/>;
     const {name,main} = resultado;
-    if(!main) return null
-    if(!name) return null
-
+    if(!main) return null //<Loading isVisible={true} text={"Cargando Clima..."}/>
+    if(!name) return null //<Loading isVisible={true} text={"Cargando Clima..."}/>
 
     // grados kelvin
     const kelvin =273.15
-
+ 
     
     return (        
-        <>  
+        <> 
+       {/*  <Loading isVisible={false} />  */}
             {/* <Header
                 placement="center"
                 backgroundColor= "lightsalmon"
