@@ -87,7 +87,7 @@ const AddCity = ({localizaciones, setLocalizacion, localizacionesGuardadas}) => 
         let seRepite=false;
         localizacionesGuardadas.forEach(element => {
             element.forEach(el => {
-                if(el["ciudad"].toUpperCase() === ciudad.toUpperCase() && el["region"].toUpperCase() ==region.toUpperCase()){
+                if(eliminarTildes(el["ciudad"]).toUpperCase() === eliminarTildes(ciudad).toUpperCase() && eliminarTildes(el["region"]).toUpperCase() == eliminarTildes(region).toUpperCase()){
                     seRepite = true;
                     mostrarAlerta2();
                 }
@@ -97,8 +97,19 @@ const AddCity = ({localizaciones, setLocalizacion, localizacionesGuardadas}) => 
     } 
 
     
+    // quita Acentos
+
+    function eliminarTildes(texto) {
+        return texto
+               .normalize('NFD')
+               .replace(/([^n\u0300-\u036f]|n(?!\u0303(?![\u0300-\u036f])))[\u0300-\u036f]+/gi,"$1")
+               .normalize();
+    }
 
 
+
+
+    
     //muestra la alerta si la ciudad ya existe
 
     const mostrarAlerta2 = () => { 
@@ -162,9 +173,6 @@ const AddCity = ({localizaciones, setLocalizacion, localizacionesGuardadas}) => 
     const estiloAnimacion = {
         transform: [{scale: animacionboton }]
     }
-
-
-
 
 
     return (

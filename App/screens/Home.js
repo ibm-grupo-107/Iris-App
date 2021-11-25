@@ -6,6 +6,10 @@ import {useFonts} from "expo-font"
 import { StatusBar } from 'expo-status-bar';
 import { useNavigation } from '@react-navigation/core';
 
+//Importar iconos de Material:
+import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
+
+
 
 
 import { 
@@ -75,7 +79,7 @@ export default function Home(){
         >
         <View style={styles.scrollItem}>
             <Text style = {styles.text2 }>Paso 1:</Text>
-            <Text style = {styles.text3}>Buscar Ciudad: </Text>
+            <Text style = {styles.text3}>Buscar Ciudad: </Text>   
             <Image style={styles.img} source={require("../../assets/agregar.png")}/>
             <TouchableWithoutFeedback
                  onPress={() => navigation.navigate('Agregar Ciudad') }
@@ -157,6 +161,7 @@ const styles = StyleSheet.create({
     img:{
         marginTop:10,
     },
+  
     btnBuscar: {
         marginHorizontal: '2.5%',
         marginTop: 25,

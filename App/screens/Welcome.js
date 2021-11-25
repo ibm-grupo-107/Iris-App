@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { StyleSheet, Animated, Image, View, Text, Dimensions} from 'react-native';
 import AppLoading from 'expo-app-loading';
 import { useFonts } from 'expo-font';
+import { StatusBar } from 'expo-status-bar';
 
 const width = Dimensions.get("window").width;
 
@@ -61,6 +62,8 @@ const Welcome = () => {
         return <AppLoading />;
       } else {
          return ( 
+             <>
+            <StatusBar style="dark" backgroundColor= "#FFF" />
             <Animated.View  style={ styles.container, {opacity: animacion1 }}>
                <Animated.Text style={{fontFamily:'Reey-Regular', fontSize: 70, textAlign: 'center', marginTop: 100}} >IRIS</Animated.Text>
                 
@@ -74,6 +77,7 @@ const Welcome = () => {
                 <Animated.Text style={ styles.text2} >Lleva el clima{"\n"}  con vos...!!!</Animated.Text>
                                  
              </Animated.View >
+            </>
          );
 
      }

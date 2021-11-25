@@ -56,7 +56,7 @@ const City = ({item, eliminarCiudad}) => {
     //console.log(resultado)
 
     const consultarClima = () => {
-        if(item.ciudad.trim() === '' || item.pais.trim() === '' ) {
+        if(item.ciudad.trim() === '' || item.pais.trim() === '' || item.region.trim() === "" ) {
             mostrarAlerta();
             return;
         }
@@ -91,7 +91,7 @@ const City = ({item, eliminarCiudad}) => {
                         <View>
                         <Text
                         style={styles.label}>Ciudad: </Text>
-                        <Text style={styles.texto}>{item.ciudad}</Text>
+                        <Text style={styles.texto}>{capitalizar(item.ciudad)}</Text>
                         </View>
                         <View>
                             <Text 

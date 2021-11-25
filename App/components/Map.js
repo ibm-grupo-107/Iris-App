@@ -43,8 +43,13 @@ const Map = ({ciudad, pais, region}) => {
       //Api de Open Cage-- Obtiene lat y long, según ciudad, región y pais
       useEffect(() => {
         const consultarCoord = async () => {
-          
-            const appId = '61666ed49345480b91961b57aa9b1e30'; 
+            // api Lucía:
+            //const appId = "ee003e9a0d334667a3b7815661343e02"
+            // api Priscila
+            //const appId = be0d211016ca458197faa98f26cb1963
+            //Api Martina:
+            //const appId = '61666ed49345480b91961b57aa9b1e30'; 
+            const appId = "ee003e9a0d334667a3b7815661343e02";
             const url = `https://api.opencagedata.com/geocode/v1/json?q=${ciudad},${region},${pais}&key=${appId}`;
            
             /* const response = await fetch(`http://api.openweathermap.org/data/2.5/weather?q=${item.ciudad},${item.pais}&appid=${appId}`);
@@ -75,6 +80,7 @@ const Map = ({ciudad, pais, region}) => {
             'Ciudad no encontrada',
             [{text: 'Entendido'}]
         )
+        return <Loading isVisible={false}/>
     }
 
 
@@ -108,12 +114,12 @@ const Map = ({ciudad, pais, region}) => {
 
    
     //Si no se pasan datos de ciudad no carga el loader
-    if(ciudad == "" || region == "" || ciudad == "") {
+    while(ciudad == "" || region == "" || ciudad == "") {
         return <Loading isVisible={false}/>
     }
 
     //Aparece el loader si no hay datos
-    if(resultadoLat ==0 && resultadoLong == 0) return     <Loading isVisible={true} text={"Cargando Mapa..."}/>
+    while(resultadoLat ==0 && resultadoLong == 0) return     <Loading isVisible={true} text={"Cargando Mapa..."}/>
 
     
     
@@ -136,8 +142,8 @@ const Map = ({ciudad, pais, region}) => {
                     latitude: resultadoLat,
                     longitude:resultadoLong 
                }}
-                title ={"Title 1"}
-                description={"Description 1"} 
+                title ={`${ciudad}`}
+                //description={"Description 1"} 
             />
         </MapView>
         </>
