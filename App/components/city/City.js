@@ -80,7 +80,9 @@ const City = ({item, eliminarCiudad}) => {
         consultarClima()
     }
 
-
+    // Cambiar primera letra a Mayúscula
+    const capitalizar = s => (s && s[0].toUpperCase() + s.slice(1).toLowerCase()) 
+   
     return (
         <View style={styles.clima}>
                 {mostrar 
@@ -122,7 +124,7 @@ const City = ({item, eliminarCiudad}) => {
                      <View>
                         <Text
                         style={styles.label}>Ciudad: </Text>
-                        <Text style={styles.texto}>{item.ciudad}</Text>
+                        <Text style={styles.texto}>{capitalizar(item.ciudad)}</Text>
                     </View>
                     <View>
                             <Text 

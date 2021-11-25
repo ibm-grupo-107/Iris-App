@@ -108,7 +108,7 @@ const Map = ({ciudad, pais, region}) => {
 
    
     //Si no se pasan datos de ciudad no carga el loader
-    while(ciudad == "" || region == "" || ciudad == "") {
+    if(ciudad == "" || region == "" || ciudad == "") {
         return <Loading isVisible={false}/>
     }
 
