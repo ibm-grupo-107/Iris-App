@@ -30,7 +30,7 @@ const ListCity = ({localizaciones, setLocalizacion, localizacionesGuardadas}) =>
        
         )  
         setLocalizacion(ciudadesFiltradas);
-        localizacionesGuardadas.pop(ciudadesFiltradas);
+        localizacionesGuardadas.splice(ciudadesFiltradas);
         //console.log(ciudadesFiltradas);
         guardarLocalizacionesStorage(JSON.stringify(ciudadesFiltradas));
       }

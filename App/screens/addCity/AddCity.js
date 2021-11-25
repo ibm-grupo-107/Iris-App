@@ -58,7 +58,7 @@ const AddCity = ({localizaciones, setLocalizacion, localizacionesGuardadas}) => 
   //crear ciudad
   const crearCiudad = () => {
     
-        if(pais.trim() === '' || ciudad.trim() === '' && !seRepite()) {
+        if(pais.trim() === '' || ciudad.trim() === '' ) {
             mostrarAlerta2();
                 return;
             }
