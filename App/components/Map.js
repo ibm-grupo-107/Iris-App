@@ -1,5 +1,5 @@
 import React,{useState, useEffect} from 'react';
-import {StyleSheet, Dimensions} from 'react-native';
+import {StyleSheet, Alert} from 'react-native';
 import { StatusBar } from 'expo-status-bar';
 import MapView from "react-native-maps"
 

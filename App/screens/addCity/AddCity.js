@@ -80,7 +80,6 @@ const AddCity = ({localizaciones, setLocalizacion, localizacionesGuardadas}) => 
 
             localizacionesGuardadas.push(localizacionesNuevo)
         }
-        
        
         
     }
@@ -99,13 +98,7 @@ const AddCity = ({localizaciones, setLocalizacion, localizacionesGuardadas}) => 
         return seRepite
     } 
 
-    const mostrarAlerta = () => {
-        Alert.alert(
-            'Error',
-            'La ciudad no existe',
-            [{text: 'Entendido'}]
-        )
-    }
+    
 
 
     //muestra la alerta si la ciudad ya existe
@@ -245,7 +238,8 @@ const AddCity = ({localizaciones, setLocalizacion, localizacionesGuardadas}) => 
                             onPress={() => {mostrarMapa()}}
                             onPressIn={() => animacionEntrada()}
                             onPressOut={() => animacionSalida()}
-                            onPress={() => cerrarMapa() }
+                            onPress={() => crearCiudad() }
+                            onPress={() => {cerrarMapa()} }
                         >
                             <View style={styles.containerBuscar}>
                                 <Animated.View style={[styles.btnBuscar, estiloAnimacion]}>
