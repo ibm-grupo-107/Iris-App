@@ -238,13 +238,8 @@ const AddCity = ({localizaciones, setLocalizacion, localizacionesGuardadas}) => 
                             onPress={() => {mostrarMapa()}}
                             onPressIn={() => animacionEntrada()}
                             onPressOut={() => animacionSalida()}
-<<<<<<< HEAD
-                            onPress={()=> crearCiudad()}
-                            onPress={() => cerrarMapa() }
-=======
                             onPress={() => crearCiudad() }
                             onPress={() => {cerrarMapa()} }
->>>>>>> cf21b7bee43530559fd9e58fae31b0b3dd22d04d
                         >
                             <View style={styles.containerBuscar}>
                                 <Animated.View style={[styles.btnBuscar, estiloAnimacion]}>
