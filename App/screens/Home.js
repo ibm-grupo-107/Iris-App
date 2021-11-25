@@ -98,7 +98,7 @@ export default function Home(){
                 </TouchableWithoutFeedback>
         </View>
         <View style={styles.scrollItem}>
-            <Text style = {styles.text2 }>Paso 1:</Text>
+            <Text style = {styles.text2 }>Paso 3:</Text>
             <Text style = {styles.text3}>Consultar clima:</Text>
             <Image style={styles.img} source={require("../../assets/verClima.png")}/>
             <TouchableWithoutFeedback

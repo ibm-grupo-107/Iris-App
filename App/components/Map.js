@@ -72,7 +72,7 @@ const Map = ({ciudad, pais, region}) => {
     const mostrarAlerta = () => {
         Alert.alert(
             'Error',
-            'La ciudad no existe',
+            'Ciudad no encontrada',
             [{text: 'Entendido'}]
         )
     }
@@ -107,8 +107,15 @@ const Map = ({ciudad, pais, region}) => {
     //if(!resultadoLat && !!resultadoLong) return null
 
    
+    //Si no se pasan datos de ciudad no carga el loader
+    while(ciudad == "" || region == "" || ciudad == "") {
+        return <Loading isVisible={false}/>
+    }
+
     //Aparece el loader si no hay datos
     if(resultadoLat ==0 && resultadoLong == 0) return     <Loading isVisible={true} text={"Cargando Mapa..."}/>
+
+    
     
     
     return (

@@ -58,11 +58,11 @@ const AddCity = ({localizaciones, setLocalizacion, localizacionesGuardadas}) => 
   //crear ciudad
   const crearCiudad = () => {
     
-        if(pais.trim() === '' || ciudad.trim() === '' && !seRepite()) {
-            mostrarAlerta2();
+        if(pais.trim() === '' || ciudad.trim() === '' && region.trim() === "") {
+            mostrarAlerta();
                 return;
-            }
-    
+        }
+
     
 
         const localizacion = {ciudad, pais, region};
@@ -107,6 +107,18 @@ const AddCity = ({localizaciones, setLocalizacion, localizacionesGuardadas}) => 
         Alert.alert(
             'Error', 
             'La ciudad ya existe', 
+            [{
+                text: 'OK' 
+            }]
+        );
+        }
+
+    //muestra la alerta si la ciudad ya existe
+
+    const mostrarAlerta = () => { 
+        Alert.alert(
+            'Error', 
+            'Debe cargar todos los datos', 
             [{
                 text: 'OK' 
             }]
