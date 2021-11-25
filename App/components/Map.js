@@ -50,25 +50,34 @@ const Map = ({ciudad, pais, region}) => {
             //Api Martina:
             //const appId = '61666ed49345480b91961b57aa9b1e30'; 
             const appId = "be0d211016ca458197faa98f26cb1963";
+
             const url = `https://api.opencagedata.com/geocode/v1/json?q=${ciudad},${region},${pais}&key=${appId}`;
-           
-            /* const response = await fetch(`http://api.openweathermap.org/data/2.5/weather?q=${item.ciudad},${item.pais}&appid=${appId}`);
-	        const data = await response.json();
-	        console.log(data); */
+            
+            //consultar ala API del clima para validar que exista la ciudad antes de agregarla.
+            const appK = '319fa4c56018832ed2e37833430f4cca'; 
+            const response = await fetch(`http://api.openweathermap.org/data/2.5/weather?q=${ciudad},${pais}&appid=${appK}`);
+	        const result = await response.json();
+	        console.log(result);
+            
             
             try {
+                if(data.cod === "404"){
+                    mostrarAlerta2()
+                }
+                else {
                 const respuesta = await fetch(url);
                 const data = await respuesta.json();
                 const lat = data["results"][0].geometry.lat;
                 const long = data["results"][0].geometry.lng;
-                console.log(data);
+                //console.log(data);
                 guardarResultadoLat(lat);
                 guardarResultadoLong(long); 
+                }
 
             } catch (error) {
                mostrarAlerta();
             }
-          
+        
         }
         consultarCoord();
       });
@@ -78,6 +87,14 @@ const Map = ({ciudad, pais, region}) => {
         Alert.alert(
             'Error',
             'Ciudad no encontrada',
+            [{text: 'Entendido'}]
+        )
+        return <Loading isVisible={false}/>
+    }
+    const mostrarAlerta2 = () => {
+        Alert.alert(
+            'Error',
+            'Ciudad inexistente',
             [{text: 'Entendido'}]
         )
         return <Loading isVisible={false}/>
@@ -113,7 +130,7 @@ const Map = ({ciudad, pais, region}) => {
 
    
     //Si no se pasan datos de ciudad no carga el loader
-    while(ciudad == "" || region == "" || ciudad == "") {
+    while(ciudad == "" || region == "" || ciudad == "" || mostrarAlerta2()) {
         return <Loading isVisible={false}/>
     }
 
