@@ -3,6 +3,7 @@ import {StyleSheet, Dimensions} from 'react-native';
 import { StatusBar } from 'expo-status-bar';
 import MapView from "react-native-maps"
 
+import Loading from "../components/Loading"
 //const height = Dimensions.get("window").height;
 
 const Map = ({ciudad, pais, region}) => {
@@ -106,7 +107,13 @@ const Map = ({ciudad, pais, region}) => {
     //if(!resultadoLat && !!resultadoLong) return null
 
    
+    //Aparece el loader si no hay datos
+    if(resultadoLat ==0 && resultadoLong == 0) return     <Loading isVisible={true} text={"Cargando Mapa..."}/>
+    
+    
     return (
+        <>
+        <Loading isVisible={false} text={"Cargando Clima..."}/>
         <MapView
             style={styles.map}
             loadingEnabled={true}
@@ -126,6 +133,7 @@ const Map = ({ciudad, pais, region}) => {
                 description={"Description 1"} 
             />
         </MapView>
+        </>
     )
     
     
