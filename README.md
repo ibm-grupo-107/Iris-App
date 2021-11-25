@@ -89,7 +89,7 @@ Una vez que tenemos listo el QR y ya nos logueamos en la [app de expo](https://e
 
 ## Expresiones de Gratitud  🎁
 
-Queremos agradecer enormemente tanto a IBM como a Codo a Codo por permitirnos esta oportunidad de aprender haciendo y poder mostrar los resultados obtenidos, porque creemos que así es como se realmente se aprende, construyendo y compartiendo con personas que colaboren en tu crecimiento.
+Queremos agradecer enormemente a IBM, Argencon y a Codo a Codo por permitirnos esta oportunidad de aprender haciendo y poder mostrar los resultados obtenidos, porque creemos que así se aprende realmente, construyendo y compartiendo con personas que colaboren en tu crecimiento.
 
 ----------
 
