@@ -113,7 +113,7 @@ const Map = ({ciudad, pais, region}) => {
     
     return (
         <>
-        <Loading isVisible={false} text={"Cargando Clima..."}/>
+        <Loading isVisible={false} />
         <MapView
             style={styles.map}
             loadingEnabled={true}

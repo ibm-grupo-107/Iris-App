@@ -245,6 +245,7 @@ const AddCity = ({localizaciones, setLocalizacion, localizacionesGuardadas}) => 
                             onPress={() => {mostrarMapa()}}
                             onPressIn={() => animacionEntrada()}
                             onPressOut={() => animacionSalida()}
+                            onPress={()=> crearCiudad()}
                             onPress={() => cerrarMapa() }
                         >
                             <View style={styles.containerBuscar}>
