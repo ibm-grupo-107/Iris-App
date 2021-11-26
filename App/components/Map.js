@@ -15,6 +15,8 @@ const Map = ({ciudad, pais, region}) => {
 
     const [resultadoLat, guardarResultadoLat] = useState(0);
     const [resultadoLong, guardarResultadoLong] = useState(0); 
+    const [resultadoCity, guardarResultadoCity] = useState('');
+    const [resultadoTown, guardarResultadoTown] = useState('');
    
 
 
@@ -54,32 +56,38 @@ const Map = ({ciudad, pais, region}) => {
             const url = `https://api.opencagedata.com/geocode/v1/json?q=${ciudad},${region},${pais}&key=${appId}`;
             
             //consultar ala API del clima para validar que exista la ciudad antes de agregarla.
-            const appK = '319fa4c56018832ed2e37833430f4cca'; 
+           /*  const appK = '319fa4c56018832ed2e37833430f4cca'; 
             const response = await fetch(`http://api.openweathermap.org/data/2.5/weather?q=${ciudad},${pais}&appid=${appK}`);
-	        const result = await response.json();
-	        console.log(result);
+	        const result = await response.json(); */
+	        //console.log(result);
             
             
             try {
-                if(data.cod === "404"){
-                    mostrarAlerta2()
-                }
-                else {
                 const respuesta = await fetch(url);
                 const data = await respuesta.json();
+                const town = data["results"][0].components.village;
+                const city = data["results"][0].components.city;
                 const lat = data["results"][0].geometry.lat;
                 const long = data["results"][0].geometry.lng;
-                //console.log(data);
                 guardarResultadoLat(lat);
-                guardarResultadoLong(long); 
-                }
+                guardarResultadoLong(long);
+                guardarResultadoCity(city);
+                guardarResultadoTown(town);
+                console.log(city)
+                //console.log(data)
+                console.log(town)
+                
 
             } catch (error) {
                mostrarAlerta();
             }
+            
         
         }
         consultarCoord();
+        if (resultadoCity === undefined && resultadoTown === undefined) {
+            mostrarAlerta2();
+        } 
       });
 
 
@@ -130,7 +138,7 @@ const Map = ({ciudad, pais, region}) => {
 
    
     //Si no se pasan datos de ciudad no carga el loader
-    while(ciudad == "" || region == "" || ciudad == "" || mostrarAlerta2()) {
+    while(ciudad == "" || region == "" || ciudad == "") {
         return <Loading isVisible={false}/>
     }
 

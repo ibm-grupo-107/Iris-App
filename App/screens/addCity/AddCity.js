@@ -15,7 +15,7 @@ import Map from "../../components/Map"
 const AddCity = ({localizaciones, setLocalizacion, localizacionesGuardadas}) => {
 
   const navigation = useNavigation();
-
+  
   const [ciudad, guardarCiudad] = useState('');
   const [pais, guardarPais] = useState('');
   const [region, guardarRegion] = useState("");
