@@ -73,14 +73,24 @@ export default function Home(){
         <View style = {styles.container}>
             <Text style = {styles.text }> Iris App </Text>
             <Text>Instrucciones de uso:</Text>
+           
         <ScrollView
             style={styles.scroll}
             horizontal
+            
         >
+             
+        <View style={styles.scrollItem}>
+            <Text style = {styles.text2 }>INCIO:</Text>
+            <Text style = {styles.text3}> </Text> 
+            <Image style={styles.gif}  source={require("../../assets/inicio.gif")}/> 
+            <View style={styles.espacio}></View>
+        </View>
         <View style={styles.scrollItem}>
             <Text style = {styles.text2 }>Paso 1:</Text>
-            <Text style = {styles.text3}>Buscar Ciudad: </Text>   
+            <Text style = {styles.text3}>Buscar Ciudad: </Text>  
             <Image style={styles.img} source={require("../../assets/agregar.png")}/>
+        
             <TouchableWithoutFeedback
                  onPress={() => navigation.navigate('Agregar Ciudad') }
             >
@@ -161,11 +171,27 @@ const styles = StyleSheet.create({
     img:{
         marginTop:10,
     },
+    viewImg:{
+        flexDirection:"row"
+    },
+    gif:{
+        width:250,
+        height:250,
+    },
   
     btnBuscar: {
         marginHorizontal: '2.5%',
         marginTop: 25,
         backgroundColor: "#ff1493",
+        padding: 10,
+        justifyContent: 'center',
+        marginBottom:30,
+        width: "65%",
+        borderRadius: 20,
+    },
+    espacio:{
+        marginHorizontal: '2.5%',
+        marginTop: 25,
         padding: 10,
         justifyContent: 'center',
         marginBottom:30,

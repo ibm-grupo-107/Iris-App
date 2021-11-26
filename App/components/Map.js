@@ -12,6 +12,7 @@ const Map = ({ciudad, pais, region, cerrarMap}) => {
     const [resultadoCity, guardarResultadoCity] = useState('');
     const [resultadoTown, guardarResultadoTown] = useState('');
     const [resultadoLocation, guardarResultadoLocation] = useState('');
+    const [resultadoRoad, guardarResultadoRoad] = useState('');
 
     const [state, setState] = useState({});
    
@@ -25,21 +26,25 @@ const Map = ({ciudad, pais, region, cerrarMap}) => {
             //const appId = '61666ed49345480b91961b57aa9b1e30'; 
             const appId = "61666ed49345480b91961b57aa9b1e30";
 
-            const url = `https://api.opencagedata.com/geocode/v1/json?q=${ciudad},${region},${pais}&key=${appId}`;
+            const url = `https://api.opencagedata.com/geocode/v1/json?q=${ciudad},${region},${pais}&key=${appId}&limit=1`;
             
             
              try {
                 const respuesta = await fetch(url);
                 const data = await respuesta.json();
+               
                 const town = data["results"][0].components.village;
                 const city = data["results"][0].components.city;
                 const location = data["results"][0].components.town;
                 const lat = data["results"][0].geometry.lat;
+                const road =data["results"][0].components.road
+                //console.log(road, city, town, location)
                 const long = data["results"][0].geometry.lng;
                 guardarResultadoLat(lat);
                 guardarResultadoLong(long);
                 guardarResultadoCity(city);
                 guardarResultadoTown(town);
+                guardarResultadoRoad(road)
                 guardarResultadoLocation(location);
                 
 
@@ -52,15 +57,18 @@ const Map = ({ciudad, pais, region, cerrarMap}) => {
         consultarCoord();  
         consultarZona();      
     });
+    
 
+   
 
 
     const consultarZona = () => {
-        if (resultadoCity === undefined && resultadoTown === undefined && (resultadoLocation !== ciudad )) {
+        if (resultadoCity === "undefined" && resultadoTown === "undefined" && (resultadoLocation !== ciudad) ){
             mostrarAlerta2();
             cerrarMap();
             return;
         }
+
     }
 
     const mostrarAlerta = () => {
