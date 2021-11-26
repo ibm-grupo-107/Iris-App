@@ -73,13 +73,14 @@ const Map = ({ciudad, pais, region, cerrarMap}) => {
                 guardarResultadoLong(long);
                 guardarResultadoCity(city);
                 guardarResultadoTown(town);
-                console.log(city)
+                //console.log(city)
                 //console.log(data)
-                console.log(town)
+                //console.log(town)
                 
 
             } catch (error) {
                mostrarAlerta();
+               cerrarMap();
             }
         }     
         
@@ -90,7 +91,6 @@ const Map = ({ciudad, pais, region, cerrarMap}) => {
     const consultarClima = () => {
         if (resultadoCity === undefined && resultadoTown === undefined) {
             mostrarAlerta2();
-            cerrarMap();
             return;
         }
     }
@@ -101,6 +101,7 @@ const Map = ({ciudad, pais, region, cerrarMap}) => {
             'Ciudad no encontrada',
             [{text: 'Entendido'}]
         )
+        cerrarMap();
         return <Loading isVisible={false}/>
     }
     const mostrarAlerta2 = () => {
@@ -109,6 +110,7 @@ const Map = ({ciudad, pais, region, cerrarMap}) => {
             'Ciudad inexistente',
             [{text: 'Entendido'}]
         )
+        cerrarMap();
         return <Loading isVisible={false}/>
     }
 
