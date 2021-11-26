@@ -6,7 +6,7 @@ import MapView from "react-native-maps"
 import Loading from "../components/Loading"
 //const height = Dimensions.get("window").height;
 
-const Map = ({ciudad, pais, region}) => {  
+const Map = ({ciudad, pais, region, cerrarMapa}) => {  
 
     //En caso de que no llegue el dato, que no cargue.
    /*  if(!resultado)return null
@@ -15,6 +15,7 @@ const Map = ({ciudad, pais, region}) => {
 
     const [resultadoLat, guardarResultadoLat] = useState(0);
     const [resultadoLong, guardarResultadoLong] = useState(0); 
+    const [resultadoCiudad, guardarResultadoCiudad] = useState(""); 
    
 
 
@@ -49,14 +50,21 @@ const Map = ({ciudad, pais, region}) => {
             //const appId = be0d211016ca458197faa98f26cb1963
             //Api Martina:
             //const appId = '61666ed49345480b91961b57aa9b1e30'; 
-            const appId = "be0d211016ca458197faa98f26cb1963";
-            const url = `https://api.opencagedata.com/geocode/v1/json?q=${ciudad},${region},${pais}&key=${appId}`;
+           
+
+        
+           /*  const appId = "be0d211016ca458197faa98f26cb1963";
+            const url = `https://api.opencagedata.com/geocode/v1/json?q=${ciudad},${region},${pais}&key=${appId}`; */
+
+            
+            const appId2= "f4f962f79e5e479191d04451212611"
+            const url2=`http://api.weatherapi.com/v1/current.json?key=${appId2}&q=${ciudad},${region},${pais}`
            
             /* const response = await fetch(`http://api.openweathermap.org/data/2.5/weather?q=${item.ciudad},${item.pais}&appid=${appId}`);
 	        const data = await response.json();
 	        console.log(data); */
             
-            try {
+            /* try {
                 const respuesta = await fetch(url);
                 const data = await respuesta.json();
                 const lat = data["results"][0].geometry.lat;
@@ -67,10 +75,37 @@ const Map = ({ciudad, pais, region}) => {
 
             } catch (error) {
                mostrarAlerta();
+            } */
+
+            try {
+                const respuesta = await fetch(url2);
+                const data = await respuesta.json();
+                if(formatear(data.location.name) !== formatear(ciudad)) {
+                    mostrarAlerta()
+                    cerrarMapa;
+                }
+                else{
+                    const lat = data.location.lat;
+                    const long = data.location.lon;
+                    const ciudadActual = data.location.name;
+                    guardarResultadoCiudad(ciudadActual)
+                    guardarResultadoLat(lat);
+                    guardarResultadoLong(long); 
+                }
+                
+     
+
+            } catch (error) {
+               mostrarAlerta();
+               cerrarMapa;
+               
+              
             }
           
         }
+        
         consultarCoord();
+    
       });
 
 
@@ -83,7 +118,25 @@ const Map = ({ciudad, pais, region}) => {
         return <Loading isVisible={false}/>
     }
 
-   
+    
+    // quita Acentos
+
+    function eliminarTildes(texto) {
+        return texto
+               .normalize('NFD')
+               .replace(/([^n\u0300-\u036f]|n(?!\u0303(?![\u0300-\u036f])))[\u0300-\u036f]+/gi,"$1")
+               .normalize();
+    }
+
+    // formatear texto:
+    
+    function formatear(texto) {
+        return eliminarTildes(texto.trim()).toLowerCase();
+
+    }
+
+
+
    /*  let longYLat = 0;
     let latitud = 0;
     let longitud= 0;
@@ -111,6 +164,15 @@ const Map = ({ciudad, pais, region}) => {
     
     //if(!resultadoLat && !!resultadoLong) return null
 
+
+
+    //Si no encutro dato de ciudad:
+    console.log(resultadoCiudad)
+
+    if(formatear(resultadoCiudad) !== formatear((ciudad))){
+        cerrarMapa
+        return <Loading isVisible={false}/>
+    }
    
     //Si no se pasan datos de ciudad no carga el loader
     while(ciudad == "" || region == "" || ciudad == "") {

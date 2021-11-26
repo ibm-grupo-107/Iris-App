@@ -248,6 +248,7 @@ const AddCity = ({localizaciones, setLocalizacion, localizacionesGuardadas}) => 
                             ciudad = {ciudad}
                             pais ={pais}
                             region={region}
+                            cerrarMapa ={cerrarMapa()}
                             />
                         </View>
         

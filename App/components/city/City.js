@@ -28,17 +28,19 @@ const City = ({item, eliminarCiudad}) => {
     useEffect(() => {
         const consultarClima = async () => {
           if(consultar) {
-            const appId = '319fa4c56018832ed2e37833430f4cca'; 
-            const url = `http://api.openweathermap.org/data/2.5/weather?q=${item.ciudad},${item.pais}&appid=${appId}`;
+            //const appId = '319fa4c56018832ed2e37833430f4cca'; 
+            //const url = `http://api.openweathermap.org/data/2.5/weather?q=${item.ciudad},${item.pais}&appid=${appId}`;
            
             /* const response = await fetch(`http://api.openweathermap.org/data/2.5/weather?q=${item.ciudad},${item.pais}&appid=${appId}`);
 	        const data = await response.json();
 	        console.log(data); */
+
+            const appId2= "f4f962f79e5e479191d04451212611"
+            const url2=`http://api.weatherapi.com/v1/current.json?key=${appId2}&q=${item.ciudad},${item.region},${item.pais}`
             
             try {
-                const respuesta = await fetch(url);
+                const respuesta = await fetch(url2);
                 const data = await respuesta.json();
-                //console.log(data)
                 if(data.cod === "404"){
                     mostrarAlerta()
                 }else{

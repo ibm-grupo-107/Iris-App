@@ -8,10 +8,20 @@ import Loading from "../../components/Loading"
 const Details = ({resultado}) => {
     
     //Sólo carga si llegan los datos
-    if(!resultado)return null //<Loading isVisible={true} text={"Cargando Clima..."}/>;
-    const {name,main} = resultado;
-    if(!main) return null //<Loading isVisible={true} text={"Cargando Clima..."}/>
-    if(!name) return null //<Loading isVisible={true} text={"Cargando Clima..."}/>
+    if(!resultado){
+       null 
+       return <Loading isVisible={true} text={"Cargando Clima..."}/>
+    } 
+    //const {name,main} = resultado;
+
+    const{current, location} = resultado;
+    if(!current) {
+        null 
+        return <Loading isVisible={true} text={"Cargando Clima..."}/>
+
+    }
+  
+    //if(!name) return null //<Loading isVisible={true} text={"Cargando Clima..."}/>
 
     // grados kelvin
     const kelvin =273.15
@@ -19,7 +29,7 @@ const Details = ({resultado}) => {
     
     return (        
         <> 
-       {/*  <Loading isVisible={false} />  */}
+        <Loading isVisible={false} />  
             {/* <Header
                 placement="center"
                 backgroundColor= "lightsalmon"
@@ -30,15 +40,18 @@ const Details = ({resultado}) => {
           {/*  <Text>Desde detalles.js</Text> */}
             
             <View style ={styles.clima}>
-               <Text style ={styles.texto, styles.actual}> {parseInt (main.temp - kelvin)} 
+               {/* <Text style ={styles.texto, styles.actual}> {parseInt (main.temp - kelvin)}  */}
+               <Text style ={styles.texto, styles.actual}> {current.temp_c} 
                     <Text style= {styles.temperatura}>
                         &#x2103;
                     </Text>
                     <Image
                         style={{width: 66, height: 58}}
-                        source = {{ uri: `http://openweathermap.org/img/w/${resultado.weather[0].icon}.png`}}
+                        /* source = {{ uri: `http://openweathermap.org/img/w/${resultado.weather[0].icon}.png`}} */
+                        source = {{ uri: `https:${current.condition.icon}`}}
+                        
                     />
-                    <View style={styles.temperaturas}>
+                    {/* <View style={styles.temperaturas}>
                         <Text style={styles.texto}> Min { " "}
                             <Text style={styles.temperatura}>
                                 {parseInt(main.temp_min - kelvin)} &#x2103;
@@ -49,7 +62,17 @@ const Details = ({resultado}) => {
                                 {parseInt(main.temp_max - kelvin)} &#x2103;
                             </Text>
                         </Text>
-                    </View>
+                    </View> */}
+
+                    
+                    
+                    {/* <View style={styles.temperaturas}>
+                            <Text style={styles.temperatura}>
+                                {current.condition.text}
+                            </Text>
+                        
+                    </View> */}
+                    
                     
                </Text>
 
