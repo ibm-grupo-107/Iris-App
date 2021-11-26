@@ -94,7 +94,7 @@ Una vez que tenemos listo el QR y ya nos logueamos en la [app de expo](https://e
 
 -   **Martina Pereyra**  -  https://www.linkedin.com/in/martina-pereyra-714557212/
 -   **Priscila Mansilla**  -  https://www.linkedin.com/in/priscilamansilla
--   **Emilio Parodi**  -  link a linkedin
+-   **Emilio Parodi**  -  www.linkedin.com/in/emilio-parodi
 -  **Maria Lucia Futesti**  - https://www.linkedin.com/in/maria-lucia-futestti-98a459103
 
 

@@ -6,7 +6,7 @@ import MapView from "react-native-maps"
 import Loading from "../components/Loading"
 //const height = Dimensions.get("window").height;
 
-const Map = ({ciudad, pais, region}) => {  
+const Map = ({ciudad, pais, region, cerrarMap}) => {  
 
     //En caso de que no llegue el dato, que no cargue.
    /*  if(!resultado)return null
@@ -15,7 +15,12 @@ const Map = ({ciudad, pais, region}) => {
 
     const [resultadoLat, guardarResultadoLat] = useState(0);
     const [resultadoLong, guardarResultadoLong] = useState(0); 
+<<<<<<< HEAD
     const [resultadoCiudad, guardarResultadoCiudad] = useState(""); 
+=======
+    const [resultadoCity, guardarResultadoCity] = useState('');
+    const [resultadoTown, guardarResultadoTown] = useState('');
+>>>>>>> master
    
 
 
@@ -50,6 +55,7 @@ const Map = ({ciudad, pais, region}) => {
             //const appId = be0d211016ca458197faa98f26cb1963
             //Api Martina:
             //const appId = '61666ed49345480b91961b57aa9b1e30'; 
+<<<<<<< HEAD
            
 
         
@@ -63,18 +69,38 @@ const Map = ({ciudad, pais, region}) => {
             /* const response = await fetch(`http://api.openweathermap.org/data/2.5/weather?q=${item.ciudad},${item.pais}&appid=${appId}`);
 	        const data = await response.json();
 	        console.log(data); */
+=======
+            const appId = "be0d211016ca458197faa98f26cb1963";
+
+            const url = `https://api.opencagedata.com/geocode/v1/json?q=${ciudad},${region},${pais}&key=${appId}`;
+            
+            //consultar ala API del clima para validar que exista la ciudad antes de agregarla.
+           /*  const appK = '319fa4c56018832ed2e37833430f4cca'; 
+            const response = await fetch(`http://api.openweathermap.org/data/2.5/weather?q=${ciudad},${pais}&appid=${appK}`);
+	        const result = await response.json(); */
+	        //console.log(result);
+            
+>>>>>>> master
             
             /* try {
                 const respuesta = await fetch(url);
                 const data = await respuesta.json();
+                const town = data["results"][0].components.village;
+                const city = data["results"][0].components.city;
                 const lat = data["results"][0].geometry.lat;
                 const long = data["results"][0].geometry.lng;
-                console.log(data);
                 guardarResultadoLat(lat);
-                guardarResultadoLong(long); 
+                guardarResultadoLong(long);
+                guardarResultadoCity(city);
+                guardarResultadoTown(town);
+                //console.log(city)
+                //console.log(data)
+                //console.log(town)
+                
 
             } catch (error) {
                mostrarAlerta();
+<<<<<<< HEAD
             } */
 
             try {
@@ -98,14 +124,30 @@ const Map = ({ciudad, pais, region}) => {
                mostrarAlerta();
                
               
+=======
+               cerrarMap();
+>>>>>>> master
             }
-          
+        }     
+        
+        consultarCoord();  
+        consultarClima();      
+    });
+
+    const consultarClima = () => {
+        if (resultadoCity === undefined && resultadoTown === undefined) {
+            mostrarAlerta2();
+            return;
         }
+<<<<<<< HEAD
         
         consultarCoord();
     
       });
 
+=======
+    }
+>>>>>>> master
 
     const mostrarAlerta = () => {
         Alert.alert(
@@ -113,6 +155,16 @@ const Map = ({ciudad, pais, region}) => {
             'Ciudad no encontrada',
             [{text: 'Entendido'}]
         )
+        cerrarMap();
+        return <Loading isVisible={false}/>
+    }
+    const mostrarAlerta2 = () => {
+        Alert.alert(
+            'Error',
+            'Ciudad inexistente',
+            [{text: 'Entendido'}]
+        )
+        cerrarMap();
         return <Loading isVisible={false}/>
     }
 
