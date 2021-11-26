@@ -6,7 +6,7 @@ import MapView from "react-native-maps"
 import Loading from "../components/Loading"
 //const height = Dimensions.get("window").height;
 
-const Map = ({ciudad, pais, region}) => {  
+const Map = ({ciudad, pais, region, cerrarMap}) => {  
 
     //En caso de que no llegue el dato, que no cargue.
    /*  if(!resultado)return null
@@ -81,15 +81,19 @@ const Map = ({ciudad, pais, region}) => {
             } catch (error) {
                mostrarAlerta();
             }
-            
+        }     
         
-        }
-        consultarCoord();
+        consultarCoord();  
+        consultarClima();      
+    });
+
+    const consultarClima = () => {
         if (resultadoCity === undefined && resultadoTown === undefined) {
             mostrarAlerta2();
-        } 
-      });
-
+            cerrarMap();
+            return;
+        }
+    }
 
     const mostrarAlerta = () => {
         Alert.alert(

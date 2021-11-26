@@ -15,6 +15,8 @@ import Map from "../../components/Map"
 const AddCity = ({localizaciones, setLocalizacion, localizacionesGuardadas}) => {
 
   const navigation = useNavigation();
+
+  
   
   const [ciudad, guardarCiudad] = useState('');
   const [pais, guardarPais] = useState('');
@@ -149,6 +151,10 @@ const AddCity = ({localizaciones, setLocalizacion, localizacionesGuardadas}) => 
         //consultarClima()
     }
 
+    const cerrarMap = () =>{
+        guardarMostrar(!mostrar);
+    }
+
       
 
   //animaciones boton
@@ -245,6 +251,7 @@ const AddCity = ({localizaciones, setLocalizacion, localizacionesGuardadas}) => 
                         />
                         <View style={styles.mapa}>
                             <Map
+                            cerrarMap={cerrarMap}
                             ciudad = {ciudad}
                             pais ={pais}
                             region={region}
