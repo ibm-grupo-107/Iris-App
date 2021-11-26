@@ -15,18 +15,12 @@ import Map from "../../components/Map"
 const AddCity = ({localizaciones, setLocalizacion, localizacionesGuardadas}) => {
 
   const navigation = useNavigation();
-
-  
-  
   const [ciudad, guardarCiudad] = useState('');
   const [pais, guardarPais] = useState('');
   const [region, guardarRegion] = useState("");
 
-
-
   // Desplegable mapa
   const[mostrar, guardarMostrar]= useState(false)
-
 
   //Guardar las localizaciones en storage
     
@@ -80,7 +74,6 @@ const AddCity = ({localizaciones, setLocalizacion, localizacionesGuardadas}) => 
 
             localizacionesGuardadas.push(localizacionesNuevo)
         }
-       
         
     }
     //Si se repite la ciudad:
@@ -107,9 +100,6 @@ const AddCity = ({localizaciones, setLocalizacion, localizacionesGuardadas}) => 
                .replace(/([^n\u0300-\u036f]|n(?!\u0303(?![\u0300-\u036f])))[\u0300-\u036f]+/gi,"$1")
                .normalize();
     }
-
-
-
 
     
     //muestra la alerta si la ciudad ya existe
@@ -153,9 +143,7 @@ const AddCity = ({localizaciones, setLocalizacion, localizacionesGuardadas}) => 
 
     const cerrarMap = () =>{
         guardarMostrar(!mostrar);
-    }
-
-      
+    } 
 
   //animaciones boton
   const [animacionboton] = useState(new Animated.Value(1));
@@ -228,7 +216,6 @@ const AddCity = ({localizaciones, setLocalizacion, localizacionesGuardadas}) => 
                             <Picker.Item label="Mendoza" value="Mendoza" />
                             <Picker.Item label="Misiones" value="Misiones" />
                             <Picker.Item label="Neuquén" value="Neuquén" />
-                            <Picker.Item label="Partido de la costa" value="Partido de la costa" />
                             <Picker.Item label="Río Negro" value="Río Negro" />
                             <Picker.Item label="Salta" value="Salta" />
                             <Picker.Item label="San Juan" value="San Juan" />
@@ -321,7 +308,6 @@ const AddCity = ({localizaciones, setLocalizacion, localizacionesGuardadas}) => 
                             <Picker.Item label="Mendoza" value="Mendoza" />
                             <Picker.Item label="Misiones" value="Misiones" />
                             <Picker.Item label="Neuquén" value="Neuquén" />
-                            <Picker.Item label="Partido de la costa" value="Partido de la costa" />
                             <Picker.Item label="Río Negro" value="Río Negro" />
                             <Picker.Item label="Salta" value="Salta" />
                             <Picker.Item label="San Juan" value="San Juan" />
@@ -342,19 +328,11 @@ const AddCity = ({localizaciones, setLocalizacion, localizacionesGuardadas}) => 
                             placeholder="Ciudad"
                             placeholderTextColor="#666"
                         />
-                        {/* <View style={styles.mapa}>
-                            <Map
-                            ciudad = {ciudad}
-                            pais ={pais}
-                            region={region}
-                            />
-                        </View> */}
         
                         <TouchableWithoutFeedback
                             onPress={() => {mostrarMapa()}}
                             onPressIn={() => animacionEntrada()}
                             onPressOut={() => animacionSalida()}
-                            //onPress={() => crearCiudad() }
                         >
                             <View style={styles.containerBuscar}>
                                 <Animated.View style={[styles.btnBuscar, estiloAnimacion]}>

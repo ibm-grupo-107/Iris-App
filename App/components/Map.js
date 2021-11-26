@@ -1,52 +1,20 @@
 import React,{useState, useEffect} from 'react';
 import {StyleSheet, Alert} from 'react-native';
-import { StatusBar } from 'expo-status-bar';
 import MapView from "react-native-maps"
 
 import Loading from "../components/Loading"
-//const height = Dimensions.get("window").height;
 
 const Map = ({ciudad, pais, region, cerrarMap}) => {  
 
-    //En caso de que no llegue el dato, que no cargue.
-   /*  if(!resultado)return null
-    const {coord} = resultado;
-    if(!coord) return null */
 
     const [resultadoLat, guardarResultadoLat] = useState(0);
     const [resultadoLong, guardarResultadoLong] = useState(0); 
-<<<<<<< HEAD
-    const [resultadoCiudad, guardarResultadoCiudad] = useState(""); 
-=======
     const [resultadoCity, guardarResultadoCity] = useState('');
     const [resultadoTown, guardarResultadoTown] = useState('');
->>>>>>> master
+    const [resultadoLocation, guardarResultadoLocation] = useState('');
+
+    const [state, setState] = useState({});
    
-
-
-   /*  useEffect(() => {
-        const consultarCoord =  () => {
-                 const opencage = require('opencage-api-client'); 
-                 opencage
-                .geocode({ q: "Mar del Plata, Argentina", key: '61666ed49345480b91961b57aa9b1e30' }) 
-             
-                .then((data) => {
-                    const lat = data["results"][0].geometry.lat;
-                    const long = data["results"][0].geometry.lng;
-                    guardarResultadoLat(lat);
-                    guardarResultadoLong(long);
-            })
-            .catch((error) => {
-                console.log('Error caught:', error.message);
-            });
-            
-            }
-         
-        consultarCoord();
-      },);  */
-
-      
-      //Api de Open Cage-- Obtiene lat y long, según ciudad, región y pais
       useEffect(() => {
         const consultarCoord = async () => {
             // api Lucía:
@@ -55,99 +23,45 @@ const Map = ({ciudad, pais, region, cerrarMap}) => {
             //const appId = be0d211016ca458197faa98f26cb1963
             //Api Martina:
             //const appId = '61666ed49345480b91961b57aa9b1e30'; 
-<<<<<<< HEAD
-           
-
-        
-           /*  const appId = "be0d211016ca458197faa98f26cb1963";
-            const url = `https://api.opencagedata.com/geocode/v1/json?q=${ciudad},${region},${pais}&key=${appId}`; */
-
-            
-            const appId2= "f4f962f79e5e479191d04451212611"
-            const url2=`http://api.weatherapi.com/v1/current.json?key=${appId2}&q=${ciudad},${region},${pais}`
-           
-            /* const response = await fetch(`http://api.openweathermap.org/data/2.5/weather?q=${item.ciudad},${item.pais}&appid=${appId}`);
-	        const data = await response.json();
-	        console.log(data); */
-=======
-            const appId = "be0d211016ca458197faa98f26cb1963";
+            const appId = "61666ed49345480b91961b57aa9b1e30";
 
             const url = `https://api.opencagedata.com/geocode/v1/json?q=${ciudad},${region},${pais}&key=${appId}`;
             
-            //consultar ala API del clima para validar que exista la ciudad antes de agregarla.
-           /*  const appK = '319fa4c56018832ed2e37833430f4cca'; 
-            const response = await fetch(`http://api.openweathermap.org/data/2.5/weather?q=${ciudad},${pais}&appid=${appK}`);
-	        const result = await response.json(); */
-	        //console.log(result);
             
->>>>>>> master
-            
-            /* try {
+             try {
                 const respuesta = await fetch(url);
                 const data = await respuesta.json();
                 const town = data["results"][0].components.village;
                 const city = data["results"][0].components.city;
+                const location = data["results"][0].components.town;
                 const lat = data["results"][0].geometry.lat;
                 const long = data["results"][0].geometry.lng;
                 guardarResultadoLat(lat);
                 guardarResultadoLong(long);
                 guardarResultadoCity(city);
                 guardarResultadoTown(town);
-                //console.log(city)
-                //console.log(data)
-                //console.log(town)
+                guardarResultadoLocation(location);
                 
 
             } catch (error) {
                mostrarAlerta();
-<<<<<<< HEAD
-            } */
-
-            try {
-                const respuesta = await fetch(url2);
-                const data = await respuesta.json();
-                if(formatear(data.location.name) !== formatear(ciudad)) {
-                    mostrarAlerta()
-                }
-                else{
-                    const lat = data.location.lat;
-                    const long = data.location.lon;
-                    const ciudadActual = data.location.name;
-                    guardarResultadoCiudad(ciudadActual)
-                    guardarResultadoLat(lat);
-                    guardarResultadoLong(long); 
-                }
-                
-     
-
-            } catch (error) {
-               mostrarAlerta();
-               
-              
-=======
                cerrarMap();
->>>>>>> master
             }
         }     
         
         consultarCoord();  
-        consultarClima();      
+        consultarZona();      
     });
 
-    const consultarClima = () => {
-        if (resultadoCity === undefined && resultadoTown === undefined) {
+
+
+    const consultarZona = () => {
+        if (resultadoCity === undefined && resultadoTown === undefined && (resultadoLocation !== ciudad )) {
             mostrarAlerta2();
+            cerrarMap();
             return;
         }
-<<<<<<< HEAD
-        
-        consultarCoord();
-    
-      });
-
-=======
     }
->>>>>>> master
 
     const mostrarAlerta = () => {
         Alert.alert(
@@ -168,71 +82,22 @@ const Map = ({ciudad, pais, region, cerrarMap}) => {
         return <Loading isVisible={false}/>
     }
 
-    
-    // quita Acentos
-
-    function eliminarTildes(texto) {
-        return texto
-               .normalize('NFD')
-               .replace(/([^n\u0300-\u036f]|n(?!\u0303(?![\u0300-\u036f])))[\u0300-\u036f]+/gi,"$1")
-               .normalize();
-    }
-
-    // formatear texto:
-    
-    function formatear(texto) {
-        return eliminarTildes(texto.trim()).toLowerCase();
-
-    }
+    useEffect(() => {
+        consultarZona()
+        return () => {
+          setState({}); // This worked for me
+        };
+    }, []);
 
 
-
-   /*  let longYLat = 0;
-    let latitud = 0;
-    let longitud= 0;
-    
-    const opencage = require('opencage-api-client'); 
-    opencage
-     .geocode({ q: "Buenos Aires, Argentina", key: '61666ed49345480b91961b57aa9b1e30' })
-    .then((data) => {
-        //console.log(JSON.stringify(data["results"][0].geometry.lat));
-        longYLat = data;
-        longitud = longYLat["results"][0].geometry.lng;
-        console.log(longitud);
-        latitud = longYLat["results"][0].geometry.lat;
-  
-    })
-  .catch((error) => {
-    console.log('Error caught:', error.message);
-    }); 
- */
-    //(guardarResultadoLat != null && guardarResultadoLong != null)
-
-        //resultadoLat = 125457;         
-        //resultadoLong = 87282;
-    
-    
-    //if(!resultadoLat && !!resultadoLong) return null
-
-
-
-    //Si no encutro dato de ciudad:
-    console.log(resultadoCiudad)
-
-    if(resultadoCiudad !== ciudad){
-        return <Loading isVisible={false}/>
-    }
-   
     //Si no se pasan datos de ciudad no carga el loader
     while(ciudad == "" || region == "" || ciudad == "") {
         return <Loading isVisible={false}/>
     }
 
     //Aparece el loader si no hay datos
-    while(resultadoLat ==0 && resultadoLong == 0) return     <Loading isVisible={true} text={"Cargando Mapa..."}/>
+    while(resultadoLat ==0 && resultadoLong == 0) return <Loading isVisible={true} text={"Cargando Mapa..."}/>
 
-    
-    
     
     return (
         <>

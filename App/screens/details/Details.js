@@ -30,55 +30,19 @@ const Details = ({resultado}) => {
     return (        
         <> 
         <Loading isVisible={false} />  
-            {/* <Header
-                placement="center"
-                backgroundColor= "lightsalmon"
-                centerComponent={{ text: 'Ciudad Actual', style: { color: '#fff', fontSize:20 } }}
-                /> */}
-            <StatusBar style="dark" backgroundColor= "#FFF" />
-         
-          {/*  <Text>Desde detalles.js</Text> */}
-            
-            <View style ={styles.clima}>
-               {/* <Text style ={styles.texto, styles.actual}> {parseInt (main.temp - kelvin)}  */}
-               <Text style ={styles.texto, styles.actual}> {current.temp_c} 
-                    <Text style= {styles.temperatura}>
-                        &#x2103;
-                    </Text>
-                    <Image
-                        style={{width: 66, height: 58}}
-                        /* source = {{ uri: `http://openweathermap.org/img/w/${resultado.weather[0].icon}.png`}} */
-                        source = {{ uri: `https:${current.condition.icon}`}}
-                        
-                    />
-                    {/* <View style={styles.temperaturas}>
-                        <Text style={styles.texto}> Min { " "}
-                            <Text style={styles.temperatura}>
-                                {parseInt(main.temp_min - kelvin)} &#x2103;
-                            </Text>
-                        </Text>
-                        <Text style={styles.texto}> Max {" "}
-                            <Text style={styles.temperatura}>
-                                {parseInt(main.temp_max - kelvin)} &#x2103;
-                            </Text>
-                        </Text>
-                    </View> */}
+        <StatusBar style="dark" backgroundColor= "#FFF" />
+        <View style ={styles.clima}>
+            <Text style ={styles.texto, styles.actual}> {current.temp_c} 
+                <Text style= {styles.temperatura}>
+                    &#x2103;
+                </Text>
+                <Image
+                    style={{width: 66, height: 58}}
+                    source = {{ uri: `https:${current.condition.icon}`}}
+                />    
+            </Text>
 
-                    
-                    
-                    {/* <View style={styles.temperaturas}>
-                            <Text style={styles.temperatura}>
-                                {current.condition.text}
-                            </Text>
-                        
-                    </View> */}
-                    
-                    
-               </Text>
-
-            </View> 
-
-           
+        </View> 
        </>
     );
 };
@@ -106,11 +70,6 @@ const styles = StyleSheet.create({
     temperatura: {
         fontSize: 15,
         fontWeight: 'normal',
-    },
-    temperaturas: {
-        marginTop: 20,
-        //flexDirection: "row"
-        justifyContent: 'center',
     },
     titulo: {
         textAlign: 'center',
