@@ -6,7 +6,7 @@ import MapView from "react-native-maps"
 import Loading from "../components/Loading"
 //const height = Dimensions.get("window").height;
 
-const Map = ({ciudad, pais, region, cerrarMapa}) => {  
+const Map = ({ciudad, pais, region}) => {  
 
     //En caso de que no llegue el dato, que no cargue.
    /*  if(!resultado)return null
@@ -82,7 +82,6 @@ const Map = ({ciudad, pais, region, cerrarMapa}) => {
                 const data = await respuesta.json();
                 if(formatear(data.location.name) !== formatear(ciudad)) {
                     mostrarAlerta()
-                    cerrarMapa;
                 }
                 else{
                     const lat = data.location.lat;
@@ -97,7 +96,6 @@ const Map = ({ciudad, pais, region, cerrarMapa}) => {
 
             } catch (error) {
                mostrarAlerta();
-               cerrarMapa;
                
               
             }
@@ -169,8 +167,7 @@ const Map = ({ciudad, pais, region, cerrarMapa}) => {
     //Si no encutro dato de ciudad:
     console.log(resultadoCiudad)
 
-    if(formatear(resultadoCiudad) !== formatear((ciudad))){
-        cerrarMapa
+    if(resultadoCiudad !== ciudad){
         return <Loading isVisible={false}/>
     }
    
