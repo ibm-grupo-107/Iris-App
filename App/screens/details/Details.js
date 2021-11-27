@@ -12,7 +12,6 @@ const Details = ({resultado}) => {
        null 
        return <Loading isVisible={true} text={"Cargando Clima..."}/>
     } 
-    //const {name,main} = resultado;
 
     const{current, location} = resultado;
     if(!current) {
@@ -21,7 +20,6 @@ const Details = ({resultado}) => {
 
     }
   
-    //if(!name) return null //<Loading isVisible={true} text={"Cargando Clima..."}/>
 
     // grados kelvin
     const kelvin =273.15

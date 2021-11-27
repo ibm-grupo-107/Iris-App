@@ -20,7 +20,7 @@ const ListCity = ({localizaciones, setLocalizacion, localizacionesGuardadas}) =>
           console.log(error);
         }
     }
-    //console.log(localizaciones)
+
     if(!localizaciones)return null
 
       //funcion para eliminar las ciudades
@@ -31,7 +31,6 @@ const ListCity = ({localizaciones, setLocalizacion, localizacionesGuardadas}) =>
         )  
         setLocalizacion(ciudadesFiltradas);
         localizacionesGuardadas.splice(ciudadesFiltradas);
-        //console.log(ciudadesFiltradas);
         guardarLocalizacionesStorage(JSON.stringify(ciudadesFiltradas));
       }
 

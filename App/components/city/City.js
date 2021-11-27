@@ -30,14 +30,7 @@ const City = ({item, eliminarCiudad}) => {
         const consultarClima = async () => {
           if(consultar) {
            
-            //const appId = '319fa4c56018832ed2e37833430f4cca'; 
-            //const url = `http://api.openweathermap.org/data/2.5/weather?q=${item.ciudad},${item.pais}&appid=${appId}`;
-           
-            /* const response = await fetch(`http://api.openweathermap.org/data/2.5/weather?q=${item.ciudad},${item.pais}&appid=${appId}`);
-	        const data = await response.json();
-	        console.log(data); */
-
-            const appId2= "f4f962f79e5e479191d04451212611"
+            //const appId2= "Your apiKey from OpenWeather"
             const url2=`http://api.weatherapi.com/v1/current.json?key=${appId2}&q=${item.ciudad},${item.region},${item.pais}`
             
             try {

@@ -40,7 +40,7 @@ const MainTabScreen = () =>{
               tabBarColor: "coral",
               tabBarIcon: ({ color }) => (
                 <Ionicons name="md-home-sharp" size={26} color={color}/>
-               // <MaterialCommunityIcons name="home" color={color} size={26} />
+
               ),
             }}
           />
@@ -51,7 +51,7 @@ const MainTabScreen = () =>{
                   tabBarColor: "skyblue",
                   tabBarIcon: ({ color }) => (
                     <Ionicons name="md-heart" size={26} color={color} />
-                    //<MaterialCommunityIcons name="cards-heart" color={color} size={26} />
+  
                   ),
                 }}
                 >
@@ -64,24 +64,12 @@ const MainTabScreen = () =>{
                   tabBarColor: "mediumaquamarine",
                   tabBarIcon: ({ color }) => (
                     <Ionicons name="md-location-sharp" size={26} color={color} />
-                    //<MaterialCommunityIcons name="map-marker-plus" color={color} size={26} />
+     
                   ),
                 }}
                 >
                 {(props) => <AddCity localizaciones={localizaciones} setLocalizacion={setLocalizacion} localizacionesGuardadas={localizacionesGuardadas}/>}
           </Tab.Screen>
-
-          {/* <Tab.Screen name="Details"
-                options={{
-                  tabBarLabel: 'Clima',
-                  tabBarColor: "lightsalmon",
-                  tabBarIcon: ({ color }) => (
-                    <MaterialCommunityIcons name="weather-cloudy" size={26} color={color} />
-                  ),
-                }}
-                >
-                {(props) => <Details/>}
-          </Tab.Screen> */}
            <Tab.Screen
             name="About"
             component={About}
@@ -90,7 +78,7 @@ const MainTabScreen = () =>{
               tabBarColor: "plum",
               tabBarIcon: ({ color }) => (
                 <Ionicons name="md-people" size={26} color={color} />
-                //<MaterialCommunityIcons name="cog" color={color} size={26} />
+
               ),
             }}
           />
