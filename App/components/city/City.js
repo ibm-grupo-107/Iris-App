@@ -38,7 +38,7 @@ const City = ({item, eliminarCiudad}) => {
 	        console.log(data); */
 
             const appId2= "f4f962f79e5e479191d04451212611"
-            const url2=`http://api.weatherapi.com/v1/current.json?key=${appId2}&q=${item.ciudad},${item.region},${item.pais}`
+            const url2=`http://api.weatherapi.com/v1/current.json?key=${appId2}&q=${item.ciudad},${item.pais}`
             
             try {
                 const respuesta = await fetch(url2);
@@ -60,7 +60,7 @@ const City = ({item, eliminarCiudad}) => {
     //console.log(resultado)
 
     const consultarClima = () => {
-        if(item.ciudad.trim() === '' || item.pais.trim() === '' || item.region.trim() === "" ) {
+        if(item.ciudad.trim() === '' || item.pais.trim() === ''  ) {
             mostrarAlerta();
             return;
         }
@@ -101,11 +101,6 @@ const City = ({item, eliminarCiudad}) => {
                                 </View>
                                 <View>
                                     <Text 
-                                    style={styles.label}>Provincia: </Text>
-                                    <Text style={styles.texto}>{item.region}</Text>
-                                </View>
-                                <View>
-                                    <Text 
                                     style={styles.label}>Pais: </Text>
                                     <Text style={styles.texto}>{item.pais}</Text>
                                 </View>
@@ -141,11 +136,6 @@ const City = ({item, eliminarCiudad}) => {
                                     <Text
                                     style={styles.label}>Ciudad: </Text>
                                     <Text style={styles.texto}>{capitalizar(item.ciudad)}</Text>
-                                </View>
-                                <View>
-                                    <Text 
-                                    style={styles.label}>Provincia: </Text>
-                                    <Text style={styles.texto}>{item.region}</Text>
                                 </View>
                                 <View>
                                     <Text 

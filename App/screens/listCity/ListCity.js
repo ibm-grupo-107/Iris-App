@@ -24,9 +24,9 @@ const ListCity = ({localizaciones, setLocalizacion, localizacionesGuardadas}) =>
     if(!localizaciones)return null
 
       //funcion para eliminar las ciudades
-      const eliminarCiudad = (ciudad, region) => {
+      const eliminarCiudad = (ciudad) => {
         const ciudadesFiltradas = localizaciones.filter(localizacion => 
-            (localizacion.ciudad !== ciudad && localizacion.region !== region)
+            (localizacion.ciudad !== ciudad )
        
         )  
         setLocalizacion(ciudadesFiltradas);

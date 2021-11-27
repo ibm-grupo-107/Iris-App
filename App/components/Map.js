@@ -5,7 +5,7 @@ import MapView from "react-native-maps"
 
 import Loading from "../components/Loading"
 
-const Map = ({ciudad, pais, region, cerrarMap}) => {  
+const Map = ({ciudad, pais, cerrarMap}) => {  
 
 
     const [resultadoLat, guardarResultadoLat] = useState(0);
@@ -29,7 +29,7 @@ const Map = ({ciudad, pais, region, cerrarMap}) => {
             //const appId = "788f2f37b1a647b4a7525453d4f6aeb7"
             const appId = "ee003e9a0d334667a3b7815661343e02";
 
-            const url = `https://api.opencagedata.com/geocode/v1/json?q=${ciudad},${region}&key=${appId}&bounds=-73.82813,-55.77657,-53.52539,-21.86150&countrycode=${pais}&limit=1&no_dedupe=1`;
+            const url = `https://api.opencagedata.com/geocode/v1/json?q=${ciudad},&key=${appId}&bounds=-73.82813,-55.77657,-53.52539,-21.86150&countrycode=${pais}&limit=1&no_dedupe=1`;
             
             
              try {
@@ -57,20 +57,20 @@ const Map = ({ciudad, pais, region, cerrarMap}) => {
         }     
         
         consultarCoord();  
-        consultarClima();      
+        //consultarClima();      
     });
 
 
     console.log(resultadoLocation, resultadoCity,resultadoSuburb)
-    console.log(ciudad, region)
+    console.log(ciudad)
 
-    const consultarClima = () => {
-        if (resultadoCity === "undefined" || resultadoTown === "undefined"  || resultadoSuburb === "undefinded" || (resultadoLocation !== ciudad && resultadoLocation == region || resultadoLocation ==="undefinded") ){
+  /*   const consultarClima = () => {
+        if (resultadoCity === "undefined" || resultadoTown === "undefined"  || resultadoSuburb === "undefinded" || resultadoLocation !== ciudad  || resultadoLocation ==="undefinded") {
             mostrarAlerta2();
             cerrarMap();
             return;
         }
-    }
+    } */
 
     const mostrarAlerta = () => {
         Alert.alert(
@@ -91,16 +91,16 @@ const Map = ({ciudad, pais, region, cerrarMap}) => {
         return <Loading isVisible={false}/>
     }
 
-    useEffect(() => {
+ /*     useEffect(() => {
         consultarClima()
         return () => {
           setState({}); // This worked for me
         };
-    }, []);
+    }, []);  */
 
 
     //Si no se pasan datos de ciudad no carga el loader
-    while(ciudad == "" || region == "" || ciudad == "") {
+    while(ciudad == "" ) {
         return <Loading isVisible={false}/>
     }
 
