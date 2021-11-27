@@ -64,14 +64,15 @@ const Welcome = () => {
          return ( 
             <Animated.View  style={ styles.container, {opacity: animacion1 }}>
                <Animated.Text style={{fontFamily:'Reey-Regular', fontSize: 70, textAlign: 'center', marginTop: 100}} >IRIS</Animated.Text>
-                
+                <View style= {styles.imageContainer}>
                 <Animated.Image 
                     style={[
                         styles.circulo,
                         estiloAnimacion
                     ]}
                     source={require('../../assets/arco-iriss.png')}
-                />            
+                />
+                </View>
                 <Animated.Text style={ styles.text2} >Lleva el clima{"\n"}  con vos...!!!</Animated.Text>
                                  
              </Animated.View >
@@ -103,13 +104,17 @@ const styles = StyleSheet.create({
     },
     circulo:{
         // marginVertical: 50,
-        marginLeft:80,
+        //marginLeft:80,
         marginTop:90, 
         borderRadius: 100,
         width: 200,
         height: 200,
       
     },
+    imageContainer:{
+        justifyContent: 'center',
+        alignItems: 'center',
+    }
 })
  
 export default Welcome;

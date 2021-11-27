@@ -1,3 +1,4 @@
+import { identifier } from '@babel/types';
 import React,{useState, useEffect} from 'react';
 import {StyleSheet, Alert} from 'react-native';
 import MapView from "react-native-maps"
@@ -12,6 +13,7 @@ const Map = ({ciudad, pais, region, cerrarMap}) => {
     const [resultadoCity, guardarResultadoCity] = useState('');
     const [resultadoTown, guardarResultadoTown] = useState('');
     const [resultadoLocation, guardarResultadoLocation] = useState('');
+    const [resultadoSuburb, guardarResultadoSuburb] = useState('');
 
     const [state, setState] = useState({});
    
@@ -23,24 +25,27 @@ const Map = ({ciudad, pais, region, cerrarMap}) => {
             //const appId = be0d211016ca458197faa98f26cb1963
             //Api Martina:
             //const appId = '61666ed49345480b91961b57aa9b1e30'; 
-            const appId = "61666ed49345480b91961b57aa9b1e30";
+            const appId = "be0d211016ca458197faa98f26cb1963";
 
-            const url = `https://api.opencagedata.com/geocode/v1/json?q=${ciudad},${region},${pais}&key=${appId}`;
+            const url = `https://api.opencagedata.com/geocode/v1/json?q=${ciudad},${region}&key=${appId}&bounds=-73.82813,-55.77657,-53.52539,-21.86150&countrycode=${pais}&limit=1&no_dedupe=1`;
             
             
              try {
                 const respuesta = await fetch(url);
                 const data = await respuesta.json();
+                //console.log(data)
                 const town = data["results"][0].components.village;
                 const city = data["results"][0].components.city;
                 const location = data["results"][0].components.town;
                 const lat = data["results"][0].geometry.lat;
                 const long = data["results"][0].geometry.lng;
+                const suburb = data["results"][0].components.suburb;
                 guardarResultadoLat(lat);
                 guardarResultadoLong(long);
                 guardarResultadoCity(city);
                 guardarResultadoTown(town);
                 guardarResultadoLocation(location);
+                guardarResultadoSuburb(suburb)
                 
 
             } catch (error) {
@@ -50,13 +55,15 @@ const Map = ({ciudad, pais, region, cerrarMap}) => {
         }     
         
         consultarCoord();  
-        consultarZona();      
+        consultarClima();      
     });
 
 
+    console.log(resultadoLocation, resultadoCity,resultadoSuburb)
+    console.log(ciudad, region)
 
-    const consultarZona = () => {
-        if (resultadoCity === "undefined" && resultadoTown === "undefined" && (resultadoLocation !== ciudad )) {
+    const consultarClima = () => {
+        if (resultadoCity === "undefined" || resultadoTown === "undefined"  || resultadoSuburb== "undefinded" || (resultadoLocation !== ciudad && resultadoLocation == region) ){
             mostrarAlerta2();
             cerrarMap();
             return;
@@ -83,7 +90,7 @@ const Map = ({ciudad, pais, region, cerrarMap}) => {
     }
 
     useEffect(() => {
-        consultarZona()
+        consultarClima()
         return () => {
           setState({}); // This worked for me
         };
