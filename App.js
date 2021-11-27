@@ -8,8 +8,8 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import MainTabScreen from "./App/navigation/MainTabScreen";
 import { createStackNavigator } from '@react-navigation/stack';
 
-import Welcome from "./App/screens/Welcome"
-import OnBoardingScreen from "./App/screens/OnBoardingScreen";
+import Welcome from './App/screens/Welcome';
+import OnBoardingScreen from './App/screens/OnBoardingScreen';
 
 const AppStack= createStackNavigator();
 

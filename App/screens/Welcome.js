@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { StyleSheet, Animated, Image, View, Text, Dimensions} from 'react-native';
 import AppLoading from 'expo-app-loading';
 import { useFonts } from 'expo-font';
@@ -61,10 +61,10 @@ const Welcome = () => {
         return <AppLoading />;
       } else {
          return ( 
-            <Animated.View  style={ styles.container, {opacity: animacion1 }}>
+            <Animated.View  style={ styles.container, {opacity: animacion1 }}>
                <Animated.Text style={{fontFamily:'Reey-Regular', fontSize: 70, textAlign: 'center', marginTop: 100}} >IRIS</Animated.Text>
                 
-                <Animated.Image 
+                <Animated.Image 
                     style={[
                         styles.circulo,
                         estiloAnimacion
@@ -73,7 +73,7 @@ const Welcome = () => {
                 />            
                 <Animated.Text style={ styles.text2} >Lleva el clima{"\n"}  con vos...!!!</Animated.Text>
                                  
-             </Animated.View >
+             </Animated.View >
          );
 
      }
@@ -88,7 +88,7 @@ const styles = StyleSheet.create({
         fontFamily:'Reey-Regular',
         fontSize: 29,
         textAlign: 'center',
-        marginBottom: 50,
+        marginTop: 100,
         width: width,
 
     },
@@ -101,8 +101,9 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
     },
     circulo:{
-        marginVertical: 60,
-        marginHorizontal:100, 
+        // marginVertical: 50,
+        marginLeft:80,
+        marginTop:90, 
         borderRadius: 100,
         width: 200,
         height: 200,
