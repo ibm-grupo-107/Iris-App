@@ -24,9 +24,9 @@ const ListCity = ({localizaciones, setLocalizacion, localizacionesGuardadas}) =>
     if(!localizaciones)return null
 
       //funcion para eliminar las ciudades
-      const eliminarCiudad = (ciudad, region) => {
+      const eliminarCiudad = (ciudad) => {
         const ciudadesFiltradas = localizaciones.filter(localizacion => 
-            (localizacion.ciudad !== ciudad && localizacion.region !== region)
+            (localizacion.ciudad !== ciudad )
        
         )  
         setLocalizacion(ciudadesFiltradas);
@@ -52,6 +52,7 @@ const ListCity = ({localizaciones, setLocalizacion, localizacionesGuardadas}) =>
                   />
                   <TouchableOpacity
                   activeOpacity={0.5}
+                  underlayColor='none'
                   style={styles.btnAgregar}
                   onPress={() => navigation.navigate('Agregar Ciudad')}>
                   <MaterialCommunityIcons name="plus" size={32} color="white" />
@@ -72,7 +73,7 @@ const ListCity = ({localizaciones, setLocalizacion, localizacionesGuardadas}) =>
       btnAgregar: {
         display: 'flex',
         position: 'absolute',
-        backgroundColor: '#ff1493',
+        backgroundColor: 'lightskyblue',
         justifyContent: 'center',
         alignItems: 'center',
         width: 57,

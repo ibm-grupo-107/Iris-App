@@ -17,7 +17,6 @@ const AddCity = ({localizaciones, setLocalizacion, localizacionesGuardadas}) => 
   const navigation = useNavigation();
   const [ciudad, guardarCiudad] = useState('');
   const [pais, guardarPais] = useState('');
-  const [region, guardarRegion] = useState("");
 
   // Desplegable mapa
   const[mostrar, guardarMostrar]= useState(false)
@@ -54,12 +53,12 @@ const AddCity = ({localizaciones, setLocalizacion, localizacionesGuardadas}) => 
   //crear ciudad
   const crearCiudad = () => {
     
-        if(pais.trim() === '' || ciudad.trim() === '' || region.trim() === "") {
+        if(pais.trim() === '' || ciudad.trim() === '' ) {
             mostrarAlerta();
                 return;
         }
 
-        const localizacion = {ciudad, pais, region};
+        const localizacion = {ciudad, pais};
 
         localizacion.id = shortid.generate();
 
@@ -82,7 +81,7 @@ const AddCity = ({localizaciones, setLocalizacion, localizacionesGuardadas}) => 
         let seRepite=false;
         localizacionesGuardadas.forEach(element => {
             element.forEach(el => {
-                if(eliminarTildes(el["ciudad"]).toUpperCase() === eliminarTildes(ciudad).toUpperCase() && eliminarTildes(el["region"]).toUpperCase() == eliminarTildes(region).toUpperCase()){
+                if(eliminarTildes(el["ciudad"]).toUpperCase() === eliminarTildes(ciudad).toUpperCase()){
                     seRepite = true;
                     mostrarAlerta2();
                 }
@@ -194,39 +193,6 @@ const AddCity = ({localizaciones, setLocalizacion, localizacionesGuardadas}) => 
                             <Picker.Item label="Argentina" value="AR" />
                         </Picker>
         
-                        <Text style={styles.textoAñadir}>Región:</Text>
-                        <Picker
-                            selectedValue={region}
-                            onValueChange={texto => guardarRegion(texto)}
-                            itemStyle={{height: 120, backgroundColor: '#FFF'}}
-                        >
-                            <Picker.Item label="-- Seleccione una region --" value="" />
-                            <Picker.Item label="Buenos Aires" value="Buenos Aires" />
-                            <Picker.Item label="Capital Federal" value="Capital Federal" />
-                            <Picker.Item label="Catamarca" value="Catamarca" />
-                            <Picker.Item label="Chaco" value="Chaco" />
-                            <Picker.Item label="Chubut" value="Chubut" />
-                            <Picker.Item label="Córdoba" value="Córdoba" />
-                            <Picker.Item label="Corrientes" value="Corrientes" />
-                            <Picker.Item label="Entre Ríos" value="Entre Ríos" />
-                            <Picker.Item label="Formosa" value="Formosa" />
-                            <Picker.Item label="Jujuy" value="Jujuy" />
-                            <Picker.Item label="La Pampa" value="La Pampa" />
-                            <Picker.Item label="La Rioja" value="La Rioja" />
-                            <Picker.Item label="Mendoza" value="Mendoza" />
-                            <Picker.Item label="Misiones" value="Misiones" />
-                            <Picker.Item label="Neuquén" value="Neuquén" />
-                            <Picker.Item label="Río Negro" value="Río Negro" />
-                            <Picker.Item label="Salta" value="Salta" />
-                            <Picker.Item label="San Juan" value="San Juan" />
-                            <Picker.Item label="San Luis" value="San Luis" />
-                            <Picker.Item label="Santa Cruz" value="Santa Cruz" />
-                            <Picker.Item label="Santa Fe" value="Santa Fe" />
-                            <Picker.Item label="Santiago del Estero" value="Santiago del Estero" />
-                            <Picker.Item label="Tierra del Fuego" value="Tierra del Fuego" />
-                            <Picker.Item label="Tucumán" value="Tucumán" />
-        
-                        </Picker>
                     </View>
         
                         <TextInput 
@@ -241,11 +207,11 @@ const AddCity = ({localizaciones, setLocalizacion, localizacionesGuardadas}) => 
                             cerrarMap={cerrarMap}
                             ciudad = {ciudad}
                             pais ={pais}
-                            region={region}
                             />
                         </View>
         
                         <TouchableWithoutFeedback
+                            underlayColor='none'
                             onPress={() => {mostrarMapa()}}
                             onPressIn={() => animacionEntrada()}
                             onPressOut={() => animacionSalida()}
@@ -286,39 +252,7 @@ const AddCity = ({localizaciones, setLocalizacion, localizacionesGuardadas}) => 
                             <Picker.Item label="Argentina" value="AR" />
                         </Picker>
         
-                        <Text style={styles.textoAñadir}>Región:</Text>
-                        <Picker
-                            selectedValue={region}
-                            onValueChange={texto => guardarRegion(texto)}
-                            itemStyle={{height: 120, backgroundColor: '#FFF'}}
-                        >
-                            <Picker.Item label="-- Seleccione una region --" value="" />
-                            <Picker.Item label="Buenos Aires" value="Buenos Aires" />
-                            <Picker.Item label="Capital Federal" value="Capital Federal" />
-                            <Picker.Item label="Catamarca" value="Catamarca" />
-                            <Picker.Item label="Chaco" value="Chaco" />
-                            <Picker.Item label="Chubut" value="Chubut" />
-                            <Picker.Item label="Córdoba" value="Córdoba" />
-                            <Picker.Item label="Corrientes" value="Corrientes" />
-                            <Picker.Item label="Entre Ríos" value="Entre Ríos" />
-                            <Picker.Item label="Formosa" value="Formosa" />
-                            <Picker.Item label="Jujuy" value="Jujuy" />
-                            <Picker.Item label="La Pampa" value="La Pampa" />
-                            <Picker.Item label="La Rioja" value="La Rioja" />
-                            <Picker.Item label="Mendoza" value="Mendoza" />
-                            <Picker.Item label="Misiones" value="Misiones" />
-                            <Picker.Item label="Neuquén" value="Neuquén" />
-                            <Picker.Item label="Río Negro" value="Río Negro" />
-                            <Picker.Item label="Salta" value="Salta" />
-                            <Picker.Item label="San Juan" value="San Juan" />
-                            <Picker.Item label="San Luis" value="San Luis" />
-                            <Picker.Item label="Santa Cruz" value="Santa Cruz" />
-                            <Picker.Item label="Santa Fe" value="Santa Fe" />
-                            <Picker.Item label="Santiago del Estero" value="Santiago del Estero" />
-                            <Picker.Item label="Tierra del Fuego" value="Tierra del Fuego" />
-                            <Picker.Item label="Tucumán" value="Tucumán" />
-        
-                        </Picker>
+
                     </View>
         
                         <TextInput 
@@ -333,6 +267,7 @@ const AddCity = ({localizaciones, setLocalizacion, localizacionesGuardadas}) => 
                             onPress={() => {mostrarMapa()}}
                             onPressIn={() => animacionEntrada()}
                             onPressOut={() => animacionSalida()}
+                            underlayColor='none'
                         >
                             <View style={styles.containerBuscar}>
                                 <Animated.View style={[styles.btnBuscar, estiloAnimacion]}>
@@ -379,7 +314,7 @@ const styles = StyleSheet.create({
         marginBottom: 5,
         marginTop:15,
         textAlign: 'center',
-        borderColor:"#ff1493",
+        borderColor:"darkseagreen",
         borderWidth:4,
         marginHorizontal: '10%',
         borderRadius: 5
@@ -387,21 +322,37 @@ const styles = StyleSheet.create({
     btnBuscar: {
      
         marginTop: 30,
-        backgroundColor: "#ff1493",
+        backgroundColor: "darkseagreen",
         padding: 10,
         justifyContent: 'center',
         borderRadius: 50,
         width: "50%",
+        shadowColor: "#000",
+        shadowOffset: {
+          width: 0,
+          height: 2,
+        },
+        shadowOpacity: 0.25,
+        shadowRadius: 3.84,
+        elevation: 5, 
 
 
     },
     btnAgregar:{
         marginVertical: 35,
-        backgroundColor: "#ff1493",
+        backgroundColor: "darkseagreen",
         padding: 10,
         justifyContent: 'center',
         borderRadius: 50,
         width: "50%",
+         shadowColor: "#000",
+        shadowOffset: {
+          width: 0,
+          height: 2,
+        },
+        shadowOpacity: 0.25,
+        shadowRadius: 3.84,
+        elevation: 5, 
     },
     textoBuscar: {
         color: '#FFF',

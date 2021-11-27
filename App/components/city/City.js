@@ -15,6 +15,7 @@ const City = ({item, eliminarCiudad}) => {
         eliminarCiudad(ciudad);
     };
 
+
     //Consultar la API
     
     const  [consultar, guardarConsultar] = useState(false);
@@ -28,6 +29,7 @@ const City = ({item, eliminarCiudad}) => {
     useEffect(() => {
         const consultarClima = async () => {
           if(consultar) {
+           
             //const appId = '319fa4c56018832ed2e37833430f4cca'; 
             //const url = `http://api.openweathermap.org/data/2.5/weather?q=${item.ciudad},${item.pais}&appid=${appId}`;
            
@@ -36,7 +38,7 @@ const City = ({item, eliminarCiudad}) => {
 	        console.log(data); */
 
             const appId2= "f4f962f79e5e479191d04451212611"
-            const url2=`http://api.weatherapi.com/v1/current.json?key=${appId2}&q=${item.ciudad},${item.region},${item.pais}`
+            const url2=`http://api.weatherapi.com/v1/current.json?key=${appId2}&q=${item.ciudad},${item.pais}`
             
             try {
                 const respuesta = await fetch(url2);
@@ -58,7 +60,7 @@ const City = ({item, eliminarCiudad}) => {
     //console.log(resultado)
 
     const consultarClima = () => {
-        if(item.ciudad.trim() === '' || item.pais.trim() === '' || item.region.trim() === "" ) {
+        if(item.ciudad.trim() === '' || item.pais.trim() === ''  ) {
             mostrarAlerta();
             return;
         }
@@ -99,17 +101,13 @@ const City = ({item, eliminarCiudad}) => {
                                 </View>
                                 <View>
                                     <Text 
-                                    style={styles.label}>Región: </Text>
-                                    <Text style={styles.texto}>{item.region}</Text>
-                                </View>
-                                <View>
-                                    <Text 
                                     style={styles.label}>Pais: </Text>
                                     <Text style={styles.texto}>{item.pais}</Text>
                                 </View>
                             </View>
                             <TouchableHighlight 
                                     onPress={ () => dialogoEliminar(item.ciudad)} 
+                                    underlayColor='none'
                                     style={styles.bntEliminar}>
                                     <Text style={styles.textoBtn2}><MaterialCommunityIcons name="delete-forever"  size={26} /> </Text>
                             </TouchableHighlight>
@@ -117,12 +115,12 @@ const City = ({item, eliminarCiudad}) => {
                         <Details
                             resultado ={resultado}
                          />
-                        <TouchableHighlight  onPress={() => {consultarClima()}} /* navigation.navigate('Details', item)}} */ style={styles.bntActualizar}>
+                        <TouchableHighlight  onPress={() => {consultarClima()}} /* navigation.navigate('Details', item)}} */ style={styles.bntActualizar} underlayColor='none'>
                         <Text style={styles.textoBtn2}>Actualizar </Text>
                       </TouchableHighlight>
                       <View style= {styles.cerrado}>
-                        <TouchableHighlight  onPress={() => {mostrarClima()}} /* navigation.navigate('Details', item)}} */ style={styles.bntVerClima}>
-                            <Text style={styles.textoBtn}> {!mostrar ? "VerClima" : "Cerrar"}</Text>
+                        <TouchableHighlight  onPress={() => {mostrarClima()}} /* navigation.navigate('Details', item)}} */ style={styles.bntVerClima} underlayColor='none' >
+                            <Text style={styles.textoBtn} > {!mostrar ? "Ver Clima" : "Cerrar"}</Text>
                         </TouchableHighlight>
                         
                     </View>
@@ -141,23 +139,20 @@ const City = ({item, eliminarCiudad}) => {
                                 </View>
                                 <View>
                                     <Text 
-                                    style={styles.label}>Región: </Text>
-                                    <Text style={styles.texto}>{item.region}</Text>
-                                </View>
-                                <View>
-                                    <Text 
                                     style={styles.label}>Pais: </Text>
                                     <Text style={styles.texto}>{item.pais}</Text>
                                 </View>
                             </View>
                             <TouchableHighlight 
                                     onPress={ () => dialogoEliminar(item.ciudad)} 
-                                    style={styles.bntEliminar}>
+                                    style={styles.bntEliminar}
+                                    underlayColor='none'>
+    
                                     <Text style={styles.textoBtn2}><MaterialCommunityIcons name="delete-forever"  size={26} /> </Text>
                             </TouchableHighlight>
                         </View>
                     <View style= {styles.cerrado}>
-                        <TouchableHighlight  onPress={() => {mostrarClima()}} /* navigation.navigate('Details', item)}} */ style={styles.bntVerClima}>
+                        <TouchableHighlight  onPress={() => {mostrarClima()}} /* navigation.navigate('Details', item)}} */ style={styles.bntVerClima} underlayColor='none' >
                             <Text style={styles.textoBtn}> {!mostrar ? "VerClima" : "Cerrar"}</Text>
                         </TouchableHighlight>
                         
@@ -205,10 +200,18 @@ const styles = StyleSheet.create({
       },
       bntVerClima: {
         padding: 10,
-        backgroundColor: "#ff1493",
+        backgroundColor: "lightskyblue",
         marginHorizontal: 10,
         borderRadius:20,
         width:150,
+        shadowColor: "#000",
+        shadowOffset: {
+          width: 0,
+          height: 2,
+        },
+        shadowOpacity: 0.25,
+        shadowRadius: 3.84,
+        elevation: 5, 
       },
       bntActualizar:{
         paddingVertical: 10,

@@ -33,6 +33,8 @@
               <View style={styles.buttons}>
                 <Button   //reproducción de video
                   title={status.isPlaying ? 'Pausar' : 'Reproducir'}
+                  style={styles.btn}
+                  color="plum"
                   onPress={() =>
                     status.isPlaying ? video.current.pauseAsync() : video.current.playAsync()
                   }
@@ -59,6 +61,7 @@
         height: 400,
       },
       buttons: {
+        marginTop:30,
         paddingBottom: 55,
         justifyContent: 'center',
         alignItems: 'center',
