@@ -253,7 +253,7 @@ const AddCity = ({localizaciones, setLocalizacion, localizacionesGuardadas}) => 
                             onPress={() => {cerrarMapa()} }
                         >
                             <View style={styles.containerBuscar}>
-                                <Animated.View style={[styles.btnBuscar, estiloAnimacion]}>
+                                <Animated.View style={[styles.btnAgregar, estiloAnimacion]}>
                                     <Text style={styles.textoBuscar}> Añadir</Text>
                                 </Animated.View>
                             </View>
@@ -369,6 +369,7 @@ const styles = StyleSheet.create({
     },
     contenido: {
         marginHorizontal: '10%',
+        marginTop: 20,
     },
     input: {
         padding: 5,
@@ -385,7 +386,7 @@ const styles = StyleSheet.create({
     },
     btnBuscar: {
      
-        marginTop: 15,
+        marginTop: 30,
         backgroundColor: "#ff1493",
         padding: 10,
         justifyContent: 'center',
@@ -393,6 +394,14 @@ const styles = StyleSheet.create({
         width: "50%",
 
 
+    },
+    btnAgregar:{
+        marginVertical: 35,
+        backgroundColor: "#ff1493",
+        padding: 10,
+        justifyContent: 'center',
+        borderRadius: 50,
+        width: "50%",
     },
     textoBuscar: {
         color: '#FFF',

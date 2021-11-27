@@ -3,7 +3,7 @@ import {Text, View, StyleSheet, TouchableHighlight, Alert} from 'react-native';
 //import { useNavigation } from '@react-navigation/core';
 import Details from "../../screens/details/Details"
 //import Map from "../Map"
-
+import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 
 
 
@@ -90,63 +90,77 @@ const City = ({item, eliminarCiudad}) => {
                 {mostrar 
                     ? (
                         <>
-                        <View>
-                        <Text
-                        style={styles.label}>Ciudad: </Text>
-                        <Text style={styles.texto}>{capitalizar(item.ciudad)}</Text>
-                        </View>
-                        <View>
-                            <Text 
-                            style={styles.label}>Región: </Text>
-                            <Text style={styles.texto}>{item.region}</Text>
-                        </View>
-                        <View>
-                            <Text 
-                            style={styles.label}>Pais: </Text>
-                            <Text style={styles.texto}>{item.pais}</Text>
+                        <View style={styles.minContainer}>
+                            <View>
+                                <View>
+                                    <Text
+                                    style={styles.label}>Ciudad: </Text>
+                                    <Text style={styles.texto}>{capitalizar(item.ciudad)}</Text>
+                                </View>
+                                <View>
+                                    <Text 
+                                    style={styles.label}>Región: </Text>
+                                    <Text style={styles.texto}>{item.region}</Text>
+                                </View>
+                                <View>
+                                    <Text 
+                                    style={styles.label}>Pais: </Text>
+                                    <Text style={styles.texto}>{item.pais}</Text>
+                                </View>
+                            </View>
+                            <TouchableHighlight 
+                                    onPress={ () => dialogoEliminar(item.ciudad)} 
+                                    style={styles.bntEliminar}>
+                                    <Text style={styles.textoBtn2}><MaterialCommunityIcons name="delete-forever"  size={26} /> </Text>
+                            </TouchableHighlight>
                         </View>
                         <Details
                             resultado ={resultado}
                          />
                         <TouchableHighlight  onPress={() => {consultarClima()}} /* navigation.navigate('Details', item)}} */ style={styles.bntActualizar}>
-                        <Text style={styles.textoBtn}>Actualizar </Text>
+                        <Text style={styles.textoBtn2}>Actualizar </Text>
                       </TouchableHighlight>
-                      <TouchableHighlight  onPress={() => {mostrarClima()}} /* navigation.navigate('Details', item)}} */ style={styles.bntVerClima}>
+                      <View style= {styles.cerrado}>
+                        <TouchableHighlight  onPress={() => {mostrarClima()}} /* navigation.navigate('Details', item)}} */ style={styles.bntVerClima}>
                             <Text style={styles.textoBtn}> {!mostrar ? "VerClima" : "Cerrar"}</Text>
                         </TouchableHighlight>
-                        <TouchableHighlight onPress={ () => dialogoEliminar(item.ciudad)} style={styles.bntEliminar}>
-                                <Text style={styles.textoBtn}>Eliminar &times; </Text>
-                            </TouchableHighlight>
+                        
+                    </View>
 
                       </>
                     ) 
                     
                     : 
                     (<>
-                     <View>
-                        <Text
-                        style={styles.label}>Ciudad: </Text>
-                        <Text style={styles.texto}>{capitalizar(item.ciudad)}</Text>
-                    </View>
-                    <View>
-                            <Text 
-                            style={styles.label}>Región: </Text>
-                            <Text style={styles.texto}>{item.region}</Text>
+                     <View style={styles.minContainer}>
+                            <View>
+                                <View>
+                                    <Text
+                                    style={styles.label}>Ciudad: </Text>
+                                    <Text style={styles.texto}>{capitalizar(item.ciudad)}</Text>
+                                </View>
+                                <View>
+                                    <Text 
+                                    style={styles.label}>Región: </Text>
+                                    <Text style={styles.texto}>{item.region}</Text>
+                                </View>
+                                <View>
+                                    <Text 
+                                    style={styles.label}>Pais: </Text>
+                                    <Text style={styles.texto}>{item.pais}</Text>
+                                </View>
+                            </View>
+                            <TouchableHighlight 
+                                    onPress={ () => dialogoEliminar(item.ciudad)} 
+                                    style={styles.bntEliminar}>
+                                    <Text style={styles.textoBtn2}><MaterialCommunityIcons name="delete-forever"  size={26} /> </Text>
+                            </TouchableHighlight>
                         </View>
-                    <View>
-                        <Text 
-                        style={styles.label}>Pais: </Text>
-                        <Text style={styles.texto}>{item.pais}</Text>
-                    </View>
-                    <View>
+                    <View style= {styles.cerrado}>
                         <TouchableHighlight  onPress={() => {mostrarClima()}} /* navigation.navigate('Details', item)}} */ style={styles.bntVerClima}>
                             <Text style={styles.textoBtn}> {!mostrar ? "VerClima" : "Cerrar"}</Text>
                         </TouchableHighlight>
-                        <TouchableHighlight 
-                            onPress={ () => dialogoEliminar(item.ciudad)} 
-                            style={styles.bntEliminar}>
-                            <Text style={styles.textoBtn}>Eliminar &times; </Text>
-                        </TouchableHighlight>
+                        
                     </View>
                     </>
 
@@ -181,25 +195,47 @@ const styles = StyleSheet.create({
         padding: 10,
         backgroundColor: "lightgray",
         marginHorizontal: 10,
-        marginBottom:15,
+        width:50,
+        marginTop:15,
+        height:50,
+        justifyContent: 'center',
+        alignItems: 'center',
+        borderRadius:20,
   
       },
       bntVerClima: {
         padding: 10,
-        backgroundColor: "lightblue",
+        backgroundColor: "#ff1493",
         marginHorizontal: 10,
-        marginTop:10,
+        borderRadius:20,
+        width:150,
       },
       bntActualizar:{
         paddingVertical: 10,
-        backgroundColor: "pink",
+        backgroundColor: "lightblue",
         marginHorizontal: 10,
         marginBottom: 10,
       },
       textoBtn: {
           fontWeight: 'bold',
           textAlign: 'center',
+          color: "#FFF"
       },
+      textoBtn2: {
+        fontWeight: 'bold',
+        textAlign: 'center',
+        color: "#000000"
+    },
+      cerrado:{
+          justifyContent: 'center',
+          marginTop:10,
+          alignItems: 'center',
+          flexDirection: 'row',
+      },
+      minContainer:{
+          flexDirection: 'row',
+          justifyContent: "space-between",
+      }
 });
 
 export default City;

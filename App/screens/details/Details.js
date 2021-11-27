@@ -50,7 +50,7 @@ const Details = ({resultado}) => {
 const styles = StyleSheet.create({
     clima: {
         marginTop:5,
-        backgroundColor: '#ffb6c1',
+        backgroundColor: 'skyblue',
         flex: 1,
         alignItems: 'center',
         marginHorizontal: 10,
@@ -74,7 +74,7 @@ const styles = StyleSheet.create({
     titulo: {
         textAlign: 'center',
         fontSize: 32,
-        color: `#ff1493`,
+        color: `skyblue`,
         marginBottom: 20,
     },
 })
