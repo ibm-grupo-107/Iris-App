@@ -72,7 +72,7 @@ const ListCity = ({localizaciones, setLocalizacion, localizacionesGuardadas}) =>
       btnAgregar: {
         display: 'flex',
         position: 'absolute',
-        backgroundColor: '#ff1493',
+        backgroundColor: 'lightskyblue',
         justifyContent: 'center',
         alignItems: 'center',
         width: 57,

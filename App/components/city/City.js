@@ -205,7 +205,7 @@ const styles = StyleSheet.create({
       },
       bntVerClima: {
         padding: 10,
-        backgroundColor: "#ff1493",
+        backgroundColor: "lightskyblue",
         marginHorizontal: 10,
         borderRadius:20,
         width:150,

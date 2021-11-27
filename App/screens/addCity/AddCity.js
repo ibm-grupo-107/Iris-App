@@ -379,7 +379,7 @@ const styles = StyleSheet.create({
         marginBottom: 5,
         marginTop:15,
         textAlign: 'center',
-        borderColor:"#ff1493",
+        borderColor:"darkseagreen",
         borderWidth:4,
         marginHorizontal: '10%',
         borderRadius: 5
@@ -387,7 +387,7 @@ const styles = StyleSheet.create({
     btnBuscar: {
      
         marginTop: 30,
-        backgroundColor: "#ff1493",
+        backgroundColor: "darkseagreen",
         padding: 10,
         justifyContent: 'center',
         borderRadius: 50,
@@ -397,7 +397,7 @@ const styles = StyleSheet.create({
     },
     btnAgregar:{
         marginVertical: 35,
-        backgroundColor: "#ff1493",
+        backgroundColor: "darkseagreen",
         padding: 10,
         justifyContent: 'center',
         borderRadius: 50,
