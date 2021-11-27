@@ -2,15 +2,17 @@ import React, {useEffect, useState} from 'react';
 import {Text, View, StyleSheet, TouchableHighlight, Alert} from 'react-native';
 //import { useNavigation } from '@react-navigation/core';
 import Details from "../../screens/details/Details"
-import Map from "../Map"
+//import Map from "../Map"
+import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
+
 
 
 const City = ({item, eliminarCiudad}) => {
 
     //const navigation = useNavigation();
 
-    const dialogoEliminar = (ciudad,region) => {
-        eliminarCiudad(ciudad,region);
+    const dialogoEliminar = (ciudad) => {
+        eliminarCiudad(ciudad);
     };
 
     //Consultar la API
@@ -26,17 +28,19 @@ const City = ({item, eliminarCiudad}) => {
     useEffect(() => {
         const consultarClima = async () => {
           if(consultar) {
-            const appId = '319fa4c56018832ed2e37833430f4cca'; 
-            const url = `http://api.openweathermap.org/data/2.5/weather?q=${item.ciudad},${item.pais}&appid=${appId}`;
+            //const appId = '319fa4c56018832ed2e37833430f4cca'; 
+            //const url = `http://api.openweathermap.org/data/2.5/weather?q=${item.ciudad},${item.pais}&appid=${appId}`;
            
             /* const response = await fetch(`http://api.openweathermap.org/data/2.5/weather?q=${item.ciudad},${item.pais}&appid=${appId}`);
 	        const data = await response.json();
 	        console.log(data); */
+
+            const appId2= "f4f962f79e5e479191d04451212611"
+            const url2=`http://api.weatherapi.com/v1/current.json?key=${appId2}&q=${item.ciudad},${item.region},${item.pais}`
             
             try {
-                const respuesta = await fetch(url);
+                const respuesta = await fetch(url2);
                 const data = await respuesta.json();
-                //console.log(data)
                 if(data.cod === "404"){
                     mostrarAlerta()
                 }else{
@@ -54,7 +58,7 @@ const City = ({item, eliminarCiudad}) => {
     //console.log(resultado)
 
     const consultarClima = () => {
-        if(item.ciudad.trim() === '' || item.pais.trim() === '' ) {
+        if(item.ciudad.trim() === '' || item.pais.trim() === '' || item.region.trim() === "" ) {
             mostrarAlerta();
             return;
         }
@@ -78,75 +82,85 @@ const City = ({item, eliminarCiudad}) => {
         consultarClima()
     }
 
-
+    // Cambiar primera letra a Mayúscula
+    const capitalizar = s => (s && s[0].toUpperCase() + s.slice(1).toLowerCase()) 
+   
     return (
         <View style={styles.clima}>
                 {mostrar 
                     ? (
                         <>
-                        <View>
-                        <Text
-                        style={styles.label}>Ciudad: </Text>
-                        <Text style={styles.texto}>{item.ciudad}</Text>
-                        </View>
-                        <View>
-                            <Text 
-                            style={styles.label}>Región: </Text>
-                            <Text style={styles.texto}>{item.region}</Text>
-                        </View>
-                        <View>
-                            <Text 
-                            style={styles.label}>Pais: </Text>
-                            <Text style={styles.texto}>{item.pais}</Text>
+                        <View style={styles.minContainer}>
+                            <View>
+                                <View>
+                                    <Text
+                                    style={styles.label}>Ciudad: </Text>
+                                    <Text style={styles.texto}>{capitalizar(item.ciudad)}</Text>
+                                </View>
+                                <View>
+                                    <Text 
+                                    style={styles.label}>Región: </Text>
+                                    <Text style={styles.texto}>{item.region}</Text>
+                                </View>
+                                <View>
+                                    <Text 
+                                    style={styles.label}>Pais: </Text>
+                                    <Text style={styles.texto}>{item.pais}</Text>
+                                </View>
+                            </View>
+                            <TouchableHighlight 
+                                    onPress={ () => dialogoEliminar(item.ciudad)} 
+                                    style={styles.bntEliminar}>
+                                    <Text style={styles.textoBtn2}><MaterialCommunityIcons name="delete-forever"  size={26} /> </Text>
+                            </TouchableHighlight>
                         </View>
                         <Details
                             resultado ={resultado}
                          />
-                        <Map
-                            resultado ={resultado}
-                            ciudad = {item.ciudad}
-                            pais ={item.pais}
-                            region={item.region}
-                        />
                         <TouchableHighlight  onPress={() => {consultarClima()}} /* navigation.navigate('Details', item)}} */ style={styles.bntActualizar}>
-                        <Text style={styles.textoBtn}>Actualizar </Text>
+                        <Text style={styles.textoBtn2}>Actualizar </Text>
                       </TouchableHighlight>
-                      <TouchableHighlight  onPress={() => {mostrarClima()}} /* navigation.navigate('Details', item)}} */ style={styles.bntVerClima}>
+                      <View style= {styles.cerrado}>
+                        <TouchableHighlight  onPress={() => {mostrarClima()}} /* navigation.navigate('Details', item)}} */ style={styles.bntVerClima}>
                             <Text style={styles.textoBtn}> {!mostrar ? "VerClima" : "Cerrar"}</Text>
                         </TouchableHighlight>
-                        <TouchableHighlight onPress={ () => dialogoEliminar(item.ciudad, item.region)} style={styles.bntEliminar}>
-                                <Text style={styles.textoBtn}>Eliminar &times; </Text>
-                            </TouchableHighlight>
+                        
+                    </View>
 
                       </>
                     ) 
                     
                     : 
                     (<>
-                     <View>
-                        <Text
-                        style={styles.label}>Ciudad: </Text>
-                        <Text style={styles.texto}>{item.ciudad}</Text>
-                    </View>
-                    <View>
-                            <Text 
-                            style={styles.label}>Región: </Text>
-                            <Text style={styles.texto}>{item.region}</Text>
+                     <View style={styles.minContainer}>
+                            <View>
+                                <View>
+                                    <Text
+                                    style={styles.label}>Ciudad: </Text>
+                                    <Text style={styles.texto}>{capitalizar(item.ciudad)}</Text>
+                                </View>
+                                <View>
+                                    <Text 
+                                    style={styles.label}>Región: </Text>
+                                    <Text style={styles.texto}>{item.region}</Text>
+                                </View>
+                                <View>
+                                    <Text 
+                                    style={styles.label}>Pais: </Text>
+                                    <Text style={styles.texto}>{item.pais}</Text>
+                                </View>
+                            </View>
+                            <TouchableHighlight 
+                                    onPress={ () => dialogoEliminar(item.ciudad)} 
+                                    style={styles.bntEliminar}>
+                                    <Text style={styles.textoBtn2}><MaterialCommunityIcons name="delete-forever"  size={26} /> </Text>
+                            </TouchableHighlight>
                         </View>
-                    <View>
-                        <Text 
-                        style={styles.label}>Pais: </Text>
-                        <Text style={styles.texto}>{item.pais}</Text>
-                    </View>
-                    <View>
+                    <View style= {styles.cerrado}>
                         <TouchableHighlight  onPress={() => {mostrarClima()}} /* navigation.navigate('Details', item)}} */ style={styles.bntVerClima}>
                             <Text style={styles.textoBtn}> {!mostrar ? "VerClima" : "Cerrar"}</Text>
                         </TouchableHighlight>
-                        <TouchableHighlight 
-                            onPress={ () => dialogoEliminar(item.ciudad)} 
-                            style={styles.bntEliminar}>
-                            <Text style={styles.textoBtn}>Eliminar &times; </Text>
-                        </TouchableHighlight>
+                        
                     </View>
                     </>
 
@@ -165,6 +179,7 @@ const styles = StyleSheet.create({
         borderBottomWidth: 1,
         paddingVertical: 10,
         paddingHorizontal: 10,
+        borderBottomWidth: 20,
     },
     label: {
         fontWeight: 'bold',
@@ -180,24 +195,47 @@ const styles = StyleSheet.create({
         padding: 10,
         backgroundColor: "lightgray",
         marginHorizontal: 10,
+        width:50,
+        marginTop:15,
+        height:50,
+        justifyContent: 'center',
+        alignItems: 'center',
+        borderRadius:20,
   
       },
       bntVerClima: {
         padding: 10,
-        backgroundColor: "lightblue",
+        backgroundColor: "#ff1493",
         marginHorizontal: 10,
-        marginTop:10,
+        borderRadius:20,
+        width:150,
       },
       bntActualizar:{
         paddingVertical: 10,
-        backgroundColor: "pink",
+        backgroundColor: "lightblue",
         marginHorizontal: 10,
         marginBottom: 10,
       },
       textoBtn: {
           fontWeight: 'bold',
           textAlign: 'center',
+          color: "#FFF"
       },
+      textoBtn2: {
+        fontWeight: 'bold',
+        textAlign: 'center',
+        color: "#000000"
+    },
+      cerrado:{
+          justifyContent: 'center',
+          marginTop:10,
+          alignItems: 'center',
+          flexDirection: 'row',
+      },
+      minContainer:{
+          flexDirection: 'row',
+          justifyContent: "space-between",
+      }
 });
 
 export default City;
