@@ -5,7 +5,7 @@ import { createMaterialBottomTabNavigator } from '@react-navigation/material-bot
 
 //Importar iconos de Material:
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
-
+import { Ionicons } from '@expo/vector-icons';
 
 //Importar rutas de los Screens
 import About from "../screens/About";
@@ -38,7 +38,8 @@ const MainTabScreen = () =>{
               tabBarLabel: 'Inicio',
               tabBarColor: "lightcoral",
               tabBarIcon: ({ color }) => (
-                <MaterialCommunityIcons name="home" color={color} size={26} />
+                <Ionicons name="md-home-sharp" size={26} color="black" />
+               // <MaterialCommunityIcons name="home" color={color} size={26} />
               ),
             }}
           />
@@ -48,7 +49,8 @@ const MainTabScreen = () =>{
                   tabBarLabel: 'Mis Ciudades',
                   tabBarColor: "skyblue",
                   tabBarIcon: ({ color }) => (
-                    <MaterialCommunityIcons name="cards-heart" color={color} size={26} />
+                    <Ionicons name="md-heart" size={26} color="black" />
+                    //<MaterialCommunityIcons name="cards-heart" color={color} size={26} />
                   ),
                 }}
                 >
@@ -60,7 +62,8 @@ const MainTabScreen = () =>{
                   tabBarLabel: 'Agregar Ciudad',
                   tabBarColor: "mediumaquamarine",
                   tabBarIcon: ({ color }) => (
-                    <MaterialCommunityIcons name="map-marker-plus" color={color} size={26} />
+                    <Ionicons name="md-location-sharp" size={26} color="black" />
+                    //<MaterialCommunityIcons name="map-marker-plus" color={color} size={26} />
                   ),
                 }}
                 >
@@ -85,7 +88,8 @@ const MainTabScreen = () =>{
               tabBarLabel: 'Info App',
               tabBarColor: "plum",
               tabBarIcon: ({ color }) => (
-                <MaterialCommunityIcons name="cog" color={color} size={26} />
+                <Ionicons name="md-people" size={26} color="black" />
+                //<MaterialCommunityIcons name="cog" color={color} size={26} />
               ),
             }}
           />
@@ -94,4 +98,3 @@ const MainTabScreen = () =>{
 }
 
 export default MainTabScreen;
-

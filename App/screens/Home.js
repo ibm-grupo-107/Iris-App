@@ -182,7 +182,7 @@ const styles = StyleSheet.create({
     btnBuscar: {
         marginHorizontal: '2.5%',
         marginTop: 25,
-        backgroundColor: "#ff1493",
+        backgroundColor: "lightsalmon",
         padding: 10,
         justifyContent: 'center',
         marginBottom:30,
