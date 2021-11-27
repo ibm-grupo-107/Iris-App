@@ -28,7 +28,8 @@ const MainTabScreen = () =>{
     return (
         <Tab.Navigator
           initialRouteName="Agregar Ciudad"
-          activeColor="#fff"
+          activeColor="black"
+          color="black"
           barStyle={{ backgroundColor: 'tomato'}}
         >
           <Tab.Screen
@@ -36,9 +37,9 @@ const MainTabScreen = () =>{
             component={Home}
             options={{
               tabBarLabel: 'Inicio',
-              tabBarColor: "lightcoral",
+              tabBarColor: "coral",
               tabBarIcon: ({ color }) => (
-                <Ionicons name="md-home-sharp" size={26} color="black" />
+                <Ionicons name="md-home-sharp" size={26} color={color}/>
                // <MaterialCommunityIcons name="home" color={color} size={26} />
               ),
             }}
@@ -49,7 +50,7 @@ const MainTabScreen = () =>{
                   tabBarLabel: 'Mis Ciudades',
                   tabBarColor: "skyblue",
                   tabBarIcon: ({ color }) => (
-                    <Ionicons name="md-heart" size={26} color="black" />
+                    <Ionicons name="md-heart" size={26} color={color} />
                     //<MaterialCommunityIcons name="cards-heart" color={color} size={26} />
                   ),
                 }}
@@ -62,7 +63,7 @@ const MainTabScreen = () =>{
                   tabBarLabel: 'Agregar Ciudad',
                   tabBarColor: "mediumaquamarine",
                   tabBarIcon: ({ color }) => (
-                    <Ionicons name="md-location-sharp" size={26} color="black" />
+                    <Ionicons name="md-location-sharp" size={26} color={color} />
                     //<MaterialCommunityIcons name="map-marker-plus" color={color} size={26} />
                   ),
                 }}
@@ -88,7 +89,7 @@ const MainTabScreen = () =>{
               tabBarLabel: 'Info App',
               tabBarColor: "plum",
               tabBarIcon: ({ color }) => (
-                <Ionicons name="md-people" size={26} color="black" />
+                <Ionicons name="md-people" size={26} color={color} />
                 //<MaterialCommunityIcons name="cog" color={color} size={26} />
               ),
             }}

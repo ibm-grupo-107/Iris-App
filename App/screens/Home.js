@@ -67,7 +67,7 @@ export default function Home(){
         <>
         <Header
             placement="center"
-            backgroundColor= "lightcoral"
+            backgroundColor= "coral"
             centerComponent={{ text: 'Inicio', style: { color: '#fff', fontSize:20 } }}
             />
         <View style = {styles.container}>
@@ -148,7 +148,7 @@ const styles = StyleSheet.create({
     container: {
         flex:1,
         alignItems: 'center',
-        backgroundColor:"mistyrose"
+        backgroundColor:"linen"
     },
     text:{
         fontSize: 28,

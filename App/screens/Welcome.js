@@ -62,6 +62,8 @@ const Welcome = () => {
         return <AppLoading />;
       } else {
          return ( 
+            <>
+            <StatusBar style="dark" backgroundColor= "#FFF" />
             <Animated.View  style={ styles.container, {opacity: animacion1 }}>
                <Animated.Text style={{fontFamily:'Reey-Regular', fontSize: 70, textAlign: 'center', marginTop: 100}} >IRIS</Animated.Text>
                 <View style= {styles.imageContainer}>
@@ -76,6 +78,7 @@ const Welcome = () => {
                 <Animated.Text style={ styles.text2} >Lleva el clima{"\n"}  con vos...!!!</Animated.Text>
                                  
              </Animated.View >
+            </>
          );
 
      }

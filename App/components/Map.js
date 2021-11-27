@@ -59,11 +59,11 @@ const Map = ({ciudad, pais, region, cerrarMap}) => {
     });
 
 
-    //console.log(resultadoLocation, resultadoCity,resultadoSuburb)
-    //console.log(ciudad, region)
+    console.log(resultadoLocation, resultadoCity,resultadoSuburb)
+    console.log(ciudad, region)
 
     const consultarClima = () => {
-        if (resultadoCity === "undefined" || resultadoTown === "undefined"  || resultadoSuburb== "undefinded" || (resultadoLocation !== ciudad && resultadoLocation == region) ){
+        if (resultadoCity === "undefined" || resultadoTown === "undefined"  || resultadoSuburb== "undefinded" || (resultadoLocation !== ciudad && resultadoLocation == region || resultadoLocation ==="undefinded") ){
             mostrarAlerta2();
             cerrarMap();
             return;

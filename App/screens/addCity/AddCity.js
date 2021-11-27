@@ -295,14 +295,12 @@ const AddCity = ({localizaciones, setLocalizacion, localizacionesGuardadas}) => 
                             <Picker.Item label="-- Seleccione una region --" value="" />
                             <Picker.Item label="Buenos Aires" value="Buenos Aires" />
                             <Picker.Item label="Capital Federal" value="Capital Federal" />
-                            <Picker.Item label="Catamarca" value="Catamarca" />
                             <Picker.Item label="Chaco" value="Chaco" />
                             <Picker.Item label="Chubut" value="Chubut" />
                             <Picker.Item label="Córdoba" value="Córdoba" />
                             <Picker.Item label="Corrientes" value="Corrientes" />
                             <Picker.Item label="Entre Ríos" value="Entre Ríos" />
                             <Picker.Item label="Formosa" value="Formosa" />
-                            <Picker.Item label="Jujuy" value="Jujuy" />
                             <Picker.Item label="La Pampa" value="La Pampa" />
                             <Picker.Item label="La Rioja" value="La Rioja" />
                             <Picker.Item label="Mendoza" value="Mendoza" />
@@ -314,9 +312,11 @@ const AddCity = ({localizaciones, setLocalizacion, localizacionesGuardadas}) => 
                             <Picker.Item label="San Luis" value="San Luis" />
                             <Picker.Item label="Santa Cruz" value="Santa Cruz" />
                             <Picker.Item label="Santa Fe" value="Santa Fe" />
+                            <Picker.Item label="San Fernando del Valle de Catamarca" value="San Fernando del Valle de Catamarca" />
                             <Picker.Item label="Santiago del Estero" value="Santiago del Estero" />
+                            <Picker.Item label="San Miguel de Tucumán" value="San Miguel de Tucumán" />
+                            <Picker.Item label="San Salvador de Jujuy" value="San Salvador de Jujuy" />
                             <Picker.Item label="Tierra del Fuego" value="Tierra del Fuego" />
-                            <Picker.Item label="Tucumán" value="Tucumán" />
         
                         </Picker>
                     </View>
