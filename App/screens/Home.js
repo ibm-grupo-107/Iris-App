@@ -92,6 +92,7 @@ export default function Home(){
             <Image style={styles.img} source={require("../../assets/agregar.png")}/>
         
             <TouchableWithoutFeedback
+                underlayColor='none'
                  onPress={() => navigation.navigate('Agregar Ciudad') }
             >
                     <View style={styles.btnBuscar} >
@@ -105,6 +106,7 @@ export default function Home(){
             <Image style={styles.img} source={require("../../assets/verMapa.png")}/>
             <TouchableWithoutFeedback
                 onPress={() => navigation.navigate('Agregar Ciudad') }
+                underlayColor='none'
             >
                     <View style={styles.btnBuscar} >
                     <Text style={styles.btnTexto} >Ir a "Agregar Ciudad"</Text>
@@ -116,6 +118,7 @@ export default function Home(){
             <Text style = {styles.text3}>Consultar clima:</Text>
             <Image style={styles.img} source={require("../../assets/verClima.png")}/>
             <TouchableWithoutFeedback
+                underlayColor='none'
                 onPress={() => navigation.navigate('ListCity') }
             >
                     <View style={styles.btnBuscar} >
@@ -128,6 +131,7 @@ export default function Home(){
             <Text style = {styles.text3}>Ver clima:</Text>
             <Image style={styles.img} source={require("../../assets/mostrarClima.png")}/>
             <TouchableWithoutFeedback
+                underlayColor='none'
                 onPress={() => navigation.navigate('ListCity') }
             >
                     <View style={styles.btnBuscar} >
@@ -188,6 +192,14 @@ const styles = StyleSheet.create({
         marginBottom:30,
         width: "65%",
         borderRadius: 20,
+        shadowColor: "#000",
+        shadowOffset: {
+          width: 0,
+          height: 2,
+        },
+        shadowOpacity: 0.25,
+        shadowRadius: 3.84,
+        elevation: 5, 
     },
     espacio:{
         marginHorizontal: '2.5%',

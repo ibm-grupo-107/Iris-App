@@ -52,6 +52,7 @@ const ListCity = ({localizaciones, setLocalizacion, localizacionesGuardadas}) =>
                   />
                   <TouchableOpacity
                   activeOpacity={0.5}
+                  underlayColor='none'
                   style={styles.btnAgregar}
                   onPress={() => navigation.navigate('Agregar Ciudad')}>
                   <MaterialCommunityIcons name="plus" size={32} color="white" />

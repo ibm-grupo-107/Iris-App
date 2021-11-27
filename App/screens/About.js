@@ -1,6 +1,6 @@
 
   import React from "react";
-  import { StyleSheet, Text, View, Button, } from "react-native";
+  import { StyleSheet, Text, View, Button, Touch } from "react-native";
   import { Header } from 'react-native-elements';
   import { StatusBar } from 'expo-status-bar';
   import { Video } from 'expo-av';
@@ -65,6 +65,7 @@
         paddingBottom: 55,
         justifyContent: 'center',
         alignItems: 'center',
+        
       },
       
   })

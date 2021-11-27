@@ -25,7 +25,9 @@ const Map = ({ciudad, pais, region, cerrarMap}) => {
             //const appId = be0d211016ca458197faa98f26cb1963
             //Api Martina:
             //const appId = '61666ed49345480b91961b57aa9b1e30'; 
-            const appId = "be0d211016ca458197faa98f26cb1963";
+            //Api Emilio:
+            //const appId = "788f2f37b1a647b4a7525453d4f6aeb7"
+            const appId = "ee003e9a0d334667a3b7815661343e02";
 
             const url = `https://api.opencagedata.com/geocode/v1/json?q=${ciudad},${region}&key=${appId}&bounds=-73.82813,-55.77657,-53.52539,-21.86150&countrycode=${pais}&limit=1&no_dedupe=1`;
             
@@ -63,7 +65,7 @@ const Map = ({ciudad, pais, region, cerrarMap}) => {
     console.log(ciudad, region)
 
     const consultarClima = () => {
-        if (resultadoCity === "undefined" || resultadoTown === "undefined"  || resultadoSuburb== "undefinded" || (resultadoLocation !== ciudad && resultadoLocation == region || resultadoLocation ==="undefinded") ){
+        if (resultadoCity === "undefined" || resultadoTown === "undefined"  || resultadoSuburb === "undefinded" || (resultadoLocation !== ciudad && resultadoLocation == region || resultadoLocation ==="undefinded") ){
             mostrarAlerta2();
             cerrarMap();
             return;
