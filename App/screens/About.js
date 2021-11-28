@@ -62,6 +62,7 @@
 
       container: {
         flex: 1,
+        marginTop:120,
         justifyContent: 'center',
         backgroundColor: '#ecf0f1',
       },
@@ -75,7 +76,6 @@
         fontFamily:'Outfit-SemiBold',
         borderRadius: 100,
         fontSize: 29,
-        marginTop: 30,
         padding: 55,
         // justifyContent: 'center',
         // alignItems: 'center',
