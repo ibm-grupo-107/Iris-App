@@ -103,6 +103,7 @@ const AddCity = ({localizaciones, setLocalizacion, localizacionesGuardadas}) => 
 
     function eliminarTildes(texto) {
         return texto
+                .trim()
                .normalize('NFD')
                .replace(/([^n\u0300-\u036f]|n(?!\u0303(?![\u0300-\u036f])))[\u0300-\u036f]+/gi,"$1")
                .normalize();
@@ -199,9 +200,9 @@ const AddCity = ({localizaciones, setLocalizacion, localizacionesGuardadas}) => 
 
         <>
         <Header
-                        placement="center"
-                        backgroundColor= "mediumaquamarine"
-                        centerComponent={{ text: 'Agregar Ciudad', style: {fontFamily: 'Outfit-SemiBold', color: '#fff', fontSize:20 } }}
+            placement="center"
+            backgroundColor= "mediumaquamarine"
+            centerComponent={{ text: 'Agregar Ciudad', style: {fontFamily: 'Outfit-SemiBold', color: '#fff', fontSize:20 } }}
         />
         <ScrollView style={styles.container} >
         
@@ -350,7 +351,7 @@ const styles = StyleSheet.create({
     miniContainer:{
         backgroundColor: '#FFF',
         margin:25,
-        borderBottomColor: "darkseagreen",
+        borderBottomColor: "mediumaquamarine",
         borderStyle: 'solid',
         borderBottomWidth: 10,
         borderRadius:20,
@@ -368,7 +369,7 @@ const styles = StyleSheet.create({
     miniContainer2:{
         backgroundColor: '#FFF',
         margin:25,
-        borderBottomColor: "darkseagreen",
+        borderBottomColor: "mediumaquamarine",
         borderStyle: 'solid',
         borderBottomWidth: 10,
         paddingBottom:30,
@@ -399,7 +400,7 @@ const styles = StyleSheet.create({
         marginBottom: 5,
         marginTop:15,
         textAlign: 'center',
-        borderColor:"darkseagreen",
+        borderColor:"mediumaquamarine",
         borderWidth:4,
         marginHorizontal: '10%',
         borderRadius: 5,
@@ -409,7 +410,7 @@ const styles = StyleSheet.create({
     btnBuscar: {
      
         marginTop: 30,
-        backgroundColor: "darkseagreen",
+        backgroundColor: "mediumaquamarine",
         padding: 10,
         justifyContent: 'center',
         borderRadius: 50,
@@ -427,7 +428,7 @@ const styles = StyleSheet.create({
     },
     btnAgregar:{
         marginVertical: 35,
-        backgroundColor: "darkseagreen",
+        backgroundColor: "mediumaquamarine",
         padding: 10,
         justifyContent: 'center',
         borderRadius: 50,

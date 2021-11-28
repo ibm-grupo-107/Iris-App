@@ -75,9 +75,12 @@ export default function App() {
   }else{
     return (
       <>
+      <StatusBar style="dark" backgroundColor= "#FFF" />
       {mostrar 
       ? 
-      (<Welcome/> )
+      (
+      <Welcome/> )
+      
       : (
       <GestureHandlerRootView style={{flex: 1}}>
         <NavigationContainer>
