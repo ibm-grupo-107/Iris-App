@@ -12,8 +12,8 @@ A continuación, te contamos un poco sobre Iris:
 
 Bueno, la idea del mismo surge que no solo fonéticamente suene lindo sino que también representara a la aplicación, es así que nace Iris (de la mitología griega) que es la diosa del arcoíris que anuncia el pacto de unión entre el Olimpo y la tierra al final de la tormenta.
 
-:clapper:Aquí podés ver nuestro video publicitario de la app.
-<iframe width="560" height="315" src="https://www.youtube.com/embed/6EWHcaxU7Mw" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+:clapper:[Aquí](https://drive.google.com/file/d/1Io5p3WNXGnyBJGD0vibYgUyanzlVIIz2/view?usp=sharing) podés ver nuestro video publicitario de la app.
+
 
 ### Persona Canvas :girl:
 Este es nuestro modelo de persona canvas al cual está enfocado proyecto:
