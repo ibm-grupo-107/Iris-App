@@ -57,7 +57,7 @@ const City = ({item, eliminarCiudad}) => {
     const mostrarAlerta = () => {
         Alert.alert(
             'Error',
-            'La ciudad no existe',
+            'Debe Cargar Todos los datos',
             [{text: 'Entendido'}]
         )
     }
@@ -119,6 +119,8 @@ const City = ({item, eliminarCiudad}) => {
                                 <TouchableHighlight 
                                         onPress={ () => dialogoEliminar(item.ciudad)} 
                                         underlayColor='none'
+                                        onPressIn={() => animacionEntrada()}
+                                        onPressOut={() => animacionSalida()}
                                         style={styles.bntEliminar}>
                                         <Text style={styles.textoBtn2}><MaterialCommunityIcons name="delete-forever"  size={24} /> </Text>
                                 </TouchableHighlight>

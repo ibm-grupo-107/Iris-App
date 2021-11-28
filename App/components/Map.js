@@ -10,6 +10,17 @@ const Map = ({ciudad, pais, cerrarMap}) => {
 
     const [resultadoLat, guardarResultadoLat] = useState(0);
     const [resultadoLong, guardarResultadoLong] = useState(0); 
+
+    //Si los datos de ciudad y país son vacíos devolver alerta:
+    if(ciudad.trim() === "" || pais.trim() === ""){
+        Alert.alert(
+            'Error',
+            'Debe cargar todos los datos',
+            [{text: 'Entendido'}]
+    
+        )
+        return <Loading isVisible={false}/>
+    }
    
       useEffect(() => {
         const consultarCoord = async () => {
