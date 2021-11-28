@@ -1,4 +1,3 @@
-import { identifier } from '@babel/types';
 import React,{useState, useEffect} from 'react';
 import {StyleSheet, Alert} from 'react-native';
 import MapView from "react-native-maps"
@@ -110,7 +109,6 @@ const Map = ({ciudad, pais, cerrarMap}) => {
                     longitude:resultadoLong 
                }}
                 title ={`${ciudad}`}
-                //description={"Description 1"} 
             />
         </MapView>
         </>

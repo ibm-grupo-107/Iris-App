@@ -139,6 +139,10 @@ const AddCity = ({localizaciones, setLocalizacion, localizacionesGuardadas}) => 
     //Muestra u oculta info del mapa
 
     const mostrarMapa = () =>{
+        if (ciudad.trim() === '' || pais.trim() === '') {
+            mostrarAlerta();
+            return;
+        }
         guardarMostrar(!mostrar);
     }
 
@@ -220,7 +224,7 @@ const AddCity = ({localizaciones, setLocalizacion, localizacionesGuardadas}) => 
                                 <Picker
                                     selectedValue={pais}
                                     onValueChange={texto => guardarPais(texto)}
-                                    itemStyle={{height: 120, backgroundColor: '#FFF'}}
+                                    itemStyle={{height: 120, backgroundColor: '#FFF', fontFamily: 'Outfit-Regular'}}
                                 >
                                     <Picker.Item label="-- Seleccione un país --" value="" />
                                     <Picker.Item label="Argentina" value="AR" />

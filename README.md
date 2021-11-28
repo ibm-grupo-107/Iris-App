@@ -12,6 +12,9 @@ A continuación, te contamos un poco sobre Iris:
 
 Bueno, la idea del mismo surge que no solo fonéticamente suene lindo sino que también representara a la aplicación, es así que nace Iris (de la mitología griega) que es la diosa del arcoíris que anuncia el pacto de unión entre el Olimpo y la tierra al final de la tormenta.
 
+:clapper:[Aquí](https://drive.google.com/file/d/1Io5p3WNXGnyBJGD0vibYgUyanzlVIIz2/view?usp=sharing) podés ver nuestro video publicitario de la app.
+
+
 ### Persona Canvas :girl:
 Este es nuestro modelo de persona canvas al cual está enfocado proyecto:
 ![persona canvas](https://i.ibb.co/mXxfFhN/persona-Canvas.png)
@@ -78,7 +81,7 @@ Luego de instalar todo lo necesario, vamos a iniciar el servidor y la app con el
 ![start](https://i.ibb.co/YQ1Mb4X/qr.png)
 
 Una vez que tenemos listo el QR y ya nos logueamos en la [app de expo](https://expo.dev/), lo escaneamos desde la app de expo en nuestro celular y deberíamos ver ya iniciada nuestra app, esta es la pantalla de bienvenida de la misma:
-![enter image description here](https://i.ibb.co/MDTWtgF/inicial.jpg)
+![enter image description here](https://i.ibb.co/qL61t5B/welcome.jpg)
 
 **¡Felicidades! ya podés comenzar a utilizar IRIS!**
 
@@ -87,7 +90,7 @@ Una vez que tenemos listo el QR y ya nos logueamos en la [app de expo](https://e
 - [React Native](https://reactnative.dev/)  - Lenguaje de programación y Toolkit.
 - [Moqups](https://app.moqups.com/) - Prototipo y Modelo Persona Canvas.
 - [OpenWeatherMap](https://openweathermap.org/) - Api Clima. 
-- [AsyncStorage](https://github.com/react-native-async-storage/async-storage) - Persistencia de datos. 
+- [AsyncStorage](https://github.com/react-native-async-storage/async-storage) - Persistencia de datos.
 - [GitHub](https://github.com/) - Versionado.
 
 :small_blue_diamond:En el proyecto, disponemos de una carpeta llamada "documents". En ella podrás encontrar toda la info completa sobre cada clase y, además, los comandos para instalar las dependencias utilizadas.
@@ -97,12 +100,15 @@ Una vez que tenemos listo el QR y ya nos logueamos en la [app de expo](https://e
 
 **_Grupo 107:_**
 
--   **Emilio Parodi**  -  www.linkedin.com/in/emilio-parodi
--   **Martina Pereyra**  -  https://www.linkedin.com/in/martina-pereyra-714557212/
--  **Maria Lucia Futestti**  - https://www.linkedin.com/in/maria-lucia-futestti-98a459103
--   **Priscila Mansilla**  -  https://www.linkedin.com/in/priscilamansilla
+-   **Emilio Parodi**  -  [www.linkedin.com/in/emilio-parodi](http://www.linkedin.com/in/emilio-parodi)
+-  **Maria Lucia Futestti**  -  [https://www.linkedin.com/in/maria-lucia-futestti-98a459103](https://www.linkedin.com/in/maria-lucia-futestti-98a459103)
+-   **Martina Pereyra**  -  [https://www.linkedin.com/in/martina-pereyra-714557212/](https://www.linkedin.com/in/martina-pereyra-714557212/)
 
+-   **Priscila Mansilla**  -  [https://www.linkedin.com/in/priscilamansilla](https://www.linkedin.com/in/priscilamansilla)
 
+Para contactarte con nosotros, también nos podes escribir al siguiente mail:
+
+> irisappibm@gmail.com
 
 
 ## Agradecimientos  🎁

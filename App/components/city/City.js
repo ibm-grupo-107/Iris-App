@@ -239,7 +239,7 @@ const City = ({item, eliminarCiudad}) => {
             </View>
         
     );
-                    };
+    };
 };
 
 const styles = StyleSheet.create({
