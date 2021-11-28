@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import {Text, View, StyleSheet, TouchableHighlight, Alert} from 'react-native';
+import {Text, View, StyleSheet, TouchableHighlight, Alert, Animated} from 'react-native';
 import Details from "../../screens/details/Details"
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 
@@ -46,7 +46,7 @@ const City = ({item, eliminarCiudad}) => {
       }, [consultar]);
 
     const consultarClima = () => {
-        if(item.ciudad.trim() === '' || item.pais.trim() === ''  ) {
+        if(item.ciudad.trim() === '' || item.pais.trim() === '' ) {
             mostrarAlerta();
             return;
         }
@@ -69,6 +69,31 @@ const City = ({item, eliminarCiudad}) => {
         guardarMostrar(!mostrar);
         consultarClima()
     }
+
+   //animaciones boton
+   const [animacionboton] = useState(new Animated.Value(1));
+
+   const animacionEntrada = () => {
+       Animated.spring(animacionboton, {
+           toValue: .7,
+           useNativeDriver: true
+       }).start();
+   }
+
+   const animacionSalida = () => {
+       Animated.spring(animacionboton, {
+           toValue: 1,
+           friction: 4,
+           tension: 30,
+           useNativeDriver: true
+       }).start();
+   }
+
+   const estiloAnimacion = {
+       transform: [{scale: animacionboton }]
+   }
+
+
 
     // Cambiar primera letra a Mayúscula
     const capitalizar = s => (s && s[0].toUpperCase() + s.slice(1).toLowerCase()) 
@@ -100,10 +125,16 @@ const City = ({item, eliminarCiudad}) => {
                             </View>
                             <View style={styles.detailsContainer}>
                             <Details resultado ={resultado}/>
-                            
-                            <TouchableHighlight  onPress={() => {consultarClima()}} style={styles.bntActualizar} underlayColor='none'>
-                                <Text style={styles.textoBtn2}><MaterialCommunityIcons name="reload"  size={24} />  </Text>
+                            <Animated.View style={ estiloAnimacion}>
+                            <TouchableHighlight  onPress={() => {consultarClima()}} style={styles.bntActualizar} underlayColor='none'
+                                 onPressIn={() => animacionEntrada()}
+                                 onPressOut={() => animacionSalida()}
+                            >
+                                
+                                    <Text style={styles.textoBtn2}><MaterialCommunityIcons name="reload"  size={24} />  </Text>
+                                
                             </TouchableHighlight>
+                            </Animated.View>
                             
                             </View>
                             <View style= {styles.cerrado}>

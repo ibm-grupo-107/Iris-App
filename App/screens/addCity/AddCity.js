@@ -74,6 +74,7 @@ const AddCity = ({localizaciones, setLocalizacion, localizacionesGuardadas}) => 
         }
         
     }
+    
     //Si se repite la ciudad:
     if(!localizacionesGuardadas)return null
      const seRepite = () => { 
@@ -190,7 +191,16 @@ const AddCity = ({localizaciones, setLocalizacion, localizacionesGuardadas}) => 
                                 >
                                     <Picker.Item label="-- Seleccione un país --" value="" />
                                     <Picker.Item label="Argentina" value="AR" />
-                                </Picker>
+                                    <Picker.Item label="Bolivia" value="BO" />
+                                    <Picker.Item label="Brasil" value="BR" />
+                                    <Picker.Item label="Chile" value="CL" />
+                                    <Picker.Item label="Colombia" value="CO" />
+                                    <Picker.Item label="Ecuador" value="EC" />
+                                    <Picker.Item label="Perú" value="PE" />
+                                    <Picker.Item label="Uruguay" value="UY" />
+                                    <Picker.Item label="Venezuela" value="VE" />
+
+                        </Picker>
                 
                             </View>
                 
@@ -244,6 +254,15 @@ const AddCity = ({localizaciones, setLocalizacion, localizacionesGuardadas}) => 
                         >
                             <Picker.Item label="-- Seleccione un país --" value="" />
                             <Picker.Item label="Argentina" value="AR" />
+                            <Picker.Item label="Bolivia" value="BO" />
+                            <Picker.Item label="Brasil" value="BR" />
+                            <Picker.Item label="Chile" value="CL" />
+                            <Picker.Item label="Colombia" value="CO" />
+                            <Picker.Item label="Ecuador" value="EC" />
+                            <Picker.Item label="Perú" value="PE" />
+                            <Picker.Item label="Uruguay" value="UY" />
+                            <Picker.Item label="Venezuela" value="VE" />
+
                         </Picker>
         
 
