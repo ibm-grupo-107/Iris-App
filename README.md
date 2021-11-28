@@ -10,7 +10,7 @@ A continuación, te contamos un poco sobre Iris:
 
 ***¿Y porqué el nombre?***
 
-Bueno, la idea del mismo surge de 
+Bueno, la idea del mismo surge que no solo fonéticamente suene lindo sino que también representara a la aplicación, es así que nace Iris (de la mitología griega) que es la diosa del arcoíris que anuncia el pacto de unión entre el Olimpo y la tierra al final de la tormenta.
 
 ### Persona Canvas :girl:
 Este es nuestro modelo de persona canvas al cual está enfocado proyecto:
@@ -18,6 +18,7 @@ Este es nuestro modelo de persona canvas al cual está enfocado proyecto:
 
 ### Paper prototyping :iphone:
 Y este es nuestro prototipo:
+![proto](https://i.ibb.co/rx6Vn7H/prototipo.png)
 
 
 ## Comenzando  🚀
@@ -33,7 +34,8 @@ _Para correr la app, vas a necesitar:_
  - Instalar expo-cli. [Aquí](https://reactnative.dev/docs/environment-setup) te dejamos el enlace a la documentación para que puedas instalarlo en tu pc.
  - Un emulador donde ver la app. Podés usar [Android Studio](https://docs.expo.dev/workflow/android-studio-emulator/) y/o [iOS Simulator](https://docs.expo.dev/workflow/ios-simulator/), en caso de que utilices ese sistema operativo. Otra opción muy fácil de utilizar, es descargar [Expo para tu celular](https://play.google.com/store/apps/details?id=host.exp.exponent&hl=es_AR&gl=US), de esta manera no vas a consumir recursos de tu pc :wink:
  - Instalar [GitBash](https://git-scm.com/downloads).
-
+ - Generar una API Key en [OpenWeatherMap](https://openweathermap.org/) . Deberás insertarla en las clases "City" y "Map".
+ 
 
 ### Instalación  🔧
 
@@ -81,26 +83,29 @@ Una vez que tenemos listo el QR y ya nos logueamos en la [app de expo](https://e
 **¡Felicidades! ya podés comenzar a utilizar IRIS!**
 
 ## Construido con  🛠️
-
--   [React Native](https://reactnative.dev/)  - Lenguaje de programación y Toolkit.
+- [Expo](https://expo.dev/) - Toolkit
+- [React Native](https://reactnative.dev/)  - Lenguaje de programación y Toolkit.
 - [Moqups](https://app.moqups.com/) - Prototipo y Modelo Persona Canvas.
-- [OpenCageData](https://opencagedata.com/) - Api Maps.
 - [OpenWeatherMap](https://openweathermap.org/) - Api Clima. 
+
+:small_blue_diamond:En el proyecto, disponemos de una carpeta llamada "documents". En ella podrás encontrar toda la info completa sobre cada clase y, además, los comandos para instalar las dependencias utilizadas.
 
 
 ## Autores  ✒️
 
 **_Grupo 107:_**
 
--   **Martina Pereyra**  -  https://www.linkedin.com/in/martina-pereyra-714557212/
--   **Priscila Mansilla**  -  https://www.linkedin.com/in/priscilamansilla
 -   **Emilio Parodi**  -  www.linkedin.com/in/emilio-parodi
--  **Maria Lucia Futesti**  - https://www.linkedin.com/in/maria-lucia-futestti-98a459103
+-   **Martina Pereyra**  -  https://www.linkedin.com/in/martina-pereyra-714557212/
+-  **Maria Lucia Futestti**  - https://www.linkedin.com/in/maria-lucia-futestti-98a459103
+-   **Priscila Mansilla**  -  https://www.linkedin.com/in/priscilamansilla
+
+
 
 
 ## Agradecimientos  🎁
 
-Queremos agradecer enormemente tanto a IBM como a Codo a Codo por permitirnos esta oportunidad de aprender haciendo y poder mostrar los resultados obtenidos, porque creemos que así es como se realmente se aprende, construyendo y compartiendo con personas que colaboren en tu crecimiento.
+Queremos agradecer enormemente tanto a IBM como a Codo a Codo por permitirnos esta oportunidad de aprender haciendo y poder mostrar los resultados obtenidos, porque creemos que así es como realmente se aprende, construyendo y compartiendo con personas que colaboren en tu crecimiento.
 
 ----------
 

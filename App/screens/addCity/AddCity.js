@@ -10,30 +10,29 @@ import { useNavigation } from '@react-navigation/core';
 import Map from "../../components/Map"
 
 
-
-
 const AddCity = ({localizaciones, setLocalizacion, localizacionesGuardadas}) => {
 
-  const navigation = useNavigation();
-  const [ciudad, guardarCiudad] = useState('');
-  const [pais, guardarPais] = useState('');
+    const navigation = useNavigation();
+    //guardar states
+    const [ciudad, guardarCiudad] = useState('');
+    const [pais, guardarPais] = useState('');
 
-  // Desplegable mapa
-  const[mostrar, guardarMostrar]= useState(false)
+    // Desplegable mapa
+    const[mostrar, guardarMostrar]= useState(false)
 
-  //Guardar las localizaciones en storage
+    //Guardar las localizaciones en storage
     
     const guardarLocalizacionesStorage = async (localizacionesJSON) => {
         try {
             if(!seRepite()){
                 await AsyncStorage.setItem('localizaciones', localizacionesJSON);
            }
-
         } catch (error) {
           console.log(error);
         }
       }
 
+     //obtener localizaciones guardadas
      useEffect(() => {
         const obtenerLocalizacionesStorage = async () => {
             try {
@@ -50,8 +49,8 @@ const AddCity = ({localizaciones, setLocalizacion, localizacionesGuardadas}) => 
       }, []);
 
 
-  //crear ciudad
-  const crearCiudad = () => {
+    //crear ciudad
+    const crearCiudad = () => {
     
         if(pais.trim() === '' || ciudad.trim() === '' ) {
             mostrarAlerta();
@@ -113,7 +112,7 @@ const AddCity = ({localizaciones, setLocalizacion, localizacionesGuardadas}) => 
         );
         }
 
-    //muestra la alerta si la ciudad ya existe
+    //muestra la alerta si faltan datos
 
     const mostrarAlerta = () => { 
         Alert.alert(
@@ -129,7 +128,6 @@ const AddCity = ({localizaciones, setLocalizacion, localizacionesGuardadas}) => 
 
     const mostrarMapa = () =>{
         guardarMostrar(!mostrar);
-        //consultarClima()
     }
 
     //Lleva a listCity, agrega ciudad y cierra el mapa en AddCity
@@ -139,13 +137,13 @@ const AddCity = ({localizaciones, setLocalizacion, localizacionesGuardadas}) => 
         return
         //consultarClima()
     }
-
+    //sólo cierra el mapa
     const cerrarMap = () =>{
         guardarMostrar(!mostrar);
     } 
 
-  //animaciones boton
-  const [animacionboton] = useState(new Animated.Value(1));
+    //animaciones boton
+    const [animacionboton] = useState(new Animated.Value(1));
 
     const animacionEntrada = () => {
         Animated.spring(animacionboton, {
@@ -225,8 +223,7 @@ const AddCity = ({localizaciones, setLocalizacion, localizacionesGuardadas}) => 
                                         </Animated.View>
                                     </View>
                                 </TouchableWithoutFeedback>
-                            
-                    
+        
                             </View>
                     </View>
             )
@@ -273,20 +270,11 @@ const AddCity = ({localizaciones, setLocalizacion, localizacionesGuardadas}) => 
                             </View>
                         </TouchableWithoutFeedback>
                     
-            
                     </View>
-                    </View>
-            )
-        
-        
-        
-            }
+                </View>
+            )}
         </ScrollView>
     );
-
-
-
-
 };
 
 

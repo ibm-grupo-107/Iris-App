@@ -1,15 +1,11 @@
 import React, {useEffect, useState} from 'react';
 import {Text, View, StyleSheet, TouchableHighlight, Alert} from 'react-native';
-//import { useNavigation } from '@react-navigation/core';
 import Details from "../../screens/details/Details"
-//import Map from "../Map"
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 
 
 
 const City = ({item, eliminarCiudad}) => {
-
-    //const navigation = useNavigation();
 
     const dialogoEliminar = (ciudad) => {
         eliminarCiudad(ciudad);
@@ -18,28 +14,20 @@ const City = ({item, eliminarCiudad}) => {
 
     //Consultar la API
     
-    const  [consultar, guardarConsultar] = useState(false);
+    const [consultar, guardarConsultar] = useState(false);
     const [resultado, guardarResultado] = useState({});
 
     // Desplegable
 
     const[mostrar, guardarMostrar]= useState(false)
 
-
+    //Busca el clima de la ciudad
     useEffect(() => {
         const consultarClima = async () => {
           if(consultar) {
            
-            const appId = '319fa4c56018832ed2e37833430f4cca'; 
+            const appId = '319fa4c56018832ed2e37833430f4cca'; //inserta tu API Key aquí
             const url = `http://api.openweathermap.org/data/2.5/weather?q=${item.ciudad},${item.pais}&appid=${appId}`;
-           
-            
-
-
-
-         /*    const appId2= "f4f962f79e5e479191d04451212611"
-            const url2=`http://api.weatherapi.com/v1/current.json?key=${appId2}&q=${item.ciudad},${item.pais}` */
-            
             try {
                 const response = await fetch(url);
 	            const data = await response.json(); 
@@ -56,8 +44,6 @@ const City = ({item, eliminarCiudad}) => {
         }
         consultarClima();
       }, [consultar]);
-
-    //console.log(resultado)
 
     const consultarClima = () => {
         if(item.ciudad.trim() === '' || item.pais.trim() === ''  ) {
@@ -115,13 +101,13 @@ const City = ({item, eliminarCiudad}) => {
                             <View style={styles.detailsContainer}>
                             <Details resultado ={resultado}/>
                             
-                            <TouchableHighlight  onPress={() => {consultarClima()}} /* navigation.navigate('Details', item)}} */ style={styles.bntActualizar} underlayColor='none'>
+                            <TouchableHighlight  onPress={() => {consultarClima()}} style={styles.bntActualizar} underlayColor='none'>
                                 <Text style={styles.textoBtn2}><MaterialCommunityIcons name="reload"  size={24} />  </Text>
                             </TouchableHighlight>
                             
                             </View>
                             <View style= {styles.cerrado}>
-                                <TouchableHighlight  onPress={() => {mostrarClima()}} /* navigation.navigate('Details', item)}} */ style={styles.bntVerClima} underlayColor='none' >
+                                <TouchableHighlight  onPress={() => {mostrarClima()}} style={styles.bntVerClima} underlayColor='none' >
                                     <Text style={styles.textoBtn} > {!mostrar ? "VER CLIMA" : "CERRAR"}</Text>
                                 </TouchableHighlight>
                             </View>
@@ -152,7 +138,7 @@ const City = ({item, eliminarCiudad}) => {
                                 </TouchableHighlight>
                         </View>
                         <View style= {styles.cerrado}>
-                            <TouchableHighlight  onPress={() => {mostrarClima()}} /* navigation.navigate('Details', item)}} */ style={styles.bntVerClima} underlayColor='none' >
+                            <TouchableHighlight  onPress={() => {mostrarClima()}} style={styles.bntVerClima} underlayColor='none' >
                                 <Text style={styles.textoBtn}> {!mostrar ? "VER CLIMA" : "CERRAR"}</Text>
                             </TouchableHighlight> 
                         </View>

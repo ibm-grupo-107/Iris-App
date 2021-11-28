@@ -10,30 +10,27 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const ListCity = ({localizaciones, setLocalizacion, localizacionesGuardadas}) => {
 
-    const navigation = useNavigation();
+      const navigation = useNavigation();
 
       //Guardar las localizaciones en storage
-    const guardarLocalizacionesStorage = async (localizacionesJSON) => {
-        try {
-          await AsyncStorage.setItem('localizaciones', localizacionesJSON);
-        } catch (error) {
-          console.log(error);
-        }
-    }
-    //console.log(localizaciones)
-    if(!localizaciones)return null
+      const guardarLocalizacionesStorage = async (localizacionesJSON) => {
+          try {
+            await AsyncStorage.setItem('localizaciones', localizacionesJSON);
+          } catch (error) {
+            console.log(error);
+          }
+      }
+      if(!localizaciones)return null;
 
-      //funcion para eliminar las ciudades
+    //funcion para eliminar las ciudades
       const eliminarCiudad = (ciudad) => {
-        const ciudadesFiltradas = localizaciones.filter(localizacion => 
+      const ciudadesFiltradas = localizaciones.filter(localizacion => 
             (localizacion.ciudad !== ciudad )
-       
-        )  
+        );  
         setLocalizacion(ciudadesFiltradas);
         localizacionesGuardadas.splice(ciudadesFiltradas);
-        //console.log(ciudadesFiltradas);
         guardarLocalizacionesStorage(JSON.stringify(ciudadesFiltradas));
-      }
+      };
 
 
       return (

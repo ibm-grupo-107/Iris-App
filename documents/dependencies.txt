@@ -1,0 +1,24 @@
+Dependencias IRIS
+
+expo install react-native-screens react-native-safe-area-context
+yarn add @react-navigation/native-stack
+expo install react-native-gesture-handler
+expo install react-native-maps
+expo install @react-native-picker/picker
+expo install @react-native-async-storage/async-storage
+yarn add shorted
+yarn add @react-navigation/material-bottom-tabs react-native-paper react-native-vector-icons
+expo install expo-status-bar  
+yarn add react-native-elements
+yarn add react-native-onboarding-swiper
+yarn add react-native-snap-carousel
+yarn add @babel/runtime
+yarn add @react-native-community/eslint-config
+yarn add babel-jest
+yarn add eslint
+yarn add jest
+yarn add metro-react-native-babel-preset
+yarn add react-test-renderer
+yarn add expo-font
+yarn add app-loading
+yarn add expo-app-loading

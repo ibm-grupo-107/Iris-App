@@ -1,20 +1,20 @@
 import React from 'react';
 import {StyleSheet, View, Text, Image} from 'react-native';
-//import { Header } from 'react-native-elements';
 import { StatusBar } from 'expo-status-bar';
 import Loading from "../../components/Loading"
 
 
 const Details = ({resultado}) => {
     
+    const {name,main} = resultado;
+
+    //loaders
     if(!resultado){
         null 
         return <Loading isVisible={true} text={"Cargando Clima..."}/>
      } 
 
-     
     
-    const {name,main} = resultado;
     if(!main) {
         null 
         return <Loading isVisible={true} text={"Cargando Clima..."}/>
@@ -41,9 +41,9 @@ const Details = ({resultado}) => {
                     </Text>
                </Text>
                <Image
-                        style={{width: 66, height: 58}}
-                        source = {{ uri: `http://openweathermap.org/img/w/${resultado.weather[0].icon}.png`}}
-                    />  
+                    style={{width: 66, height: 58}}
+                    source = {{ uri: `http://openweathermap.org/img/w/${resultado.weather[0].icon}.png`}}
+                />  
 
             </View> 
 
