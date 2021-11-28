@@ -31,16 +31,8 @@ const City = ({item, eliminarCiudad}) => {
         const consultarClima = async () => {
           if(consultar) {
            
-            const appId = '20a8b2301f4640e37946ef27389183d7'; 
-            const url = `http://api.openweathermap.org/data/2.5/weather?q=${item.ciudad},${item.pais}&appid=${appId}`;
-           
-            
-
-
-
-         /*    const appId2= "f4f962f79e5e479191d04451212611"
-            const url2=`http://api.weatherapi.com/v1/current.json?key=${appId2}&q=${item.ciudad},${item.pais}` */
-            
+            const appId = '87508399d70b60062b355ceef66bedf9'; 
+            const url = `http://api.openweathermap.org/data/2.5/weather?q=${item.ciudad},${item.pais}&appid=${appId}`;            
             try {
                 const response = await fetch(url);
 	            const data = await response.json(); 
@@ -239,7 +231,7 @@ const City = ({item, eliminarCiudad}) => {
             </View>
         
     );
-                    };
+    };
 };
 
 const styles = StyleSheet.create({

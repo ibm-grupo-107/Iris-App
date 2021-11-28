@@ -138,6 +138,10 @@ const AddCity = ({localizaciones, setLocalizacion, localizacionesGuardadas}) => 
     //Muestra u oculta info del mapa
 
     const mostrarMapa = () =>{
+        if (ciudad.trim() === '' || pais.trim() === '') {
+            mostrarAlerta();
+            return;
+        }
         guardarMostrar(!mostrar);
     }
 

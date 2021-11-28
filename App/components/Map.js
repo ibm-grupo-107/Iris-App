@@ -1,4 +1,3 @@
-import { identifier } from '@babel/types';
 import React,{useState, useEffect} from 'react';
 import {StyleSheet, Alert} from 'react-native';
 import MapView from "react-native-maps"
@@ -15,7 +14,7 @@ const Map = ({ciudad, pais, cerrarMap}) => {
       useEffect(() => {
         const consultarCoord = async () => {
 
-            const appId2 = '20a8b2301f4640e37946ef27389183d7'; 
+            const appId2 = '87508399d70b60062b355ceef66bedf9'; 
             const url2 = `http://api.openweathermap.org/data/2.5/weather?q=${ciudad},${pais}&appid=${appId2}`;
 
              try {
@@ -110,7 +109,6 @@ const Map = ({ciudad, pais, cerrarMap}) => {
                     longitude:resultadoLong 
                }}
                 title ={`${ciudad}`}
-                //description={"Description 1"} 
             />
         </MapView>
         </>

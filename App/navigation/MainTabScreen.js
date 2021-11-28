@@ -17,12 +17,12 @@ import ListCity from "../screens/listCity/ListCity"
 
 const Tab = createMaterialBottomTabNavigator();
 
-let localizacionesGuardadas = [];
+let localizacionesGuardadas = []; // Lista Auxiliar para guardar las localizaciones cada vez q se abre la app
 
 const MainTabScreen = () =>{
 
-    // Lista Auxiliar para guardar las localizaciones cada vez q se abre la app
-    const [localizaciones, setLocalizacion] = useState([]);    
+    //state para guardar localizaciones
+    const [localizaciones, setLocalizacion] = useState([]); 
 
     return (
         <Tab.Navigator
