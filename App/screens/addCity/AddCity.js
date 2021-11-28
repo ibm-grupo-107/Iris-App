@@ -210,7 +210,7 @@ const AddCity = ({localizaciones, setLocalizacion, localizacionesGuardadas}) => 
                             placeholder="Ciudad"
                             placeholderTextColor="#666"
                         />
-                        <TouchableWithoutFeedback>
+                        
                         <View style={styles.mapa}>
                             <Map
                             cerrarMap={cerrarMap}
@@ -218,9 +218,22 @@ const AddCity = ({localizaciones, setLocalizacion, localizacionesGuardadas}) => 
                             pais ={pais}
                             />
                         </View>
-        
+                        <TouchableWithoutFeedback
+                                    underlayColor='none'
+                                    onPress={() => {mostrarMapa()}}
+                                    onPressIn={() => animacionEntrada()}
+                                    onPressOut={() => animacionSalida()}
+                                    onPress={() => crearCiudad() }
+                                    onPress={() => {cerrarMapa()} }
+                                >
+                                    <View style={styles.containerBuscar}>
+                                        <Animated.View style={[styles.btnAgregar, estiloAnimacion]}>
+                                            <Text style={styles.textoBuscar}> Añadir</Text>
+                                        </Animated.View>
+                                    </View>
+                                </TouchableWithoutFeedback>
                             
-                        </TouchableWithoutFeedback>
+                        
                     
             
                      </View>

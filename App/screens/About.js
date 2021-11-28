@@ -83,20 +83,26 @@
       },
      
       textoBtn:{
-        paddingLeft: 30,
+        paddingLeft: 5,
         paddingVertical:15,
         justifyContent: 'center',
         alignItems: 'center',
         backgroundColor: "plum",
-        marginHorizontal: 10,
         borderRadius:20,
         marginBottom: 50,
-        marginLeft:50,
+        marginLeft:70,
         width:150,
         fontSize:14,
         fontFamily: 'Outfit-Regular',
         color:"#fff",
+        textAlign: 'center',
+        textTransform: 'uppercase',
+        fontFamily:'Outfit-Regular',
+      
         
+        
+          
+         
         
         
     
