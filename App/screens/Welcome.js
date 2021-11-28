@@ -9,7 +9,8 @@ const width = Dimensions.get("window").width;
 const Welcome = () => {
 
     let [ fontsLoaded ] = useFonts({
-        'Reey-Regular': require('../../assets/fonts/Dominique.otf')
+        'Outfit-ExtraBold': require('../../assets/fonts/Outfit-ExtraBold.ttf'),
+        'Outfit-Medium': require('../../assets/fonts/Outfit-Medium.ttf')
     });
 
     const [animated, setAnimated] = useState(false);
@@ -65,7 +66,7 @@ const Welcome = () => {
             <>
             <StatusBar style="dark" backgroundColor= "#FFF" />
             <Animated.View  style={ styles.container, {opacity: animacion1 }}>
-               <Animated.Text style={{fontFamily:'Reey-Regular', fontSize: 70, textAlign: 'center', marginTop: 100}} >IRIS</Animated.Text>
+               <Animated.Text style={{fontFamily:'Outfit-ExtraBold', fontSize: 70, textAlign: 'center', marginTop: 100}} >Iris</Animated.Text>
                 <View style= {styles.imageContainer}>
                 <Animated.Image 
                     style={[
@@ -90,7 +91,7 @@ const Welcome = () => {
 const styles = StyleSheet.create({
     text2:{
         
-        fontFamily:'Reey-Regular',
+        fontFamily:'Outfit-Medium',
         fontSize: 29,
         textAlign: 'center',
         marginTop: 100,
@@ -109,7 +110,7 @@ const styles = StyleSheet.create({
         // marginVertical: 50,
         //marginLeft:80,
         marginTop:90, 
-        borderRadius: 100,
+        borderRadius: 100,  
         width: 200,
         height: 200,
       

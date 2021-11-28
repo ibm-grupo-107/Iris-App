@@ -87,6 +87,8 @@ Una vez que tenemos listo el QR y ya nos logueamos en la [app de expo](https://e
 - [React Native](https://reactnative.dev/)  - Lenguaje de programación y Toolkit.
 - [Moqups](https://app.moqups.com/) - Prototipo y Modelo Persona Canvas.
 - [OpenWeatherMap](https://openweathermap.org/) - Api Clima. 
+- [AsyncStorage](https://github.com/react-native-async-storage/async-storage) - Persistencia de datos. 
+- [GitHub](https://github.com/) - Versionado.
 
 :small_blue_diamond:En el proyecto, disponemos de una carpeta llamada "documents". En ella podrás encontrar toda la info completa sobre cada clase y, además, los comandos para instalar las dependencias utilizadas.
 

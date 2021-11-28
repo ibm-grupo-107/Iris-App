@@ -2,7 +2,7 @@ import React from "react";
 import { StyleSheet, Text, View, Image,TouchableWithoutFeedback, ScrollView} from "react-native";
 import { Header } from 'react-native-elements';
 import AppLoading from "expo-app-loading";
-import {useFonts} from "expo-font"
+import { useFonts } from 'expo-font';
 import { StatusBar } from 'expo-status-bar';
 import { useNavigation } from '@react-navigation/core';
 
@@ -12,19 +12,28 @@ import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityI
 
 
 export default function Home(){
+    let [ fontsLoaded ] = useFonts({
+        'Outfit-Regular': require('../../assets/fonts/Outfit-Regular.ttf'),
+        'Outfit-SemiBold': require('../../assets/fonts/Outfit-SemiBold.ttf')
+    });
 
     const navigation = useNavigation();
 
+ 
+
+    if (!fontsLoaded) {
+        return <AppLoading />;
+      } else {
     return (
         <>
         <Header
             placement="center"
             backgroundColor= "coral"
-            centerComponent={{ text: 'Inicio', style: { color: '#fff', fontSize:20 } }}
+            centerComponent={{ text: 'Inicio', style: { fontFamily: 'Outfit-SemiBold', color: '#fff', fontSize:20 } }}
             />
         <View style = {styles.container}>
             <Text style = {styles.text }> Iris App </Text>
-            <Text>Instrucciones de uso:</Text>
+            <Text style = {styles.textIN }>Instrucciones de uso:</Text>
            
         <ScrollView
             style={styles.scroll}
@@ -33,7 +42,7 @@ export default function Home(){
         >
              
         <View style={styles.scrollItem}>
-            <Text style = {styles.text2 }>INCIO:</Text>
+            <Text style = {styles.text2 }>INICIO:</Text>
             <Text style = {styles.text3}> </Text> 
             <Image style={styles.gif}  source={require("../../assets/inicio.gif")}/> 
             <View style={styles.espacio}></View>
@@ -98,6 +107,7 @@ export default function Home(){
         <StatusBar style="dark" backgroundColor= "#FFF" />
         </>
     );
+  }  
 }
 
 const styles = StyleSheet.create({
@@ -107,15 +117,22 @@ const styles = StyleSheet.create({
         backgroundColor:"linen"
     },
     text:{
-        fontSize: 28,
+        fontSize: 45,
         marginTop:20,
-        fontWeight: "bold",
+        //fontWeight: "bold",
+       fontFamily: 'Outfit-SemiBold',
+    },
+    textIN:{
+        fontSize:20,
+        marginTop:10,
+       fontFamily: 'Outfit-Regular',
     },
     text2:{
         fontSize: 20,
         marginTop:10,
-        fontWeight: "bold",
+        //fontWeight: "bold",
         textAlign:"center",
+        fontFamily: 'Outfit-Regular',
 
     },
     text3:{
@@ -163,7 +180,8 @@ const styles = StyleSheet.create({
     btnTexto:{
         color:"#FFF",
         textAlign:"center",
-        fontWeight: "bold",
+        //fontWeight: "bold",
+        fontFamily: 'Outfit-Regular',
     },
     pasos: {
         width:180,

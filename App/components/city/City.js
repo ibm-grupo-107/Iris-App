@@ -2,7 +2,8 @@ import React, {useEffect, useState} from 'react';
 import {Text, View, StyleSheet, TouchableHighlight, Alert, Animated} from 'react-native';
 import Details from "../../screens/details/Details"
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
-
+import AppLoading from "expo-app-loading";
+import { useFonts } from 'expo-font';
 
 
 const City = ({item, eliminarCiudad}) => {
@@ -11,7 +12,10 @@ const City = ({item, eliminarCiudad}) => {
         eliminarCiudad(ciudad);
     };
 
-
+    let [ fontsLoaded ] = useFonts({
+        'Outfit-Regular': require('../../../assets/fonts/Outfit-Regular.ttf'),
+        
+      });
     //Consultar la API
     
     const [consultar, guardarConsultar] = useState(false);
@@ -26,8 +30,16 @@ const City = ({item, eliminarCiudad}) => {
         const consultarClima = async () => {
           if(consultar) {
            
-            const appId = '319fa4c56018832ed2e37833430f4cca'; //inserta tu API Key aquí
+            const appId = '20a8b2301f4640e37946ef27389183d7'; 
             const url = `http://api.openweathermap.org/data/2.5/weather?q=${item.ciudad},${item.pais}&appid=${appId}`;
+           
+            
+
+
+
+         /*    const appId2= "f4f962f79e5e479191d04451212611"
+            const url2=`http://api.weatherapi.com/v1/current.json?key=${appId2}&q=${item.ciudad},${item.pais}` */
+            
             try {
                 const response = await fetch(url);
 	            const data = await response.json(); 
@@ -97,7 +109,9 @@ const City = ({item, eliminarCiudad}) => {
 
     // Cambiar primera letra a Mayúscula
     const capitalizar = s => (s && s[0].toUpperCase() + s.slice(1).toLowerCase()) 
-   
+    if (!fontsLoaded) {
+        return <AppLoading />;
+      } else {
     return (
         <View style={styles.clima}>
                 {mostrar 
@@ -140,7 +154,7 @@ const City = ({item, eliminarCiudad}) => {
                             
                             </View>
                             <View style= {styles.cerrado}>
-                                <TouchableHighlight  onPress={() => {mostrarClima()}} style={styles.bntVerClima} underlayColor='none' >
+                                <TouchableHighlight  onPress={() => {mostrarClima()}} /* navigation.navigate('Details', item)}} */ style={styles.bntVerClima} underlayColor='none' >
                                     <Text style={styles.textoBtn} > {!mostrar ? "VER CLIMA" : "CERRAR"}</Text>
                                 </TouchableHighlight>
                             </View>
@@ -171,7 +185,7 @@ const City = ({item, eliminarCiudad}) => {
                                 </TouchableHighlight>
                         </View>
                         <View style= {styles.cerrado}>
-                            <TouchableHighlight  onPress={() => {mostrarClima()}} style={styles.bntVerClima} underlayColor='none' >
+                            <TouchableHighlight  onPress={() => {mostrarClima()}} /* navigation.navigate('Details', item)}} */ style={styles.bntVerClima} underlayColor='none' >
                                 <Text style={styles.textoBtn}> {!mostrar ? "VER CLIMA" : "CERRAR"}</Text>
                             </TouchableHighlight> 
                         </View>
@@ -182,6 +196,7 @@ const City = ({item, eliminarCiudad}) => {
             </View>
         
     );
+                    };
 };
 
 const styles = StyleSheet.create({
@@ -205,10 +220,11 @@ const styles = StyleSheet.create({
         elevation: 10,
     },
     label: {
-        fontWeight: 'bold',
-        fontSize: 18,
+        //fontWeight: 'bold',
+        fontSize: 24,
         marginTop: 10,
         marginHorizontal: 10,
+        fontFamily: 'Outfit-Regular',
     },
     texto: {
         fontSize: 18,
@@ -236,6 +252,7 @@ const styles = StyleSheet.create({
         shadowOffset: {
           width: 0,
           height: 2,
+          fontFamily: 'Outside-Regular',
         },
         shadowOpacity: 0.25,
         shadowRadius: 3.84,
