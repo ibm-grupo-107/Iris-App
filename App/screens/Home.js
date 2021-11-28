@@ -2,7 +2,7 @@ import React from "react";
 import { StyleSheet, Text, View, Image,TouchableWithoutFeedback, ScrollView} from "react-native";
 import { Header } from 'react-native-elements';
 import AppLoading from "expo-app-loading";
-import {useFonts} from "expo-font"
+import { useFonts } from 'expo-font';
 import { StatusBar } from 'expo-status-bar';
 import { useNavigation } from '@react-navigation/core';
 
@@ -11,68 +11,29 @@ import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityI
 
 
 
-
-import { 
-    Raleway_100Thin,
-    Raleway_100Thin_Italic,
-    Raleway_200ExtraLight,
-    Raleway_200ExtraLight_Italic,
-    Raleway_300Light,
-    Raleway_300Light_Italic,
-    Raleway_400Regular,
-    Raleway_400Regular_Italic,
-    Raleway_500Medium,
-    Raleway_500Medium_Italic,
-    Raleway_600SemiBold,
-    Raleway_600SemiBold_Italic,
-    Raleway_700Bold,
-    Raleway_700Bold_Italic,
-    Raleway_800ExtraBold,
-    Raleway_800ExtraBold_Italic,
-    Raleway_900Black,
-    Raleway_900Black_Italic 
-  } from '@expo-google-fonts/raleway'
-
-
 export default function Home(){
+    let [ fontsLoaded ] = useFonts({
+        'Outfit-Regular': require('../../assets/fonts/Outfit-Regular.ttf'),
+        'Outfit-SemiBold': require('../../assets/fonts/Outfit-SemiBold.ttf')
+    });
 
     const navigation = useNavigation();
 
-    let [fontsLoaded, error] = useFonts({
-        Raleway_100Thin,
-        Raleway_100Thin_Italic,
-        Raleway_200ExtraLight,
-        Raleway_200ExtraLight_Italic,
-        Raleway_300Light,
-        Raleway_300Light_Italic,
-        Raleway_400Regular,
-        Raleway_400Regular_Italic,
-        Raleway_500Medium,
-        Raleway_500Medium_Italic,
-        Raleway_600SemiBold,
-        Raleway_600SemiBold_Italic,
-        Raleway_700Bold,
-        Raleway_700Bold_Italic,
-        Raleway_800ExtraBold,
-        Raleway_800ExtraBold_Italic,
-        Raleway_900Black,
-        Raleway_900Black_Italic 
+ 
 
-    })
-
-    if(!fontsLoaded){
-        return <AppLoading/>
-    }
+    if (!fontsLoaded) {
+        return <AppLoading />;
+      } else {
     return (
         <>
         <Header
             placement="center"
             backgroundColor= "coral"
-            centerComponent={{ text: 'Inicio', style: { color: '#fff', fontSize:20 } }}
+            centerComponent={{ text: 'Inicio', style: { fontFamily: 'Outfit-SemiBold', color: '#fff', fontSize:20 } }}
             />
         <View style = {styles.container}>
             <Text style = {styles.text }> Iris App </Text>
-            <Text>Instrucciones de uso:</Text>
+            <Text style = {styles.textIN }>Instrucciones de uso:</Text>
            
         <ScrollView
             style={styles.scroll}
@@ -81,7 +42,7 @@ export default function Home(){
         >
              
         <View style={styles.scrollItem}>
-            <Text style = {styles.text2 }>INCIO:</Text>
+            <Text style = {styles.text2 }>INICIO:</Text>
             <Text style = {styles.text3}> </Text> 
             <Image style={styles.gif}  source={require("../../assets/inicio.gif")}/> 
             <View style={styles.espacio}></View>
@@ -146,6 +107,7 @@ export default function Home(){
         <StatusBar style="dark" backgroundColor= "#FFF" />
         </>
     );
+  }  
 }
 
 const styles = StyleSheet.create({
@@ -155,18 +117,23 @@ const styles = StyleSheet.create({
         backgroundColor:"linen"
     },
     text:{
-        fontSize: 28,
+        fontSize: 45,
         marginTop:20,
-        fontWeight: "bold",
-        fontFamily: "Raleway_200ExtraLight",
+        //fontWeight: "bold",
+       fontFamily: 'Outfit-SemiBold',
+    },
+    textIN:{
+        fontSize:20,
+        marginTop:10,
+       fontFamily: 'Outfit-Regular',
     },
     text2:{
         fontSize: 20,
         marginTop:10,
-        fontWeight: "bold",
+        //fontWeight: "bold",
         textAlign:"center",
-        fontFamily: "Raleway_200ExtraLight",
-    
+        fontFamily: 'Outfit-Regular',
+
     },
     text3:{
         textAlign:"center",
@@ -213,7 +180,8 @@ const styles = StyleSheet.create({
     btnTexto:{
         color:"#FFF",
         textAlign:"center",
-        fontWeight: "bold",
+        //fontWeight: "bold",
+        fontFamily: 'Outfit-Regular',
     },
     pasos: {
         width:180,

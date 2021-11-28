@@ -1,21 +1,32 @@
 
   import React from "react";
-  import { StyleSheet, Text, View, Button, } from "react-native";
+  import { StyleSheet, Text, View, Button, TouchableHighlight } from "react-native";
   import { Header } from 'react-native-elements';
   import { StatusBar } from 'expo-status-bar';
+  import AppLoading from 'expo-app-loading';
+  import { useFonts } from 'expo-font';
   import { Video } from 'expo-av';
 
   
   const About = () => {
+            let [ fontsLoaded ] = useFonts({
+              'Outfit-Regular': require('../../assets/fonts/Outfit-Regular.ttf'),
+              'Outfit-SemiBold': require('../../assets/fonts/Outfit-SemiBold.ttf')
+            });
+
           const video = React.useRef(null);
           const [status, setStatus] = React.useState({});
+          
+          if (!fontsLoaded) {
+            return <AppLoading />;
+          } else {  
 
           return (
               <>
               <Header
                   placement="center"
                   backgroundColor= "plum"
-                  centerComponent={{ text: 'Quienes somos', style: { color: '#fff', fontSize:20 } }}
+                  centerComponent={{ text: 'Quienes somos', style: { fontFamily: 'Outfit-SemiBold', color: '#fff', fontSize:20 } }}
                   />
               
               <StatusBar style="dark" backgroundColor= "#FFF" />
@@ -30,21 +41,21 @@
                 isLooping
                 onPlaybackStatusUpdate={status => setStatus(() => status)}
               />
+             
+
               <View style={styles.buttons}>
-                <Button   //reproducción de video
-                  title={status.isPlaying ? 'Pausar' : 'Reproducir'}
-                  style={styles.btn}
-                  color="plum"
+                            <TouchableHighlight   
                   onPress={() =>
                     status.isPlaying ? video.current.pauseAsync() : video.current.playAsync()
-                  }
-                />
+                  }  style={styles.btn} underlayColor='none' >
+                                <Text style={styles.textoBtn}> {status.isPlaying ? 'PAUSAR' : 'REPRODUCIR'}</Text>
+                            </TouchableHighlight> 
               </View>
             </View>
               </>
 
           );
-     
+      }
   }
   
   const styles = StyleSheet.create({
@@ -61,11 +72,35 @@
         height: 400,
       },
       buttons: {
-        marginTop:30,
-        paddingBottom: 55,
+        fontFamily:'Outfit-SemiBold',
+        borderRadius: 100,
+        fontSize: 29,
+        marginTop: 30,
+        padding: 55,
+        // justifyContent: 'center',
+        // alignItems: 'center',
+        
+      },
+     
+      textoBtn:{
+        paddingLeft: 30,
+        paddingVertical:15,
         justifyContent: 'center',
         alignItems: 'center',
-      },
-      
-  })
+        backgroundColor: "plum",
+        marginHorizontal: 10,
+        borderRadius:20,
+        marginBottom: 50,
+        marginLeft:50,
+        width:150,
+        fontSize:14,
+        fontFamily: 'Outfit-Regular',
+        color:"#fff",
+        
+        
+        
+    
+    },
+  });
+
   export default About;

@@ -6,6 +6,8 @@ import { StatusBar } from 'expo-status-bar';
 import shortid from 'shortid';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useNavigation } from '@react-navigation/core';
+import AppLoading from "expo-app-loading";
+import { useFonts } from 'expo-font';
 
 import Map from "../../components/Map"
 
@@ -13,6 +15,10 @@ import Map from "../../components/Map"
 
 
 const AddCity = ({localizaciones, setLocalizacion, localizacionesGuardadas}) => {
+    let [ fontsLoaded ] = useFonts({
+        'Outfit-Regular': require('../../../assets/fonts/Outfit-Regular.ttf'),
+        'Outfit-SemiBold': require('../../../assets/fonts/Outfit-SemiBold.ttf')
+    });
 
   const navigation = useNavigation();
   const [ciudad, guardarCiudad] = useState('');
@@ -166,17 +172,20 @@ const AddCity = ({localizaciones, setLocalizacion, localizacionesGuardadas}) => 
     const estiloAnimacion = {
         transform: [{scale: animacionboton }]
     }
-
-    return (
+    
+    if (!fontsLoaded) {
+        return <AppLoading />;
+      } else {
+    return (    
 
         <ScrollView style={styles.container} >
             {mostrar 
                 ?( 
-                    <>
+                 <>
                     <Header
                         placement="center"
                         backgroundColor= "mediumaquamarine"
-                        centerComponent={{ text: 'Agregar Ciudad', style: { color: '#fff', fontSize:20 } }}
+                        centerComponent={{ text: 'Agregar Ciudad', style: {fontFamily: 'Outfit-SemiBold', color: '#fff', fontSize:20 } }}
                     />
                 <StatusBar style="dark" backgroundColor= "#FFF" />
         
@@ -226,7 +235,7 @@ const AddCity = ({localizaciones, setLocalizacion, localizacionesGuardadas}) => 
                         </TouchableWithoutFeedback>
                     
             
-                    </View>
+                     </View>
                     </>
             )
             
@@ -235,7 +244,7 @@ const AddCity = ({localizaciones, setLocalizacion, localizacionesGuardadas}) => 
                     <Header
                         placement="center"
                         backgroundColor= "mediumaquamarine"
-                        centerComponent={{ text: 'Agregar Ciudad', style: { color: '#fff', fontSize:20 } }}
+                        centerComponent={{ text: 'Agregar Ciudad', style: { fontFamily: 'Outfit-SemiBold',color: '#fff', fontSize:20 } }}
                     />
                 <StatusBar style="dark" backgroundColor= "#FFF" />
         
@@ -287,7 +296,7 @@ const AddCity = ({localizaciones, setLocalizacion, localizacionesGuardadas}) => 
         </ScrollView>
     );
 
-
+  }
 
 
 };
@@ -357,18 +366,20 @@ const styles = StyleSheet.create({
     textoBuscar: {
         color: '#FFF',
         textAlign: 'center',
-        fontSize: 15,
-        fontWeight: 'bold',
+        //fontSize: 15,
+        //fontWeight: 'bold',
         textTransform: 'uppercase',
+        fontFamily:'Outfit-Regular',
     
     },
     textoAñadir:{
         marginTop:18,
         color: '#000000',
-        fontSize: 15,
+        fontSize: 20,
         marginLeft:8,
-        fontWeight: 'bold',
-        textTransform: 'uppercase',
+        //fontWeight: 'bold',
+        //textTransform: 'uppercase',
+        fontFamily: 'Outfit-Regular',
     },
     containerBuscar:{
         justifyContent: 'center',

@@ -6,9 +6,17 @@ import { StatusBar } from 'expo-status-bar';
 import { useNavigation } from '@react-navigation/core';
 import City from '../../components/city/City';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import AppLoading from "expo-app-loading";
+import { useFonts } from 'expo-font';
 
 
 const ListCity = ({localizaciones, setLocalizacion, localizacionesGuardadas}) => {
+    
+  let [ fontsLoaded ] = useFonts({
+    'Outfit-Regular': require('../../../assets/fonts/Outfit-Regular.ttf'),
+    'Outfit-SemiBold': require('../../../assets/fonts/Outfit-SemiBold.ttf')
+    
+  });
 
     const navigation = useNavigation();
 
@@ -34,14 +42,16 @@ const ListCity = ({localizaciones, setLocalizacion, localizacionesGuardadas}) =>
         //console.log(ciudadesFiltradas);
         guardarLocalizacionesStorage(JSON.stringify(ciudadesFiltradas));
       }
-
-
-      return (
+      
+      if (!fontsLoaded) {
+        return <AppLoading />;
+      } else {
+       return (
           <>
               <Header
                   placement="center"
                   backgroundColor= "skyblue"
-                  centerComponent={{ text: 'Mis Ciudades', style: { color: '#fff', fontSize:20 } }}
+                  centerComponent={{ text: 'Mis Ciudades', style: { fontFamily: 'Outfit-SemiBold', color: '#fff', fontSize:20 } }}
                   />
               <StatusBar style="dark" backgroundColor= "#FFF" />
               <View style={styles.contenedor}>
@@ -60,8 +70,9 @@ const ListCity = ({localizaciones, setLocalizacion, localizacionesGuardadas}) =>
               </View> 
   
           </>    
-      );
-      };
+        );
+      }
+};
   
   const styles = StyleSheet.create({
       contenedor: {

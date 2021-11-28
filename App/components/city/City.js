@@ -4,7 +4,8 @@ import {Text, View, StyleSheet, TouchableHighlight, Alert} from 'react-native';
 import Details from "../../screens/details/Details"
 //import Map from "../Map"
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
-
+import AppLoading from "expo-app-loading";
+import { useFonts } from 'expo-font';
 
 
 const City = ({item, eliminarCiudad}) => {
@@ -15,7 +16,10 @@ const City = ({item, eliminarCiudad}) => {
         eliminarCiudad(ciudad);
     };
 
-
+    let [ fontsLoaded ] = useFonts({
+        'Outfit-Regular': require('../../../assets/fonts/Outfit-Regular.ttf'),
+        
+      });
     //Consultar la API
     
     const  [consultar, guardarConsultar] = useState(false);
@@ -30,19 +34,19 @@ const City = ({item, eliminarCiudad}) => {
         const consultarClima = async () => {
           if(consultar) {
            
-            //const appId = '319fa4c56018832ed2e37833430f4cca'; 
-            //const url = `http://api.openweathermap.org/data/2.5/weather?q=${item.ciudad},${item.pais}&appid=${appId}`;
+            const appId = '20a8b2301f4640e37946ef27389183d7'; 
+            const url = `http://api.openweathermap.org/data/2.5/weather?q=${item.ciudad},${item.pais}&appid=${appId}`;
            
-            /* const response = await fetch(`http://api.openweathermap.org/data/2.5/weather?q=${item.ciudad},${item.pais}&appid=${appId}`);
-	        const data = await response.json();
-	        console.log(data); */
+            
 
-            const appId2= "f4f962f79e5e479191d04451212611"
-            const url2=`http://api.weatherapi.com/v1/current.json?key=${appId2}&q=${item.ciudad},${item.pais}`
+
+
+         /*    const appId2= "f4f962f79e5e479191d04451212611"
+            const url2=`http://api.weatherapi.com/v1/current.json?key=${appId2}&q=${item.ciudad},${item.pais}` */
             
             try {
-                const respuesta = await fetch(url2);
-                const data = await respuesta.json();
+                const response = await fetch(url);
+	            const data = await response.json(); 
                 if(data.cod === "404"){
                     mostrarAlerta()
                 }else{
@@ -86,77 +90,78 @@ const City = ({item, eliminarCiudad}) => {
 
     // Cambiar primera letra a Mayúscula
     const capitalizar = s => (s && s[0].toUpperCase() + s.slice(1).toLowerCase()) 
-   
+    if (!fontsLoaded) {
+        return <AppLoading />;
+      } else {
     return (
         <View style={styles.clima}>
                 {mostrar 
                     ? (
                         <>
-                        <View style={styles.minContainer}>
-                            <View>
+                            <View style={styles.minContainer}>
                                 <View>
-                                    <Text
-                                    style={styles.label}>Ciudad: </Text>
-                                    <Text style={styles.texto}>{capitalizar(item.ciudad)}</Text>
+                                    <View>
+                                        <Text
+                                        style={styles.label}>Ciudad: </Text>
+                                        <Text style={styles.texto}>{capitalizar(item.ciudad)}</Text>
+                                    </View>
+                                    <View>
+                                        <Text 
+                                        style={styles.label}>Pais: </Text>
+                                        <Text style={styles.texto}>{item.pais}</Text>
+                                    </View>
                                 </View>
-                                <View>
-                                    <Text 
-                                    style={styles.label}>Pais: </Text>
-                                    <Text style={styles.texto}>{item.pais}</Text>
-                                </View>
+                                <TouchableHighlight 
+                                        onPress={ () => dialogoEliminar(item.ciudad)} 
+                                        underlayColor='none'
+                                        style={styles.bntEliminar}>
+                                        <Text style={styles.textoBtn2}><MaterialCommunityIcons name="delete-forever"  size={24} /> </Text>
+                                </TouchableHighlight>
                             </View>
-                            <TouchableHighlight 
-                                    onPress={ () => dialogoEliminar(item.ciudad)} 
-                                    underlayColor='none'
-                                    style={styles.bntEliminar}>
-                                    <Text style={styles.textoBtn2}><MaterialCommunityIcons name="delete-forever"  size={26} /> </Text>
+                            <View style={styles.detailsContainer}>
+                            <Details resultado ={resultado}/>
+                            
+                            <TouchableHighlight  onPress={() => {consultarClima()}} /* navigation.navigate('Details', item)}} */ style={styles.bntActualizar} underlayColor='none'>
+                                <Text style={styles.textoBtn2}><MaterialCommunityIcons name="reload"  size={24} />  </Text>
                             </TouchableHighlight>
-                        </View>
-                        <Details
-                            resultado ={resultado}
-                         />
-                        <TouchableHighlight  onPress={() => {consultarClima()}} /* navigation.navigate('Details', item)}} */ style={styles.bntActualizar} underlayColor='none'>
-                        <Text style={styles.textoBtn2}>Actualizar </Text>
-                      </TouchableHighlight>
-                      <View style= {styles.cerrado}>
-                        <TouchableHighlight  onPress={() => {mostrarClima()}} /* navigation.navigate('Details', item)}} */ style={styles.bntVerClima} underlayColor='none' >
-                            <Text style={styles.textoBtn} > {!mostrar ? "Ver Clima" : "Cerrar"}</Text>
-                        </TouchableHighlight>
-                        
-                    </View>
-
-                      </>
+                            
+                            </View>
+                            <View style= {styles.cerrado}>
+                                <TouchableHighlight  onPress={() => {mostrarClima()}} /* navigation.navigate('Details', item)}} */ style={styles.bntVerClima} underlayColor='none' >
+                                    <Text style={styles.textoBtn} > {!mostrar ? "VER CLIMA" : "CERRAR"}</Text>
+                                </TouchableHighlight>
+                            </View>
+                    </> 
                     ) 
                     
                     : 
                     (<>
-                     <View style={styles.minContainer}>
-                            <View>
+                        <View style={styles.minContainer}>
                                 <View>
-                                    <Text
-                                    style={styles.label}>Ciudad: </Text>
-                                    <Text style={styles.texto}>{capitalizar(item.ciudad)}</Text>
+                                    <View>
+                                        <Text
+                                        style={styles.label}>Ciudad: </Text>
+                                        <Text style={styles.texto}>{capitalizar(item.ciudad)}</Text>
+                                    </View>
+                                    <View>
+                                        <Text 
+                                        style={styles.label}>Pais: </Text>
+                                        <Text style={styles.texto}>{item.pais}</Text>
+                                    </View>
                                 </View>
-                                <View>
-                                    <Text 
-                                    style={styles.label}>Pais: </Text>
-                                    <Text style={styles.texto}>{item.pais}</Text>
-                                </View>
-                            </View>
-                            <TouchableHighlight 
-                                    onPress={ () => dialogoEliminar(item.ciudad)} 
-                                    style={styles.bntEliminar}
-                                    underlayColor='none'>
-    
-                                    <Text style={styles.textoBtn2}><MaterialCommunityIcons name="delete-forever"  size={26} /> </Text>
-                            </TouchableHighlight>
+                                <TouchableHighlight 
+                                        onPress={ () => dialogoEliminar(item.ciudad)} 
+                                        style={styles.bntEliminar}
+                                        underlayColor='none'>
+        
+                                        <Text style={styles.textoBtn2}><MaterialCommunityIcons name="delete-forever"  size={24} /> </Text>
+                                </TouchableHighlight>
                         </View>
-                    <View style= {styles.cerrado}>
-                        <TouchableHighlight  onPress={() => {mostrarClima()}} /* navigation.navigate('Details', item)}} */ style={styles.bntVerClima} underlayColor='none' >
-                            <Text style={styles.textoBtn}> {!mostrar ? "VerClima" : "Cerrar"}</Text>
-                        </TouchableHighlight>
-                        
-                    </View>
+                        <View style= {styles.cerrado}>
+                            <TouchableHighlight  onPress={() => {mostrarClima()}} /* navigation.navigate('Details', item)}} */ style={styles.bntVerClima} underlayColor='none' >
+                                <Text style={styles.textoBtn}> {!mostrar ? "VER CLIMA" : "CERRAR"}</Text>
+                            </TouchableHighlight> 
+                        </View>
                     </>
 
                     ) }
@@ -164,38 +169,49 @@ const City = ({item, eliminarCiudad}) => {
             </View>
         
     );
+                    };
 };
 
 const styles = StyleSheet.create({
     clima: {
         backgroundColor: "#fff",
-        borderBottomColor: "#e1e1e1",
+        borderBottomColor: "lightskyblue",
         borderStyle: 'solid',
-        borderBottomWidth: 1,
         paddingVertical: 10,
         paddingHorizontal: 10,
-        borderBottomWidth: 20,
+        borderRadius:12,
+        margin:25,
+        borderBottomWidth: 10,
+        //shadow
+        shadowColor: "#000",
+        shadowOffset: {
+        width: 0,
+        height: 7,
+        },
+        shadowOpacity: 0.41,
+        shadowRadius: 9.11,
+        elevation: 10,
     },
     label: {
-        fontWeight: 'bold',
-        fontSize: 18,
+        //fontWeight: 'bold',
+        fontSize: 24,
         marginTop: 10,
         marginHorizontal: 10,
+        fontFamily: 'Outfit-Regular',
     },
     texto: {
         fontSize: 18,
         marginHorizontal: 10,
     },
     bntEliminar: {
-        padding: 10,
         backgroundColor: "lightgray",
-        marginHorizontal: 10,
-        width:50,
-        marginTop:15,
-        height:50,
+        marginTop:10,
+        marginRight:10,
+        width:45,
+        height:45,
         justifyContent: 'center',
         alignItems: 'center',
-        borderRadius:20,
+        borderRadius:15,
   
       },
       bntVerClima: {
@@ -203,7 +219,27 @@ const styles = StyleSheet.create({
         backgroundColor: "lightskyblue",
         marginHorizontal: 10,
         borderRadius:20,
+        marginBottom: 10,
         width:150,
+        shadowColor: "#000",
+        shadowOffset: {
+          width: 0,
+          height: 2,
+          fontFamily: 'Outside-Regular',
+        },
+        shadowOpacity: 0.25,
+        shadowRadius: 3.84,
+        elevation: 5, 
+      },
+      bntActualizar:{
+        backgroundColor: "lightblue",
+        marginBottom: 10,
+        marginTop: 15,
+        paddingLeft: 15,
+        padding:5,
+        justifyContent: "center",
+        alignItems: "center",
+        borderRadius:25,
         shadowColor: "#000",
         shadowOffset: {
           width: 0,
@@ -212,12 +248,6 @@ const styles = StyleSheet.create({
         shadowOpacity: 0.25,
         shadowRadius: 3.84,
         elevation: 5, 
-      },
-      bntActualizar:{
-        paddingVertical: 10,
-        backgroundColor: "lightblue",
-        marginHorizontal: 10,
-        marginBottom: 10,
       },
       textoBtn: {
           fontWeight: 'bold',
@@ -238,7 +268,12 @@ const styles = StyleSheet.create({
       minContainer:{
           flexDirection: 'row',
           justifyContent: "space-between",
+      },
+      detailsContainer:{
+          alignItems: 'center',
+          justifyContent: "center",
       }
+     
 });
 
 export default City;
