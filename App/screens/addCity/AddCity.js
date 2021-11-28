@@ -170,73 +170,70 @@ const AddCity = ({localizaciones, setLocalizacion, localizacionesGuardadas}) => 
     return (
 
         <ScrollView style={styles.container} >
+            <Header
+                placement="center"
+                backgroundColor= "mediumaquamarine"
+                centerComponent={{ text: 'Agregar Ciudad', style: { color: '#fff', fontSize:20 } }}
+            />
             {mostrar 
                 ?( 
-                    <>
-                    <Header
-                        placement="center"
-                        backgroundColor= "mediumaquamarine"
-                        centerComponent={{ text: 'Agregar Ciudad', style: { color: '#fff', fontSize:20 } }}
-                    />
-                <StatusBar style="dark" backgroundColor= "#FFF" />
-        
-                <View style={styles.formulario}>
-                    
-                    <View style={styles.contenido}>
-                        <Text style={styles.textoAñadir}>País: </Text>
-                        <Picker
-                            selectedValue={pais}
-                            onValueChange={texto => guardarPais(texto)}
-                            itemStyle={{height: 120, backgroundColor: '#FFF'}}
-                        >
-                            <Picker.Item label="-- Seleccione un país --" value="" />
-                            <Picker.Item label="Argentina" value="AR" />
-                        </Picker>
-        
-                    </View>
-        
-                        <TextInput 
-                            onChangeText={texto => guardarCiudad(texto)}
-                            value={ciudad}
-                            style={styles.input}
-                            placeholder="Ciudad"
-                            placeholderTextColor="#666"
-                        />
-                        <View style={styles.mapa}>
-                            <Map
-                            cerrarMap={cerrarMap}
-                            ciudad = {ciudad}
-                            pais ={pais}
-                            />
-                        </View>
-        
-                        <TouchableWithoutFeedback
-                            underlayColor='none'
-                            onPress={() => {mostrarMapa()}}
-                            onPressIn={() => animacionEntrada()}
-                            onPressOut={() => animacionSalida()}
-                            onPress={() => crearCiudad() }
-                            onPress={() => {cerrarMapa()} }
-                        >
-                            <View style={styles.containerBuscar}>
-                                <Animated.View style={[styles.btnAgregar, estiloAnimacion]}>
-                                    <Text style={styles.textoBuscar}> Añadir</Text>
-                                </Animated.View>
+                    <View style= {styles.miniContainer}>
+                        
+                        <StatusBar style="dark" backgroundColor= "#FFF" />
+                
+                        <View style={styles.formulario}>
+                            
+                            <View style={styles.contenido}>
+                                <Text style={styles.textoAñadir}>País: </Text>
+                                <Picker
+                                    selectedValue={pais}
+                                    onValueChange={texto => guardarPais(texto)}
+                                    itemStyle={{height: 120, backgroundColor: '#FFF'}}
+                                >
+                                    <Picker.Item label="-- Seleccione un país --" value="" />
+                                    <Picker.Item label="Argentina" value="AR" />
+                                </Picker>
+                
                             </View>
-                        </TouchableWithoutFeedback>
+                
+                                <TextInput 
+                                    onChangeText={texto => guardarCiudad(texto)}
+                                    value={ciudad}
+                                    style={styles.input}
+                                    placeholder="Ciudad"
+                                    placeholderTextColor="#666"
+                                />
+                                <View style={styles.mapa}>
+                                    <Map
+                                    cerrarMap={cerrarMap}
+                                    ciudad = {ciudad}
+                                    pais ={pais}
+                                    />
+                                </View>
+                
+                                <TouchableWithoutFeedback
+                                    underlayColor='none'
+                                    onPress={() => {mostrarMapa()}}
+                                    onPressIn={() => animacionEntrada()}
+                                    onPressOut={() => animacionSalida()}
+                                    onPress={() => crearCiudad() }
+                                    onPress={() => {cerrarMapa()} }
+                                >
+                                    <View style={styles.containerBuscar}>
+                                        <Animated.View style={[styles.btnAgregar, estiloAnimacion]}>
+                                            <Text style={styles.textoBuscar}> Añadir</Text>
+                                        </Animated.View>
+                                    </View>
+                                </TouchableWithoutFeedback>
+                            
                     
-            
+                            </View>
                     </View>
-                    </>
             )
             
             :(
-                <>
-                    <Header
-                        placement="center"
-                        backgroundColor= "mediumaquamarine"
-                        centerComponent={{ text: 'Agregar Ciudad', style: { color: '#fff', fontSize:20 } }}
-                    />
+                <View style= {styles.miniContainer2}>
+                   
                 <StatusBar style="dark" backgroundColor= "#FFF" />
         
                 <View style={styles.formulario}>
@@ -278,7 +275,7 @@ const AddCity = ({localizaciones, setLocalizacion, localizacionesGuardadas}) => 
                     
             
                     </View>
-                    </>
+                    </View>
             )
         
         
@@ -297,6 +294,42 @@ const AddCity = ({localizaciones, setLocalizacion, localizacionesGuardadas}) => 
 const styles = StyleSheet.create({
     container: {
         backgroundColor: 'honeydew',
+    },
+    miniContainer:{
+        backgroundColor: '#FFF',
+        margin:20,
+        borderBottomColor: "darkseagreen",
+        borderStyle: 'solid',
+        borderBottomWidth: 10,
+        borderRadius:20,
+        //shadow
+        shadowColor: "#000",
+        shadowOffset: {
+        width: 0,
+        height: 7,
+        },
+        shadowOpacity: 0.41,
+        shadowRadius: 9.11,
+        elevation: 10,
+    },
+
+    miniContainer2:{
+        backgroundColor: '#FFF',
+        margin:20,
+        borderBottomColor: "darkseagreen",
+        borderStyle: 'solid',
+        borderBottomWidth: 10,
+        paddingBottom:30,
+        borderRadius:20,
+        //shadow
+        shadowColor: "#000",
+        shadowOffset: {
+        width: 0,
+        height: 7,
+        },
+        shadowOpacity: 0.41,
+        shadowRadius: 9.11,
+        elevation: 10,
     },
     formulario: {
         flex: 1,

@@ -11,58 +11,10 @@ import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityI
 
 
 
-
-import { 
-    Raleway_100Thin,
-    Raleway_100Thin_Italic,
-    Raleway_200ExtraLight,
-    Raleway_200ExtraLight_Italic,
-    Raleway_300Light,
-    Raleway_300Light_Italic,
-    Raleway_400Regular,
-    Raleway_400Regular_Italic,
-    Raleway_500Medium,
-    Raleway_500Medium_Italic,
-    Raleway_600SemiBold,
-    Raleway_600SemiBold_Italic,
-    Raleway_700Bold,
-    Raleway_700Bold_Italic,
-    Raleway_800ExtraBold,
-    Raleway_800ExtraBold_Italic,
-    Raleway_900Black,
-    Raleway_900Black_Italic 
-  } from '@expo-google-fonts/raleway'
-
-
 export default function Home(){
 
     const navigation = useNavigation();
 
-    let [fontsLoaded, error] = useFonts({
-        Raleway_100Thin,
-        Raleway_100Thin_Italic,
-        Raleway_200ExtraLight,
-        Raleway_200ExtraLight_Italic,
-        Raleway_300Light,
-        Raleway_300Light_Italic,
-        Raleway_400Regular,
-        Raleway_400Regular_Italic,
-        Raleway_500Medium,
-        Raleway_500Medium_Italic,
-        Raleway_600SemiBold,
-        Raleway_600SemiBold_Italic,
-        Raleway_700Bold,
-        Raleway_700Bold_Italic,
-        Raleway_800ExtraBold,
-        Raleway_800ExtraBold_Italic,
-        Raleway_900Black,
-        Raleway_900Black_Italic 
-
-    })
-
-    if(!fontsLoaded){
-        return <AppLoading/>
-    }
     return (
         <>
         <Header
@@ -158,15 +110,13 @@ const styles = StyleSheet.create({
         fontSize: 28,
         marginTop:20,
         fontWeight: "bold",
-        fontFamily: "Raleway_200ExtraLight",
     },
     text2:{
         fontSize: 20,
         marginTop:10,
         fontWeight: "bold",
         textAlign:"center",
-        fontFamily: "Raleway_200ExtraLight",
-    
+
     },
     text3:{
         textAlign:"center",
