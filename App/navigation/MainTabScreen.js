@@ -1,10 +1,9 @@
-import React, {useEffect, useState} from "react";
+import React, {useState} from "react";
 
 //Importar el bottomNavigations
 import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs';
 
-//Importar iconos de Material:
-import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
+//Importar iconos:
 import { Ionicons } from '@expo/vector-icons';
 
 //Importar rutas de los Screens
@@ -12,7 +11,7 @@ import About from "../screens/About";
 import AddCity from "../screens/addCity/AddCity";
 import Home from "../screens/Home";
 import ListCity from "../screens/listCity/ListCity"
-//import Details from "../screens/details/Details";
+
 
 
 
@@ -22,7 +21,7 @@ let localizacionesGuardadas = [];
 
 const MainTabScreen = () =>{
 
-  
+    // Lista Auxiliar para guardar las localizaciones cada vez q se abre la app
     const [localizaciones, setLocalizacion] = useState([]);    
 
     return (
@@ -40,7 +39,6 @@ const MainTabScreen = () =>{
               tabBarColor: "coral",
               tabBarIcon: ({ color }) => (
                 <Ionicons name="md-home-sharp" size={26} color={color}/>
-               // <MaterialCommunityIcons name="home" color={color} size={26} />
               ),
             }}
           />
@@ -51,7 +49,6 @@ const MainTabScreen = () =>{
                   tabBarColor: "skyblue",
                   tabBarIcon: ({ color }) => (
                     <Ionicons name="md-heart" size={26} color={color} />
-                    //<MaterialCommunityIcons name="cards-heart" color={color} size={26} />
                   ),
                 }}
                 >
@@ -64,24 +61,12 @@ const MainTabScreen = () =>{
                   tabBarColor: "mediumaquamarine",
                   tabBarIcon: ({ color }) => (
                     <Ionicons name="md-location-sharp" size={26} color={color} />
-                    //<MaterialCommunityIcons name="map-marker-plus" color={color} size={26} />
                   ),
                 }}
                 >
                 {(props) => <AddCity localizaciones={localizaciones} setLocalizacion={setLocalizacion} localizacionesGuardadas={localizacionesGuardadas}/>}
           </Tab.Screen>
 
-          {/* <Tab.Screen name="Details"
-                options={{
-                  tabBarLabel: 'Clima',
-                  tabBarColor: "lightsalmon",
-                  tabBarIcon: ({ color }) => (
-                    <MaterialCommunityIcons name="weather-cloudy" size={26} color={color} />
-                  ),
-                }}
-                >
-                {(props) => <Details/>}
-          </Tab.Screen> */}
            <Tab.Screen
             name="About"
             component={About}
@@ -90,7 +75,6 @@ const MainTabScreen = () =>{
               tabBarColor: "plum",
               tabBarIcon: ({ color }) => (
                 <Ionicons name="md-people" size={26} color={color} />
-                //<MaterialCommunityIcons name="cog" color={color} size={26} />
               ),
             }}
           />

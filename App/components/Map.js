@@ -11,16 +11,6 @@ const Map = ({ciudad, pais, cerrarMap}) => {
     const [resultadoLat, guardarResultadoLat] = useState(0);
     const [resultadoLong, guardarResultadoLong] = useState(0); 
 
-    //Si los datos de ciudad y país son vacíos devolver alerta:
-    if(ciudad.trim() === "" || pais.trim() === ""){
-        Alert.alert(
-            'Error',
-            'Debe cargar todos los datos',
-            [{text: 'Entendido'}]
-    
-        )
-        return <Loading isVisible={false}/>
-    }
    
       useEffect(() => {
         const consultarCoord = async () => {
@@ -49,8 +39,13 @@ const Map = ({ciudad, pais, cerrarMap}) => {
 
 
             } catch (error) {
-               mostrarAlerta();
-               cerrarMap();
+                if(ciudad == "" || pais ==""){
+                    mostrarAlerta3()
+                    cerrarMap();
+                }else{
+                    mostrarAlerta();
+                    cerrarMap();
+                }
             }
         }     
         
@@ -67,6 +62,16 @@ const Map = ({ciudad, pais, cerrarMap}) => {
         cerrarMap();
         return <Loading isVisible={false}/>
     }
+
+    const mostrarAlerta3 = () => {
+        Alert.alert(
+            'Error',
+            'Debe cargar todos los datos',
+            [{text: 'Entendido'}]
+        )
+        cerrarMap();
+        return <Loading isVisible={false}/>
+    }
     const mostrarAlerta2 = () => {
         Alert.alert(
             'Error',
@@ -78,7 +83,7 @@ const Map = ({ciudad, pais, cerrarMap}) => {
     }
 
     //Si no se pasan datos de ciudad no carga el loader
-    if(ciudad == "" ) {
+    if(ciudad == "" || pais =="") {
         return <Loading isVisible={false}/>
     }
 

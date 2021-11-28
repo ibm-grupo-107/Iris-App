@@ -23,6 +23,8 @@ const AddCity = ({localizaciones, setLocalizacion, localizacionesGuardadas}) => 
     const [ciudad, guardarCiudad] = useState('');
     const [pais, guardarPais] = useState('');
 
+
+
     // Desplegable mapa
     const[mostrar, guardarMostrar]= useState(false)
 
@@ -106,7 +108,9 @@ const AddCity = ({localizaciones, setLocalizacion, localizacionesGuardadas}) => 
                .normalize();
     }
 
-    
+
+
+
     //muestra la alerta si la ciudad ya existe
 
     const mostrarAlerta2 = () => { 
@@ -137,16 +141,32 @@ const AddCity = ({localizaciones, setLocalizacion, localizacionesGuardadas}) => 
         guardarMostrar(!mostrar);
     }
 
+    //Borrar Ciudad de input :
+    const borrarCiudad = () => { 
+        guardarCiudad("") 
+     }
+
+     //Borrar País de Picker :
+    const borrarPais = () => { 
+        guardarPais("")
+     }
+
+
+
     //Lleva a listCity, agrega ciudad y cierra el mapa en AddCity
     const cerrarMapa = () =>{
         guardarMostrar(!mostrar);
         crearCiudad()
+        borrarCiudad()
+        borrarPais()
         return
         //consultarClima()
     }
     //sólo cierra el mapa
     const cerrarMap = () =>{
         guardarMostrar(!mostrar);
+        borrarCiudad()
+        return
     } 
 
     //animaciones boton
@@ -208,9 +228,11 @@ const AddCity = ({localizaciones, setLocalizacion, localizacionesGuardadas}) => 
                                     <Picker.Item label="Chile" value="CL" />
                                     <Picker.Item label="Colombia" value="CO" />
                                     <Picker.Item label="Ecuador" value="EC" />
+                                    <Picker.Item label="Paraguay" value="PY" />
                                     <Picker.Item label="Perú" value="PE" />
                                     <Picker.Item label="Uruguay" value="UY" />
                                     <Picker.Item label="Venezuela" value="VE" />
+                                    
 
                                 </Picker>
                 
@@ -222,6 +244,7 @@ const AddCity = ({localizaciones, setLocalizacion, localizacionesGuardadas}) => 
                                     style={styles.input}
                                     placeholder="Ciudad"
                                     placeholderTextColor="#666"
+                   
                                 />
                                 <View style={styles.mapa}>
                                     <Map
@@ -275,6 +298,7 @@ const AddCity = ({localizaciones, setLocalizacion, localizacionesGuardadas}) => 
                                 <Picker.Item label="Chile" value="CL" />
                                 <Picker.Item label="Colombia" value="CO" />
                                 <Picker.Item label="Ecuador" value="EC" />
+                                <Picker.Item label="Paraguay" value="PY" />
                                 <Picker.Item label="Perú" value="PE" />
                                 <Picker.Item label="Uruguay" value="UY" />
                                 <Picker.Item label="Venezuela" value="VE" />
@@ -378,8 +402,10 @@ const styles = StyleSheet.create({
         borderColor:"darkseagreen",
         borderWidth:4,
         marginHorizontal: '10%',
-        borderRadius: 5
-    },
+        borderRadius: 5,
+        fontFamily: 'Outfit-Regular',
+
+        },
     btnBuscar: {
      
         marginTop: 30,

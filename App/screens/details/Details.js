@@ -54,7 +54,7 @@ const Details = ({resultado}) => {
 
 const styles = StyleSheet.create({
     clima: {
-        marginTop:10,
+        marginTop:15,
         backgroundColor: 'skyblue',
         flex: 1,
         alignItems: 'center',

@@ -12,6 +12,7 @@ const City = ({item, eliminarCiudad}) => {
         eliminarCiudad(ciudad);
     };
 
+    // Fuenta utilizada:
     let [ fontsLoaded ] = useFonts({
         'Outfit-Regular': require('../../../assets/fonts/Outfit-Regular.ttf'),
         
@@ -82,6 +83,50 @@ const City = ({item, eliminarCiudad}) => {
         consultarClima()
     }
 
+    
+    //Obtener nombre de ciudad
+
+    const obtenerPais = (value) =>{
+        let nombrePais= ""
+
+        switch (value) {
+            case "AR":
+                nombrePais= "Argentina"
+                break;
+            case "UY":
+                nombrePais = "Uruguay"
+            break;
+            case "BO":
+                nombrePais ="Bolivia"
+            break;
+            case "CO":
+                nombrePais ="Colombia"
+            break;
+            case "PY":
+                nombrePais ="Paraguay"
+            break;
+            case "VE":
+                nombrePais ="Venezuela"
+            break;
+            case "BR":
+                nombrePais ="Brasil"
+            break;
+            case "CL":
+                nombrePais ="Chile"
+            break;
+            case "EC":
+                nombrePais ="Ecuador"
+            break;
+            case "PE":
+                nombrePais ="Perú"
+            break;
+            default:
+                break;
+        }
+        return nombrePais;
+    } 
+
+
    //animaciones boton
    const [animacionboton] = useState(new Animated.Value(1));
 
@@ -127,7 +172,7 @@ const City = ({item, eliminarCiudad}) => {
                                     <View>
                                         <Text 
                                         style={styles.label}>Pais: </Text>
-                                        <Text style={styles.texto}>{item.pais}</Text>
+                                        <Text style={styles.texto}>{obtenerPais(item.pais)}</Text>
                                     </View>
                                 </View>
                                 <TouchableHighlight 
@@ -171,7 +216,7 @@ const City = ({item, eliminarCiudad}) => {
                                     <View>
                                         <Text 
                                         style={styles.label}>Pais: </Text>
-                                        <Text style={styles.texto}>{item.pais}</Text>
+                                         <Text style={styles.texto}>{obtenerPais(item.pais)}</Text>
                                     </View>
                                 </View>
                                 <TouchableHighlight 

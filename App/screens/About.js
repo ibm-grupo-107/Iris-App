@@ -62,14 +62,15 @@
 
       container: {
         flex: 1,
-        marginTop:120,
-        justifyContent: 'center',
+        justifyContent: "center",
+        alignItems: 'center',
         backgroundColor: '#ecf0f1',
+    
       },
       video: {
         alignSelf: 'center',
         alignSelf: 'center',
-        width: "100%",
+        width: "80%",
         height: 400,
       },
       buttons: {
@@ -83,14 +84,11 @@
       },
      
       textoBtn:{
-        paddingLeft: 5,
         paddingVertical:15,
         justifyContent: 'center',
         alignItems: 'center',
         backgroundColor: "plum",
         borderRadius:20,
-        marginBottom: 50,
-        marginLeft:70,
         width:150,
         fontSize:14,
         fontFamily: 'Outfit-Regular',
