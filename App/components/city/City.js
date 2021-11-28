@@ -1,16 +1,12 @@
 import React, {useEffect, useState} from 'react';
 import {Text, View, StyleSheet, TouchableHighlight, Alert} from 'react-native';
-//import { useNavigation } from '@react-navigation/core';
 import Details from "../../screens/details/Details"
-//import Map from "../Map"
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import AppLoading from "expo-app-loading";
 import { useFonts } from 'expo-font';
 
 
 const City = ({item, eliminarCiudad}) => {
-
-    //const navigation = useNavigation();
 
     const dialogoEliminar = (ciudad) => {
         eliminarCiudad(ciudad);
@@ -22,14 +18,14 @@ const City = ({item, eliminarCiudad}) => {
       });
     //Consultar la API
     
-    const  [consultar, guardarConsultar] = useState(false);
+    const [consultar, guardarConsultar] = useState(false);
     const [resultado, guardarResultado] = useState({});
 
     // Desplegable
 
     const[mostrar, guardarMostrar]= useState(false)
 
-
+    //Busca el clima de la ciudad
     useEffect(() => {
         const consultarClima = async () => {
           if(consultar) {
@@ -60,8 +56,6 @@ const City = ({item, eliminarCiudad}) => {
         }
         consultarClima();
       }, [consultar]);
-
-    //console.log(resultado)
 
     const consultarClima = () => {
         if(item.ciudad.trim() === '' || item.pais.trim() === ''  ) {

@@ -12,34 +12,33 @@ import { useFonts } from 'expo-font';
 import Map from "../../components/Map"
 
 
-
-
 const AddCity = ({localizaciones, setLocalizacion, localizacionesGuardadas}) => {
     let [ fontsLoaded ] = useFonts({
         'Outfit-Regular': require('../../../assets/fonts/Outfit-Regular.ttf'),
         'Outfit-SemiBold': require('../../../assets/fonts/Outfit-SemiBold.ttf')
     });
 
-  const navigation = useNavigation();
-  const [ciudad, guardarCiudad] = useState('');
-  const [pais, guardarPais] = useState('');
+    const navigation = useNavigation();
+    //guardar states
+    const [ciudad, guardarCiudad] = useState('');
+    const [pais, guardarPais] = useState('');
 
-  // Desplegable mapa
-  const[mostrar, guardarMostrar]= useState(false)
+    // Desplegable mapa
+    const[mostrar, guardarMostrar]= useState(false)
 
-  //Guardar las localizaciones en storage
+    //Guardar las localizaciones en storage
     
     const guardarLocalizacionesStorage = async (localizacionesJSON) => {
         try {
             if(!seRepite()){
                 await AsyncStorage.setItem('localizaciones', localizacionesJSON);
            }
-
         } catch (error) {
           console.log(error);
         }
       }
 
+     //obtener localizaciones guardadas
      useEffect(() => {
         const obtenerLocalizacionesStorage = async () => {
             try {
@@ -56,8 +55,8 @@ const AddCity = ({localizaciones, setLocalizacion, localizacionesGuardadas}) => 
       }, []);
 
 
-  //crear ciudad
-  const crearCiudad = () => {
+    //crear ciudad
+    const crearCiudad = () => {
     
         if(pais.trim() === '' || ciudad.trim() === '' ) {
             mostrarAlerta();
@@ -119,7 +118,7 @@ const AddCity = ({localizaciones, setLocalizacion, localizacionesGuardadas}) => 
         );
         }
 
-    //muestra la alerta si la ciudad ya existe
+    //muestra la alerta si faltan datos
 
     const mostrarAlerta = () => { 
         Alert.alert(
@@ -135,7 +134,6 @@ const AddCity = ({localizaciones, setLocalizacion, localizacionesGuardadas}) => 
 
     const mostrarMapa = () =>{
         guardarMostrar(!mostrar);
-        //consultarClima()
     }
 
     //Lleva a listCity, agrega ciudad y cierra el mapa en AddCity
@@ -145,13 +143,13 @@ const AddCity = ({localizaciones, setLocalizacion, localizacionesGuardadas}) => 
         return
         //consultarClima()
     }
-
+    //sólo cierra el mapa
     const cerrarMap = () =>{
         guardarMostrar(!mostrar);
     } 
 
-  //animaciones boton
-  const [animacionboton] = useState(new Animated.Value(1));
+    //animaciones boton
+    const [animacionboton] = useState(new Animated.Value(1));
 
     const animacionEntrada = () => {
         Animated.spring(animacionboton, {
@@ -179,9 +177,10 @@ const AddCity = ({localizaciones, setLocalizacion, localizacionesGuardadas}) => 
     return (    
 
         <ScrollView style={styles.container} >
+            
             {mostrar 
                 ?( 
-                 <>
+            <>
                     <Header
                         placement="center"
                         backgroundColor= "mediumaquamarine"
@@ -203,7 +202,7 @@ const AddCity = ({localizaciones, setLocalizacion, localizacionesGuardadas}) => 
                         </Picker>
         
                     </View>
-        
+                        
                         <TextInput 
                             onChangeText={texto => guardarCiudad(texto)}
                             value={ciudad}
@@ -211,6 +210,7 @@ const AddCity = ({localizaciones, setLocalizacion, localizacionesGuardadas}) => 
                             placeholder="Ciudad"
                             placeholderTextColor="#666"
                         />
+                        <TouchableWithoutFeedback>
                         <View style={styles.mapa}>
                             <Map
                             cerrarMap={cerrarMap}
@@ -219,19 +219,7 @@ const AddCity = ({localizaciones, setLocalizacion, localizacionesGuardadas}) => 
                             />
                         </View>
         
-                        <TouchableWithoutFeedback
-                            underlayColor='none'
-                            onPress={() => {mostrarMapa()}}
-                            onPressIn={() => animacionEntrada()}
-                            onPressOut={() => animacionSalida()}
-                            onPress={() => crearCiudad() }
-                            onPress={() => {cerrarMapa()} }
-                        >
-                            <View style={styles.containerBuscar}>
-                                <Animated.View style={[styles.btnAgregar, estiloAnimacion]}>
-                                    <Text style={styles.textoBuscar}> Añadir</Text>
-                                </Animated.View>
-                            </View>
+                            
                         </TouchableWithoutFeedback>
                     
             
@@ -285,16 +273,11 @@ const AddCity = ({localizaciones, setLocalizacion, localizacionesGuardadas}) => 
                             </View>
                         </TouchableWithoutFeedback>
                     
-            
                     </View>
-                    </>
-            )
-        
-        
-        
-            }
+               </>
+            )}
         </ScrollView>
-    );
+    )
 
   }
 
@@ -306,6 +289,42 @@ const AddCity = ({localizaciones, setLocalizacion, localizacionesGuardadas}) => 
 const styles = StyleSheet.create({
     container: {
         backgroundColor: 'honeydew',
+    },
+    miniContainer:{
+        backgroundColor: '#FFF',
+        margin:20,
+        borderBottomColor: "darkseagreen",
+        borderStyle: 'solid',
+        borderBottomWidth: 10,
+        borderRadius:20,
+        //shadow
+        shadowColor: "#000",
+        shadowOffset: {
+        width: 0,
+        height: 7,
+        },
+        shadowOpacity: 0.41,
+        shadowRadius: 9.11,
+        elevation: 10,
+    },
+
+    miniContainer2:{
+        backgroundColor: '#FFF',
+        margin:20,
+        borderBottomColor: "darkseagreen",
+        borderStyle: 'solid',
+        borderBottomWidth: 10,
+        paddingBottom:30,
+        borderRadius:20,
+        //shadow
+        shadowColor: "#000",
+        shadowOffset: {
+        width: 0,
+        height: 7,
+        },
+        shadowOpacity: 0.41,
+        shadowRadius: 9.11,
+        elevation: 10,
     },
     formulario: {
         flex: 1,

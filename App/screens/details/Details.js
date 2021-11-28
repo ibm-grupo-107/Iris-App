@@ -1,59 +1,67 @@
 import React from 'react';
 import {StyleSheet, View, Text, Image} from 'react-native';
-//import { Header } from 'react-native-elements';
 import { StatusBar } from 'expo-status-bar';
 import Loading from "../../components/Loading"
 
 
 const Details = ({resultado}) => {
     
-    //Sólo carga si llegan los datos
-    if(!resultado){
-       null 
-       return <Loading isVisible={true} text={"Cargando Clima..."}/>
-    } 
-    //const {name,main} = resultado;
+    const {name,main} = resultado;
 
-    const{current, location} = resultado;
-    if(!current) {
+    //loaders
+    if(!resultado){
         null 
         return <Loading isVisible={true} text={"Cargando Clima..."}/>
+     } 
 
+    
+    if(!main) {
+        null 
+        return <Loading isVisible={true} text={"Cargando Clima..."}/>
     }
-  
-    //if(!name) return null //<Loading isVisible={true} text={"Cargando Clima..."}/>
+
+    if(!name) {
+        null 
+        return <Loading isVisible={true} text={"Cargando Clima..."}/>
+    }
+
 
     // grados kelvin
     const kelvin =273.15
- 
+
     
     return (        
-        <> 
-        <Loading isVisible={false} />  
-        <StatusBar style="dark" backgroundColor= "#FFF" />
-        <View style ={styles.clima}>
-            <Text style ={styles.texto, styles.actual}> {current.temp_c} 
-                <Text style= {styles.temperatura}>
-                    &#x2103;
-                </Text>
-                <Image
+        <>  
+            <StatusBar style="dark" backgroundColor= "#FFF" />
+            
+            <View style ={styles.clima}>
+               <Text style ={styles.texto, styles.actual}> {parseInt (main.temp - kelvin)} 
+                    <Text style= {styles.temperatura}>
+                        &#x2103;
+                    </Text>
+               </Text>
+               <Image
                     style={{width: 66, height: 58}}
-                    source = {{ uri: `https:${current.condition.icon}`}}
-                />    
-            </Text>
+                    source = {{ uri: `http://openweathermap.org/img/w/${resultado.weather[0].icon}.png`}}
+                />  
 
-        </View> 
+            </View> 
+
+           
        </>
     );
 };
 
 const styles = StyleSheet.create({
     clima: {
-        marginTop:5,
+        marginTop:10,
         backgroundColor: 'skyblue',
         flex: 1,
         alignItems: 'center',
-        marginHorizontal: 10,
+        flexDirection: 'row',
+        borderRadius:25,
+        width:250,
+        justifyContent: "space-evenly",
     },
     texto: {
         marginTop: 10,
