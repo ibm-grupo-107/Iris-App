@@ -224,7 +224,7 @@ const AddCity = ({localizaciones, setLocalizacion, localizacionesGuardadas}) => 
                                 <Picker
                                     selectedValue={pais}
                                     onValueChange={texto => guardarPais(texto)}
-                                    itemStyle={{height: 120, backgroundColor: '#FFF', fontFamily: 'Outfit-Regular'}}
+                                    itemStyle={{height: 120, backgroundColor: '#FFF'}}
                                 >
                                     <Picker.Item label="-- Seleccione un país --" value="" />
                                     <Picker.Item label="Argentina" value="AR" />

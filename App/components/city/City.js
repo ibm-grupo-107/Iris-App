@@ -31,7 +31,7 @@ const City = ({item, eliminarCiudad}) => {
         const consultarClima = async () => {
           if(consultar) {
            
-            const appId = '0a13d3882976ae0a443b7bb719fcdd1a'; 
+            const appId = '87508399d70b60062b355ceef66bedf9'; 
             const url = `http://api.openweathermap.org/data/2.5/weather?q=${item.ciudad},${item.pais}&appid=${appId}`;
            
             

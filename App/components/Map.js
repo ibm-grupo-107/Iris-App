@@ -14,7 +14,7 @@ const Map = ({ciudad, pais, cerrarMap}) => {
       useEffect(() => {
         const consultarCoord = async () => {
 
-            const appId2 = '0a13d3882976ae0a443b7bb719fcdd1a'; 
+            const appId2 = '87508399d70b60062b355ceef66bedf9'; 
             const url2 = `http://api.openweathermap.org/data/2.5/weather?q=${ciudad},${pais}&appid=${appId2}`;
 
              try {
