@@ -10,7 +10,7 @@ A continuación, te contamos un poco sobre Iris:
 
 ***¿Y porqué el nombre?***
 
-Bueno, la idea del mismo surge que no solo fonéticamente suene lindo sino que también representara a la aplicación, es así que nace Iris (de la mitología griega) que es la diosa del arcoíris que anuncia el pacto de unión entre el Olimpo y la tierra al final de la tormenta.
+La idea del mismo nace de Iris, la diosa de la mitología griega, quien anuncia el pacto de unión entre el Olimpo y la tierra al final de la tormenta.
 
 :clapper:[Aquí](https://drive.google.com/file/d/1Io5p3WNXGnyBJGD0vibYgUyanzlVIIz2/view?usp=sharing) podés ver nuestro video publicitario de la app.
 
@@ -26,7 +26,7 @@ Y este es nuestro prototipo:
 
 ## Comenzando  🚀
 
-_Estas instrucciones te permitirán obtener una copia de la app en funcionamiento en tu compu para lo que necesites, ya sea probarla, realizar cambios que te gusten, proponer ideas, estamos abiertos a todas tus sugerencias!:sunglasses:_
+_Estas instrucciones te permitirán obtener una copia de la app en funcionamiento en tu computadora, ya sea para probarla, realizar los cambios que te gusten, o proponer ideas, estamos abiertos a todas tus sugerencias!:sunglasses:_
 
 ### Pre-requisitos  📋
 
