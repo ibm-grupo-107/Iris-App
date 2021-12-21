@@ -16,7 +16,7 @@ La idea del mismo nace de Iris, la diosa de la mitología griega, quien anuncia 
 
 ![uso de App](https://i.ibb.co/fM5Nr9J/irisApp1.gif)
 
-![uso de App](https://i.ibb.co/Z6Dym6C/irisApp2.gif)
+![uso de App](https://i.ibb.co/JnXZ57p/iris-gif-2-1-1.gif)
 
 ### Persona Canvas :girl:
 Este es nuestro modelo de persona canvas al cual está enfocado proyecto:
