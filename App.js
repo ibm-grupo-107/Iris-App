@@ -48,7 +48,7 @@ export default function App() {
 
 
   // Si es la primera vez que se inicia la App: cargar Welcome + Slider
-  if (!isFirstLaunch){
+  if (isFirstLaunch){
       return(
         <>
           {mostrar 
