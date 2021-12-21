@@ -43,12 +43,12 @@ export default function App() {
   useEffect(() => {
     setTimeout(() => {
       mostrarWelcome(!mostrar);
-    }, 5300);
+    }, 5200);
   }, []);
 
 
   // Si es la primera vez que se inicia la App: cargar Welcome + Slider
-  if (isFirstLaunch){
+  if (!isFirstLaunch){
       return(
         <>
           {mostrar 
